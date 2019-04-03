@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import click
 import lib.csv_handler as csv_handler
+import lib.pickle_handler as pickle_handler
+import lib.nlp_methods as nlp_methods
 
 
 @click.group()
@@ -29,7 +31,7 @@ def cli():
     '-s', '--sep', type=click.STRING, default=',',
     help='column separator (default is ",")'
 )
-def export(file, col, out, enc, sep):
+def extract(file, col, out, enc, sep):
     click.echo(f'extracting column {col} from {file}...\n')
     head, line_numbers = csv_handler.extract(file, col, out, enc, sep)
 
@@ -38,6 +40,17 @@ def export(file, col, out, enc, sep):
         click.echo(f'[{i}]\t{value}')
     click.echo(f'\nextracted {line_numbers} of lines -> {out}')
     click.echo('extraction complete!\n')
+
+
+@cli.command('pipeline')
+@click.option(
+    '-f', '--file', type=click.STRING, default='extract.p',
+    help='extract file to use in process (default is "extract.p")'
+)
+def pipeline(file):
+    doc = pickle_handler.load(file)
+    normalized_doc = nlp_methods.normalize_doc(doc)
+    print(normalized_doc)
 
 
 if __name__ == '__main__':
