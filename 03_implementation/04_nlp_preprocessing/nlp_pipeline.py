@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import click
+import time as watch
 import lib.csv_handler as csv_handler
 import lib.pickle_handler as pickle_handler
 import lib.nlp_methods as nlp_methods
@@ -32,13 +33,15 @@ def cli():
     help='column separator (default is ",")'
 )
 def extract(file, col, out, enc, sep):
+    start = watch.time()
+    click.echo('\nstarting extraction')
     click.echo(f'extracting column {col} from {file}...\n')
 
     values = csv_handler.extract(file, col, out, enc, sep)
     pickle_handler.dump(values, out)
 
-    click.echo(f'\nextracted {len(values)} of lines -> {out}')
-    click.echo('extraction complete!\n')
+    click.echo(f'\nextracted {len(values)} of sentences -> {out}')
+    click.echo(f'extraction completed in {watch.time() - start}s\n')
 
 
 @cli.command('pipeline_stemming')
@@ -55,6 +58,9 @@ def extract(file, col, out, enc, sep):
     help='stopwords file in pipeline (default is "res/custom_ch_stopwords.p")'
 )
 def pipeline(file, out, stopwords):
+    start = watch.time()
+    click.echo('\nstarting pipeline\n')
+
     doc = pickle_handler.load(file)
     normalized_doc = nlp_methods.normalize_doc(doc)
     click.echo(f'- normalized {len(normalized_doc)} sentences')
@@ -65,6 +71,13 @@ def pipeline(file, out, stopwords):
     stopwords = pickle_handler.load(stopwords)
     cleaned_doc = nlp_methods.remove_stopwords_doc(tokenized_doc, stopwords)
     click.echo(f'- removed stopwords from {len(cleaned_doc)} sentences')
+
+    stemmed_doc = nlp_methods.stemm_doc(cleaned_doc)
+    click.echo(f'- applied stemming on {len(cleaned_doc)} sentences')
+
+    pickle_handler.dump(stemmed_doc, out)
+    click.echo(f'\napplied pipeline on {len(stemmed_doc)} of sentences -> {out}')
+    click.echo(f'pipeline completed in {watch.time() - start}s\n')
 
 
 if __name__ == '__main__':
