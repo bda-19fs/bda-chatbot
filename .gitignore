@@ -1,2 +1,5 @@
 */.ipynb_*
 german.model
+
+# virtualenv
+venv/
