@@ -18,10 +18,13 @@ def correct_grammar(grammar):
 
     lines = 0
     for line in correction_iterator(doc, grammar):
+        if line is None:
+            break
+
         click.get_text_stream('stdout').write(line + '\n')
         lines += 1
 
-    log_info(f'corrected {lines - 1} lines')
+    log_info(f'corrected {lines} lines')
     log_info(f'correction completed in {watch.time() - start}s\n')
 
 
