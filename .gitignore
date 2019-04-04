@@ -6,3 +6,6 @@ venv/
 
 # log files
 *.log
+
+# txt files
+*.txt
