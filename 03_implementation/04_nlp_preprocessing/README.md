@@ -1,8 +1,10 @@
 # NLP Pipeline cli
+We created a bunch of tools keeping the unix philosophy in mind. We want our
+commands to be able to be chained using pipes.
 
 ## Install requirements
 To install all requirements for the cli use:
-```powershell
+```bash
 pip install -r requirements.txt
 ```
 
@@ -12,6 +14,10 @@ With the cli *nlp_pipeline.py* you can:
 - ...
 
 ### Extract column as list
-```powershell
->  python .\nlp_pipeline.py extract -f "ionesoft_tickets.csv" -c 4 -e "ansi"
+On windows please use git bash or change stdout encoding to utf-8.
+
+This example extracts column number 4 from a csv file seperated by comma.
+The output is written into extract.txt.
+```bash
+> cat ./ionesoft_tickets.csv | ./extract.py -c 4 -s ',' > extract.txt
 ```
