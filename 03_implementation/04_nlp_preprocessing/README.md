@@ -75,9 +75,33 @@ The output is written to *stdout*.
 > cat ./ionesoft_inquiries.txt | ./normalize.py
 ```
 
-Corrected output:
+Normalized output:
 ```
 ich kann die bilder in übungen nicht bearbeiten ich habe das beook schonn mit einem zeichnungsprogramm verknüpft und teilweise funktioniert es auch
 lückentexte weg daten verloren gegangen von pp von rabatt
 bitte deaktivieren sie dieses gerät vielen dank
+```
+
+### Stopwords.py
+On windows please use git bash or change stdout encoding to utf-8.
+
+This example removes stopwors in the *normalized_inquiries.txt* file generated
+by *normalize.py*. It uses a stopwordlist that can be defined with
+*-s/--stopwords*. The default is *res/custom_ch_stopwords.txt*.
+
+The output is written into *cleaned_inquiries.txt*.
+```bash
+> cat normalized_inquiries.txt | ./stopwords.py > cleaned_inquiries.txt
+```
+
+The output is written to *stdout*.
+```bash
+> cat ./ionesoft_inquiries.txt | ./stopwords.py
+```
+
+Cleaned output:
+```
+bilder übungen bearbeiten beook schonn zeichnungsprogramm verknüpft teilweise funktioniert
+lückentexte daten verloren gegangen pp rabatt
+bitte deaktivieren gerät
 ```
