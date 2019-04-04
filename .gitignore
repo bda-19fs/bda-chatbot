@@ -3,3 +3,6 @@ german.model
 
 # virtualenv
 venv/
+
+# log files
+*.log
