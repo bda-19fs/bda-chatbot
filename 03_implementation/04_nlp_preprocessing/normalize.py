@@ -20,6 +20,7 @@ def normalize():
         lines += 1
 
     log_info(f'normalized {lines} lines')
+    log_info(f'normalization completed in {watch.time() - start}s\n')
 
 
 if __name__ == '__main__':

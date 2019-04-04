@@ -12,7 +12,7 @@ from lib.log_handler import log_info
 )
 def correct_grammar(grammar):
     start = watch.time()
-    doc = click.get_text_stream('stdin').read()
+    doc = click.get_text_stream('stdin', 'utf-8').read()
 
     log_info(f'correcting with grammar: {grammar}')
 
@@ -20,7 +20,7 @@ def correct_grammar(grammar):
     for line in correction_iterator(doc, grammar):
         if line is None:
             break
-        click.get_text_stream('stdout').write(line + '\n')
+        click.get_text_stream('stdout', 'utf-8').write(line + '\n')
         lines += 1
 
     log_info(f'corrected {lines} lines')
