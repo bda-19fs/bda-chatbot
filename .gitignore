@@ -4,6 +4,9 @@ german.model
 # virtualenv
 venv/
 
+# python
+__pycache__/
+
 # log files
 *.log
 
