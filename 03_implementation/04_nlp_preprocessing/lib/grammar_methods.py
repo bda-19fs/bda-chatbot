@@ -1,3 +1,6 @@
+import re
+
+
 def convert_to_dict(grammar):
     grammar_dict = dict()
 
@@ -11,7 +14,7 @@ def convert_to_dict(grammar):
 def correct(line, grammar):
     for k in grammar.keys():
         if k in line:
-            line = line.replace(k, grammar[k])
+            line = re.sub(rf'\b{k}\b', grammar[k], line)
 
     return line
 
@@ -19,4 +22,4 @@ def correction_iterator(doc, grammar):
     grammar = convert_to_dict(grammar)
 
     for line in doc.split('\n'):
-        yield correct(line, grammar)
+        yield None if line == '' else correct(line, grammar)
