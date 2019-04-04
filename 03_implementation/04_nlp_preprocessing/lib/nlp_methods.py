@@ -22,21 +22,22 @@ def normalization_iterator(doc):
         yield None if line == '' else normalize(line)
 
 
-def tokenize_doc(doc):
-    '''
-        Tokenize a list of strings by spliting words by space character.
-    '''
-    return [sentence.split(' ') for sentence in doc]
-
+def convert_to_list(stopwords):
+    with open(stopwords, 'r', encoding='utf-8') as file:
+        return list(map(lambda line: line.strip(), file.readlines()))
 
 def remove_stopwords(tokens, stop_words):
     return [token for token in tokens if token not in stop_words]
 
-def remove_stopwords_doc(token_doc, stopwords):
+def stopwords_iterator(doc, stopwords):
     '''
         Remove stopwords in a list of strings.
     '''
-    return list(map(lambda t: remove_stopwords(t, stopwords), token_doc))
+    stopwords = convert_to_list(stopwords)
+
+    for line in doc.split('\n'):
+        words = line.split(' ')
+        yield str.join(' ', [word for word in words if word not in stopwords])
 
 
 def stemm(tokens, stemmer=SnowballStemmer('german', ignore_stopwords=True)):
