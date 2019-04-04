@@ -16,7 +16,7 @@ from lib.log_handler import log_info
 )
 def extract(column, seperator):
     start = watch.time()
-    csv = click.get_text_stream('stdin').read()
+    csv = click.get_text_stream('stdin', 'utf-8').read()
 
     log_info(f'extracting column: {column} seperator: {seperator}')
 
@@ -24,8 +24,7 @@ def extract(column, seperator):
     for value in csv_iterator(csv, column, seperator):
         if value is None:
             break
-
-        click.get_text_stream('stdout').write(value + '\n')
+        click.get_text_stream('stdout', 'utf-8').write(value + '\n')
         lines += 1
 
     log_info(f'extracted {lines} lines')

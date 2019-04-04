@@ -20,7 +20,6 @@ def correct_grammar(grammar):
     for line in correction_iterator(doc, grammar):
         if line is None:
             break
-
         click.get_text_stream('stdout').write(line + '\n')
         lines += 1
 
