@@ -1,8 +1,22 @@
-def correct(token, grammar):
-    return grammar[token] if token in grammar.keys() else token
+def convert_to_dict(grammar):
+    grammar_dict = dict()
 
-def correct_tokens(tokens, grammar):
-    return [correct(token, grammar) for token in tokens]
+    with open(grammar, 'r') as file:
+        for line in file:
+            pair = line.split(',')
+            grammar_dict[pair[0]] = pair[1].rstrip('\n\r')
 
-def correct_doc(token_doc, grammar):
-    return list(map(lambda t: correct_tokens(t, grammar), token_doc))
+    return grammar_dict
+
+def correct(line, grammar):
+    for k in grammar.keys():
+        if k in line:
+            line = line.replace(k, grammar[k])
+
+    return line
+
+def correction_iterator(doc, grammar):
+    grammar = convert_to_dict(grammar)
+
+    for line in doc.split('\n'):
+        yield correct(line, grammar)
