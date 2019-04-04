@@ -7,7 +7,7 @@ def convert_to_dict(grammar):
     with open(grammar, 'r') as file:
         for line in file:
             pair = line.split(',')
-            grammar_dict[pair[0]] = pair[1].rstrip('\n\r')
+            grammar_dict[pair[0]] = pair[1].strip()
 
     return grammar_dict
 

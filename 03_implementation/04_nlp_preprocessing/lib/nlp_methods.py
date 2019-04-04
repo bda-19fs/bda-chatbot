@@ -37,7 +37,7 @@ def stopwords_iterator(doc, stopwords):
 
     for line in doc.split('\n'):
         words = line.split(' ')
-        yield str.join(' ', [word for word in words if word not in stopwords])
+        yield None if line == '' else str.join(' ', [word for word in words if word not in stopwords])
 
 
 def stemm(tokens, stemmer=SnowballStemmer('german', ignore_stopwords=True)):
