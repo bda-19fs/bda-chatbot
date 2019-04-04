@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import click
 import time as watch
 from lib.log_handler import log_info
