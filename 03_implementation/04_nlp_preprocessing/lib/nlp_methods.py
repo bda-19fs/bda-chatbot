@@ -13,12 +13,13 @@ def normalize(sentence):
     sentence = sentence.lower()
     return sentence.strip()
 
-def normalize_doc(doc):
+def normalization_iterator(doc):
     '''
-        Normalizes a list of strings by removing all characters that are
+        Normalizes a stdin stream by removing all characters that are
         not in the swiss alphabet.
     '''
-    return list(map(lambda sentence: normalize(sentence), doc))
+    for line in doc.split('\n'):
+        yield None if line == '' else normalize(line)
 
 
 def tokenize_doc(doc):
