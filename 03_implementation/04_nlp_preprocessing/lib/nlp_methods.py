@@ -43,5 +43,6 @@ def stopwords_iterator(doc, stopwords):
 def stemm(tokens, stemmer=SnowballStemmer('german', ignore_stopwords=True)):
     return [stemmer.stem(token) for token in tokens]
 
-def stemm_doc(token_doc):
-    return list(map(lambda t: stemm(t), token_doc))
+def stemming_iterator(doc):
+    for line in doc.split('\n'):
+        yield None if line == '' else str.join(' ', stemm(line.split(' ')))
