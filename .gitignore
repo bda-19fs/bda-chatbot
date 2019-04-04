@@ -7,8 +7,10 @@ venv/
 # python
 __pycache__/
 
-# log files
+# files
 *.log
-
-# txt files
 *.txt
+*.csv
+
+# requirements.txt
+!requirements.txt
