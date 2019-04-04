@@ -10,9 +10,11 @@ pip install -r requirements.txt
 
 ## Commands
 With the cli *nlp_pipeline.py* you can:
-- extract.py extract a column of a csv.
-- grammar.py correct known wrong words (res/grammar.txt) of a txt file.
-- ...
+- extract.py extract a column of a csv
+- grammar.py correct known wrong words (res/grammar.txt) of a txt file
+- normalize.py normalizes a document by removing non swiss alphabetic characters
+- stopwords.py removes stopwords from a document
+- stemm.py stemms all words in a document
 
 ### Extract.py
 On windows please use git bash or change stdout encoding to utf-8.
@@ -85,7 +87,7 @@ bitte deaktivieren sie dieses gerät vielen dank
 ### Stopwords.py
 On windows please use git bash or change stdout encoding to utf-8.
 
-This example removes stopwors in the *normalized_inquiries.txt* file generated
+This example removes stopwords in the *normalized_inquiries.txt* file generated
 by *normalize.py*. It uses a stopwordlist that can be defined with
 *-s/--stopwords*. The default is *res/custom_ch_stopwords.txt*.
 
@@ -96,7 +98,7 @@ The output is written into *cleaned_inquiries.txt*.
 
 The output is written to *stdout*.
 ```bash
-> cat ./ionesoft_inquiries.txt | ./stopwords.py
+> cat ./normalized_inquiries.txt | ./stopwords.py
 ```
 
 Cleaned output:
@@ -104,4 +106,27 @@ Cleaned output:
 bilder übungen bearbeiten beook schonn zeichnungsprogramm verknüpft teilweise funktioniert
 lückentexte daten verloren gegangen pp rabatt
 bitte deaktivieren gerät
+```
+
+### Stemm.py
+On windows please use git bash or change stdout encoding to utf-8.
+
+This example stemms all words in the *cleaned_inquiries.txt* file generated
+by *stopwords.py*. It achieves this using the SnowballStemmer from nltk.
+
+The output is written into *stemmed_inquiries.txt*.
+```bash
+> cat cleaned_inquiries.txt | ./stemm.py > stemmed_inquiries.txt
+```
+
+The output is written to *stdout*.
+```bash
+> cat ./cleaned_inquiries.txt | ./stemm.py
+```
+
+Stemmed output:
+```
+bild ubung bearbeit beook schonn zeichnungsprogramm verknupft teilweis funktioniert
+luckentext dat verlor gegang pp rabatt
+bitt deaktivi gerat
 ```
