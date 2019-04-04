@@ -22,6 +22,9 @@ def extract(column, seperator):
 
     lines = 0
     for value in csv_iterator(csv, column, seperator):
+        if value is None:
+            break
+
         click.get_text_stream('stdout').write(value + '\n')
         lines += 1
 
