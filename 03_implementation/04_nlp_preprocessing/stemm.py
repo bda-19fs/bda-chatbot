@@ -2,7 +2,7 @@
 import click
 import time as watch
 from lib.log_handler import log_info
-from lib.nlp_methods import stemming_iterator
+from lib.nlp_stemming import nlp_stemming
 
 
 @click.command()
@@ -12,13 +12,8 @@ def stemm():
 
     log_info(f'stemming')
 
-    lines = 0
-    for line in stemming_iterator(doc):
-        if line is None:
-            break
-        click.get_text_stream('stdout', 'utf-8').write(line + '\n')
-        lines += 1
-
+    lines = nlp_stemming(doc)
+    
     log_info(f'stemmed {lines} lines')
     log_info(f'stemming completed in {watch.time() - start}s\n')
 
