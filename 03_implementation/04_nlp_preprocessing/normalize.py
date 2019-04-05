@@ -2,7 +2,7 @@
 import click
 import time as watch
 from lib.log_handler import log_info
-from lib.nlp_methods import normalization_iterator
+from lib.nlp_normalize import nlp_normalize
 
 
 @click.command()
@@ -12,12 +12,7 @@ def normalize():
 
     log_info(f'normalizing')
 
-    lines = 0
-    for line in normalization_iterator(doc):
-        if line is None:
-            break
-        click.get_text_stream('stdout', 'utf-8').write(line + '\n')
-        lines += 1
+    lines = nlp_normalize(doc)
 
     log_info(f'normalized {lines} lines')
     log_info(f'normalization completed in {watch.time() - start}s\n')
