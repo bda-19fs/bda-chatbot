@@ -17,7 +17,7 @@ def stopwords(stopwords):
     log_info(f'remove stopwords')
 
     lines = nlp_stopwords(doc, stopwords)
-    
+
     log_info(f'removed stopwords from {lines} lines')
     log_info(f'removal of stopwords completed in {watch.time() - start}s\n')
 
