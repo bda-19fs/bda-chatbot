@@ -1,3 +1,5 @@
+import click
+
 def stopwords_file_as_list(stopwords):
     with open(stopwords, 'r', encoding='utf-8') as file:
         return list(map(lambda line: line.strip(), file.readlines()))
@@ -16,6 +18,6 @@ def nlp_stopwords(doc, stopwords):
     for line in doc:
         words = line.split(' ')
         cleaned_line = str.join(' ', [word for word in words if word not in stopwords])
-        print(cleaned_line)
+        click.get_text_stream('stdout', 'utf-8').write(cleaned_line + '\n')
         lines += 1
     return lines

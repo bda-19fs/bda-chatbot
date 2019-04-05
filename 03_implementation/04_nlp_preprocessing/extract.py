@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import click
 import time as watch
-from lib.csv_handler import csv_iterator
 from lib.log_handler import log_info
+from lib.extractor import extractor
 
 
 @click.command()
@@ -11,21 +11,16 @@ from lib.log_handler import log_info
     help='column number to export (starting at 0)'
 )
 @click.option(
-    '-s', '--seperator', type=click.STRING, default=',',
+    '-s', '--separator', type=click.STRING, default=',',
     help='column separator (default is ",")'
 )
-def extract(column, seperator):
+def extract(column, separator):
     start = watch.time()
     csv = click.get_text_stream('stdin', 'utf-8').read()
 
-    log_info(f'extracting column: {column} seperator: {seperator}')
+    log_info(f'extracting column: {column} separator: {separator}')
 
-    lines = 0
-    for value in csv_iterator(csv, column, seperator):
-        if value is None:
-            break
-        click.get_text_stream('stdout', 'utf-8').write(value + '\n')
-        lines += 1
+    lines = extractor(csv, column, separator)
 
     log_info(f'extracted {lines} lines')
     log_info(f'extraction completed in {watch.time() - start}s\n')

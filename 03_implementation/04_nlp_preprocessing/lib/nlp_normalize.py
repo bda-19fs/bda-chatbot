@@ -1,4 +1,5 @@
 import re
+import click
 
 
 def normalize(sentence):
@@ -21,6 +22,6 @@ def nlp_normalize(doc):
     lines = 0
     for line in doc:
         normalized_line = normalize(line)
-        print(normalized_line)
+        click.get_text_stream('stdout', 'utf-8').write(normalized_line + '\n')
         lines += 1
     return lines

@@ -1,4 +1,5 @@
 import re
+import click
 from nltk.stem.snowball import SnowballStemmer
 
 
@@ -14,6 +15,6 @@ def nlp_stemming(doc):
     lines = 0
     for line in doc:
         stemmed_line = str.join(' ', stemm(line.split(' ')))
-        print(stemmed_line)
+        click.get_text_stream('stdout', 'utf-8').write(stemmed_line + '\n')
         lines += 1
     return lines
