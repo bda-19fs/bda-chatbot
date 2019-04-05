@@ -2,7 +2,7 @@
 import click
 import time as watch
 from lib.log_handler import log_info
-from lib.nlp_methods import stopwords_iterator
+from lib.nlp_stopwords import nlp_stopwords
 
 
 @click.command()
@@ -16,13 +16,8 @@ def stopwords(stopwords):
 
     log_info(f'remove stopwords')
 
-    lines = 0
-    for line in stopwords_iterator(doc, stopwords):
-        if line is None:
-            break
-        click.get_text_stream('stdout', 'utf-8').write(line + '\n')
-        lines += 1
-
+    lines = nlp_stopwords(doc, stopwords)
+    
     log_info(f'removed stopwords from {lines} lines')
     log_info(f'removal of stopwords completed in {watch.time() - start}s\n')
 
