@@ -14,12 +14,12 @@ def lemm(vocabular):
     start = watch.time()
     doc = click.get_text_stream('stdin', 'utf-8').read()
 
-    log_info(f'stemming')
+    log_info(f'lemming')
 
     lines = nlp_lemming(doc, vocabular)
 
-    log_info(f'stemmed {lines} lines')
-    log_info(f'stemming completed in {watch.time() - start}s\n')
+    log_info(f'lemmed {lines} lines')
+    log_info(f'lemming completed in {watch.time() - start}s\n')
 
 
 if __name__ == '__main__':
