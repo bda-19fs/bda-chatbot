@@ -1,16 +1,7 @@
 import re
 import click
+from lib.extractor import file_as_dict
 
-
-def grammar_file_as_dict(grammar):
-    grammar_dict = dict()
-
-    with open(grammar, 'r') as file:
-        for line in file:
-            pair = line.split(',')
-            grammar_dict[pair[0]] = pair[1].strip()
-
-    return grammar_dict
 
 def correct(line, grammar):
     for k in grammar.keys():
@@ -20,7 +11,7 @@ def correct(line, grammar):
     return line
 
 def nlp_grammar(doc, grammar):
-    grammar = grammar_file_as_dict(grammar)
+    grammar = file_as_dict(grammar)
     doc = list(filter(lambda x: x != '', doc.split('\n')))
 
     lines = 0
