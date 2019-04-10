@@ -4,6 +4,7 @@ This is the code base of the students @tbjauner and @tbmeile. We want to impleme
 ## Project structure
 In order to achieve a clean architecture we are inspired by the onion architecture.
 ![Onion Architecture](http://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
+
 For more information see: http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
 ### Entities
