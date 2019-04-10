@@ -1,3 +1,5 @@
+lückentxte,lückentexte
+datenn,daten
 apgemeldet,abmelden
 aplikation,applikation
 gruess,gruss
