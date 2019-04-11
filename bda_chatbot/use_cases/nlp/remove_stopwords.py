@@ -4,19 +4,26 @@ from os import sys, path
 # add modules from parent to path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from entities.file.reader import file_as_list
+from entities.nlp.stopwords import remove
 
-
-def remove_stopwords(doc, stopwords):
+def remove_stopwords_stream(doc, stopwords):
     '''
-        Remove stopwords in a list of strings.
+        Remove stopwords in stdin defined in a file.
     '''
     stopwords = file_as_list(stopwords)
     doc = list(filter(lambda x: x != '', doc.split('\n')))
 
     lines = 0
     for line in doc:
-        words = line.split(' ')
-        cleaned_line = str.join(' ', [word for word in words if word not in stopwords])
+        cleaned_line = remove(line, stopwords)
         click.get_text_stream('stdout', 'utf-8').write(cleaned_line + '\n')
         lines += 1
     return lines
+
+def remove_stopwords(doc, stopwords='res/custom_ch_stopwords.txt'):
+    '''
+        Remove stopwords in a list defined in a file.
+    '''
+    stopwords = file_as_list(stopwords)
+    doc = list(filter(lambda x: x != '', doc))
+    return list(map(lambda x: remove(x, stopwords), doc))

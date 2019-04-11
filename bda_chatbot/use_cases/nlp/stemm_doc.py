@@ -7,15 +7,22 @@ from entities.file.reader import file_as_dict
 from entities.nlp.stemming import stemm
 
 
-def stemm_doc(doc):
+def stemm_doc_stream(doc):
     '''
-        Stemms all words in doc.
+        Stemms all words in stdin stream.
     '''
     doc = list(filter(lambda x: x != '', doc.split('\n')))
 
     lines = 0
     for line in doc:
-        stemmed_line = str.join(' ', stemm(line.split(' ')))
+        stemmed_line = stemm(line)
         click.get_text_stream('stdout', 'utf-8').write(stemmed_line + '\n')
         lines += 1
     return lines
+
+def stemm_doc(doc):
+    '''
+        Stemms all words in stdin stream.
+    '''
+    doc = list(filter(lambda x: x != '', doc))
+    return list(map(lambda x: stemm(x), doc))

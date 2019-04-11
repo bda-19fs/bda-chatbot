@@ -6,7 +6,7 @@ from os import sys, path
 # add modules from parent to path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from use_cases.log.log_info import log_info
-from use_cases.file.extract_column import extract_column
+from use_cases.file.extract_column import extract_column_stream
 
 
 @click.command()
@@ -24,7 +24,7 @@ def extract(column, separator):
 
     log_info(f'extracting column: {column} separator: {separator}')
 
-    lines = extract_column(csv, column, separator)
+    lines = extract_column_stream(csv, column, separator)
 
     log_info(f'extracted {lines} lines')
     log_info(f'extraction completed in {watch.time() - start}s\n')

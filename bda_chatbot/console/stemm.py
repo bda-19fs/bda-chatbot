@@ -6,7 +6,7 @@ from os import sys, path
 # add modules from parent to path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from use_cases.log.log_info import log_info
-from use_cases.nlp.stemm_doc import stemm_doc
+from use_cases.nlp.stemm_doc import stemm_doc_stream
 
 
 @click.command()
@@ -16,7 +16,7 @@ def stemm():
 
     log_info(f'stemming')
 
-    lines = stemm_doc(doc)
+    lines = stemm_doc_stream(doc)
 
     log_info(f'stemmed {lines} lines')
     log_info(f'stemming completed in {watch.time() - start}s\n')

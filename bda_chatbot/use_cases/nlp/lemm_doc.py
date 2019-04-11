@@ -7,9 +7,9 @@ from entities.file.reader import file_as_dict
 from entities.nlp.lemming import lemm
 
 
-def lemm_doc(doc, vocabular):
+def lemm_doc_stream(doc, vocabular):
     '''
-        Lemms all words in doc.
+        Lemms all words in stdin stream.
     '''
     doc = list(filter(lambda x: x != '', doc.split('\n')))
     vocabular = file_as_dict(vocabular)
@@ -20,3 +20,11 @@ def lemm_doc(doc, vocabular):
         click.get_text_stream('stdout', 'utf-8').write(lemmed_line + '\n')
         lines += 1
     return lines
+
+def lemm_doc(doc, vocabular='res/custom_ch_vocabular.txt'):
+    '''
+        Lemms all words in doc.
+    '''
+    doc = list(filter(lambda x: x != '', doc))
+    vocabular = file_as_dict(vocabular)
+    return list(map(lambda x: lemm(x, vocabular), doc))

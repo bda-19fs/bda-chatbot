@@ -6,12 +6,12 @@ from os import sys, path
 # add modules from parent to path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from use_cases.log.log_info import log_info
-from use_cases.nlp.correct_grammar import correct_grammar
+from use_cases.nlp.correct_grammar import correct_grammar_stream
 
 
 @click.command()
 @click.option(
-    '-g', '--grammar', type=click.STRING, default="res/custom_ch_grammar.txt",
+    '-g', '--grammar', type=click.STRING, default='res/custom_ch_grammar.txt',
     help='use grammar file to correct words (default is "res/custom_ch_grammar.txt")'
 )
 def grammar(grammar):
@@ -20,7 +20,7 @@ def grammar(grammar):
 
     log_info(f'correcting with grammar: {grammar}')
 
-    lines = correct_grammar(doc, grammar)
+    lines = correct_grammar_stream(doc, grammar)
 
     log_info(f'corrected {lines} lines')
     log_info(f'correction completed in {watch.time() - start}s\n')

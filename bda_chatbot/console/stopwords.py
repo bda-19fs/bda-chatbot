@@ -6,7 +6,7 @@ from os import sys, path
 # add modules from parent to path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from use_cases.log.log_info import log_info
-from use_cases.nlp.remove_stopwords import remove_stopwords
+from use_cases.nlp.remove_stopwords import remove_stopwords_stream
 
 
 @click.command()
@@ -20,7 +20,7 @@ def stopwords(stopwords):
 
     log_info(f'remove stopwords')
 
-    lines = remove_stopwords(doc, stopwords)
+    lines = remove_stopwords_stream(doc, stopwords)
 
     log_info(f'removed stopwords from {lines} lines')
     log_info(f'removal of stopwords completed in {watch.time() - start}s\n')

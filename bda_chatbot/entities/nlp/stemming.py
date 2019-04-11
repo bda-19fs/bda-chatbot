@@ -1,5 +1,6 @@
 from nltk.stem.snowball import SnowballStemmer
 
 
-def stemm(tokens, stemmer=SnowballStemmer('german', ignore_stopwords=True)):
-    return [stemmer.stem(token) for token in tokens]
+def stemm(line, stemmer=SnowballStemmer('german', ignore_stopwords=True)):
+    tokens = line.split(' ')
+    return str.join(' ', [stemmer.stem(token) for token in tokens])
