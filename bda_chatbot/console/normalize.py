@@ -6,7 +6,7 @@ from os import sys, path
 # add modules from parent to path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from use_cases.log.log_info import log_info
-from use_cases.nlp.normalize_doc import normalize_doc
+from use_cases.nlp.normalize_doc import normalize_doc_stream, normalize_doc
 
 
 @click.command()
@@ -16,7 +16,7 @@ def normalize():
 
     log_info(f'normalizing')
 
-    lines = normalize_doc(doc)
+    lines = normalize_doc_stream(doc)
 
     log_info(f'normalized {lines} lines')
     log_info(f'normalization completed in {watch.time() - start}s\n')
