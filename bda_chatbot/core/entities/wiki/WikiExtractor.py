@@ -67,6 +67,7 @@ import os.path
 import re  # TODO use regex when it will be standard
 import time
 import json
+import articlefilter
 from io import StringIO
 from multiprocessing import Queue, Process, Value, cpu_count
 from timeit import default_timer
@@ -81,7 +82,7 @@ if PY2:
     range = xrange  # Use Python 3 equivalent
     chr = unichr    # Use Python 3 equivalent
     text_type = unicode
-    
+
     class SimpleNamespace(object):
         def __init__ (self, **kwargs):
             self.__dict__.update(kwargs)
@@ -138,11 +139,11 @@ options = SimpleNamespace(
     ##
     # Filter disambiguation pages
     filter_disambig_pages = False,
-    
+
     ##
     # Drop tables from the article
     keep_tables = False,
-    
+
     ##
     # Whether to preserve links in output
     keepLinks = False,
@@ -162,7 +163,7 @@ options = SimpleNamespace(
     ##
     # Whether to write json instead of the xml-like default output format
     write_json = False,
-    
+
     ##
     # Whether to expand templates
     expand_templates = True,
@@ -178,18 +179,23 @@ options = SimpleNamespace(
     ##
     # Minimum expanded text length required to print document
     min_text_length = 0,
-    
+    ##
+    # Minimum expanded text length required to print document
+    filter_by_ids = False,
+
+    article_csv = "article_ids.csv",
+
     # Shared objects holding templates, redirects and cache
     templates = {},
     redirects = {},
     # cache of parser templates
     # FIXME: sharing this with a Manager slows down.
     templateCache = {},
-    
+
     # Elements to ignore/discard
-    
+
     ignored_tag_patterns = [],
-    
+
     discardElements = [
         'gallery', 'timeline', 'noinclude', 'pre',
         'table', 'tr', 'td', 'th', 'caption', 'div',
@@ -208,13 +214,18 @@ templateKeys = set(['10', '828'])
 # Regex for identifying disambig pages
 filter_disambig_page_pattern = re.compile("{{disambig(uation)?(\|[^}]*)?}}")
 
+article_ids_list = None
+
 ##
 # page filtering logic -- remove templates, undesired xml namespaces, and disambiguation pages
 def keepPage(ns, page, id):
     if ns != '0':               # Aritcle
         return False
-    if not int(id) == 12:
-        return False
+
+    if options.filter_by_ids:
+        if not int(id) in article_ids_list:
+            return False
+
     # remove disambig pages if desired
     if options.filter_disambig_pages:
         for line in page:
@@ -584,7 +595,7 @@ class Extractor(object):
         :param out: a memory file.
         """
         logging.info('%s\t%s', self.id, self.title)
-        
+
         # Separate header from text with a newline.
         if options.toHTML:
             title_str = '<h1>' + self.title + '</h1>'
@@ -632,12 +643,12 @@ class Extractor(object):
         text = self.wiki2text(text)
         text = compact(self.clean(text))
         text = [title_str] + text
-        
+
         if sum(len(line) for line in text) < options.min_text_length:
             return
-        
+
         self.write_output(out, text)
-        
+
         errs = (self.template_title_errs,
                 self.recursion_exceeded_1_errs,
                 self.recursion_exceeded_2_errs,
@@ -2843,7 +2854,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
     if input_file == '-':
         input = sys.stdin
     else:
-        input = fileinput.FileInput(input_file, openhook=fileinput.hook_compressed)
+        input = fileinput.FileInput(input_file, openhook=fileinput.hook_encoded("utf-8"))
 
     # collect siteinfo
     for line in input:
@@ -2882,7 +2893,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
                 logging.info("Loading template definitions from: %s", template_file)
                 # can't use with here:
                 file = fileinput.FileInput(template_file,
-                                           openhook=fileinput.hook_compressed)
+                                           openhook=fileinput.hook_encoded("utf-8"))
                 load_templates(file)
                 file.close()
             else:
@@ -2892,7 +2903,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
                 logging.info("Preprocessing '%s' to collect template definitions: this may take some time.", input_file)
                 load_templates(input, template_file)
                 input.close()
-                input = fileinput.FileInput(input_file, openhook=fileinput.hook_compressed)
+                input = fileinput.FileInput(input_file, openhook=fileinput.hook_encoded("utf-8"))
         template_load_elapsed = default_timer() - template_load_start
         logging.info("Loaded %d templates in %.1fs", len(options.templates), template_load_elapsed)
 
@@ -2993,8 +3004,8 @@ def extract_process(opts, i, jobs_queue, output_queue):
     createLogger(options.quiet, options.debug)
 
     out = StringIO()                 # memory buffer
-    
-    
+
+
     while True:
         job = jobs_queue.get()  # job is (id, title, page, page_num)
         if job:
@@ -3031,9 +3042,9 @@ def reduce_process(opts, output_queue, spool_length,
 
     global options
     options = opts
-    
+
     createLogger(options.quiet, options.debug)
-    
+
     if out_file:
         nextFile = NextFile(out_file)
         output = OutputSplitter(nextFile, file_size, file_compress)
@@ -3121,6 +3132,10 @@ def main():
                         help="Minimum expanded text length required to write document (default=%(default)s)")
     groupP.add_argument("--filter_disambig_pages", action="store_true", default=options.filter_disambig_pages,
                         help="Remove pages from output that contain disabmiguation markup (default=%(default)s)")
+    groupP.add_argument("--filter_by_ids", action="store_true", default=options.filter_by_ids,
+                        help="Remove pages from output that are not in the article whitelist")
+    groupP.add_argument("-ac", "--article_csv", default=options.article_csv,
+                        help="A csv with article lists")
     groupP.add_argument("-it", "--ignored_tags", default="", metavar="abbr,b,big",
                         help="comma separated list of tags that will be dropped, keeping their content")
     groupP.add_argument("-de", "--discard_elements", default="", metavar="gallery,timeline,noinclude",
@@ -3156,6 +3171,8 @@ def main():
 
     options.expand_templates = args.no_templates
     options.filter_disambig_pages = args.filter_disambig_pages
+    options.filter_by_ids = args.filter_by_ids
+    options.article_csv = args.article_csv
     options.keep_tables = args.keep_tables
 
     try:
@@ -3193,13 +3210,19 @@ def main():
 
     options.quiet = args.quiet
     options.debug = args.debug
-    
+
     createLogger(options.quiet, options.debug)
 
     input_file = args.input
 
     if not options.keepLinks:
         ignoreTag('a')
+
+    # loads a list with ids for articles to keep
+    # the list is global and is used in the keepPage function
+    if args.filter_by_ids:
+        global article_ids_list
+        article_ids_list = articlefilter.read_article_ids(args.article_csv)
 
     # sharing cache of parser templates is too slow:
     # manager = Manager()
@@ -3211,7 +3234,7 @@ def main():
                 with open(args.templates) as file:
                     load_templates(file)
 
-        file = fileinput.FileInput(input_file, openhook=fileinput.hook_compressed)
+        file = fileinput.FileInput(input_file, openhook=fileinput.hook_encoded("utf-8"))
         for page_data in pages_from(file):
             id, revid, title, ns, page = page_data
             Extractor(id, revid, title, page).extract(sys.stdout)
