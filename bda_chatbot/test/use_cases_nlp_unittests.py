@@ -18,6 +18,10 @@ class TestNlpMethods(unittest.TestCase):
             'bitte deaktivieren sie dieses gerät. vielen dank.'
         ]
 
+        self.en_doc = [
+            "I'd like to eat 'til I'm full agms"
+        ]
+
     def test_normalize_doc(self):
         normalized_doc = normalize_doc(self.doc)
         self.assertEqual(normalized_doc, [
@@ -50,12 +54,19 @@ class TestNlpMethods(unittest.TestCase):
             'bitt deaktivi sie dieses gerat. viel dank.'
         ])
 
-    def test_lemming(self):
-        lemmed_doc = lemm_doc(self.doc)
+    def test_lemming_de(self):
+        lemmed_doc = lemm_doc(self.doc, 'de')
         self.assertEqual(lemmed_doc, [
             'ich können der bild in übung nicht bearbeiten.',
             'lückentxte weg datenn verlieren gehen von pp 1.3.3 von rabatt',
             'bitte deaktivieren ich dies geraten. viel danken.'
+        ])
+
+    def test_lemming_en(self):
+        # would produce readable output if normalized first
+        lemmed_doc = lemm_doc(self.en_doc, 'en')
+        self.assertEqual(lemmed_doc, [
+            "I'have like to eat 'until I'be full agm"
         ])
 
 
