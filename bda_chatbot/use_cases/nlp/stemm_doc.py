@@ -1,9 +1,5 @@
 import click
-from os import sys, path
 from nltk.stem.snowball import SnowballStemmer
-
-# add modules from parent to path
-sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from entities.file.reader import file_as_dict
 from entities.nlp.stemming import stemm
 
@@ -18,8 +14,6 @@ def stemm_doc_stream(doc, language):
     '''
     doc = list(filter(lambda x: x != '', doc.split('\n')))
     stemmer = SnowballStemmer(stemm_dic[language])
-
-    print(stemm_dic[language])
 
     lines = 0
     for line in doc:

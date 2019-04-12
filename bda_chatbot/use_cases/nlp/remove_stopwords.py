@@ -1,8 +1,4 @@
 import click
-from os import sys, path
-
-# add modules from parent to path
-sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from entities.file.reader import file_as_list
 from entities.nlp.stopwords import remove
 
