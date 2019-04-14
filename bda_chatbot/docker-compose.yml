@@ -12,5 +12,5 @@ services:
       dockerfile: ./wiki_extract/Dockerfile
     volumes:
       - "./wiki_dumps:/usr/src/app"
-    command: /usr/src/app/run.sh
+    command: bash run.sh
     hostname: wiki_extract
