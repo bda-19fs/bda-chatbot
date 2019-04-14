@@ -12,5 +12,6 @@ services:
       dockerfile: ./wiki_extract/Dockerfile
     volumes:
       - "./wiki_dumps:/app/wiki_dumps"
-    command: python3 -m http.server
+    working_dir: /app
+    command: bash run.sh
     hostname: wiki_extract
