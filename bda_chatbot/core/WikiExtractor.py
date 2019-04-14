@@ -78,7 +78,7 @@ from timeit import default_timer
 
 from os import sys, path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
-from entities.wiki.articlefilter import read_article_ids
+from use_cases.wiki.articlefilter import read_article_ids
 
 
 PY2 = sys.version_info[0] == 2
