@@ -72,10 +72,11 @@ import os.path
 import re  # TODO use regex when it will be standard
 import time
 import json
-import articlefilter
 from io import StringIO
 from multiprocessing import Queue, Process, Value, cpu_count
 from timeit import default_timer
+
+import entities.wiki.articlefilter
 
 
 PY2 = sys.version_info[0] == 2
