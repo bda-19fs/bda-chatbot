@@ -11,6 +11,6 @@ services:
       context: ./
       dockerfile: ./wiki_extract/Dockerfile
     volumes:
-      - "./wiki_dumps:/usr/src/app"
-    command: bash run.sh
+      - "./wiki_dumps:/app/wiki_dumps"
+    command: python3 -m http.server
     hostname: wiki_extract

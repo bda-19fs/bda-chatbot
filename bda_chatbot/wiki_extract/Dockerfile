@@ -1,8 +1,8 @@
 FROM python:3.7-alpine
 
 RUN apk add --no-cache bash
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir /app
+RUN mkdir /app/wiki_dumps
 
-COPY ./wiki_extract .
-COPY ./core ./core
+ADD ./wiki_extract /app
+ADD ./core /app
