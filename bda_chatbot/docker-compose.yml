@@ -6,3 +6,11 @@ services:
     ports:
       - "7000:80"
     hostname: web_ui
+  wiki_extract:
+    build:
+      context: ./
+      dockerfile: ./wiki_extract/Dockerfile
+    volumes:
+      - "./wiki_dumps:/usr/src/app"
+    command: /usr/src/app/run.sh
+    hostname: wiki_extract
