@@ -14,7 +14,6 @@ def extract():
     doc = click.get_text_stream('stdin', 'utf-8').read()
 
     log_info(f'extract articles from raw data')
-    print(doc)
     extract_text_from_article_stream(doc)
 
     log_info(f'correction completed in {watch.time() - start}s\n')
