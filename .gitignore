@@ -16,5 +16,9 @@ __pycache__/
 !requirements.txt
 !de_article_ids_ionesoft.csv
 
+# intellij
 .idea/*
 *.iml
+
+# coverage
+.coverage
