@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import click
 import time as watch
-from use_cases.log.log_info import log_info
-from use_cases.nlp.lemm_doc import lemm_doc_stream
+from bda_core.use_cases.log.log_info import log_info
+from bda_core.use_cases.nlp.lemm_doc import lemm_doc_stream
 
 
 @click.command()

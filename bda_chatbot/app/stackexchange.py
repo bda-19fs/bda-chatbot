@@ -2,8 +2,8 @@
 import click
 import untangle
 import time as watch
-from use_cases.log.log_info import log_info
-from use_cases.stackexchange.extract_questions_with_answers import extract_questions_with_answers
+from bda_core.use_cases.log.log_info import log_info
+from bda_core.use_cases.stackexchange.extract_questions_with_answers import extract_questions_with_answers
 
 
 @click.command()

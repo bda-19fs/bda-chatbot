@@ -3,7 +3,7 @@
 
 # =============================================================================
 #  Version: 2.8 (April 12, 2019)
-#  
+#
 #  (BDA) With a filter functionality for articles.
 #
 # =============================================================================
@@ -75,10 +75,7 @@ import json
 from io import StringIO
 from multiprocessing import Queue, Process, Value, cpu_count
 from timeit import default_timer
-
-from os import sys, path
-sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
-from use_cases.wiki.articlefilter import read_article_ids
+from bda_core.use_cases.wiki.articlefilter import read_article_ids
 
 
 PY2 = sys.version_info[0] == 2
