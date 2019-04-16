@@ -5,4 +5,4 @@ RUN mkdir /app
 RUN mkdir /app/wiki_dumps
 
 ADD ./wiki_extract /app
-ADD ./bda_core /app
+ADD ./app /app
