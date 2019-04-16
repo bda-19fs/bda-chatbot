@@ -1,0 +1,571 @@
+lückentxte,lückentexte
+datenn,daten
+apgemeldet,abmelden
+aplikation,applikation
+gruess,gruss
+allgemeinbildenden-unterricht,allgemeinbildender unterricht
+remoteddesktop,remote desktop
+fahrwerkapp,fahrwerk applikation
+auset,ausser
+kt,akt
+demosei,demo
+coupen-cod,coupon code
+ersatzpc,ersatz computer
+coudfunktion,cloud funktion
+indermaur,in der
+grundlagebuch,grundlage buch
+alexandra,alexandra
+log-,log
+prolbl,problem
+lizens,lizenz
+eifach,einfach
+angestrich,anstreichen
+app-zeich,applikation zeichnen
+daamit,damit
+occured,aufgetaucht
+abgestutzt,abgestürzt
+gleih,gleich
+aktivitungscod,aktivierungscode
+fruendlich,freundlich
+bernutzernam,benutzernamen
+fehlerprotokoll,fehler protokoll
+konntet,können
+geraeteanzahl,geräteanzahl
+markierfunktion,markier funktion
+installationsversuch,installation versuch
+angemold,anmelden
+evt,eventuell
+stimmt?,stimmen
+schieck,schicken
+gewoht,gewöhnen
+cloud-funktion,cloud funktion
+far-los,farblos
+softwarstand,software stand
+javax.net.ssl.sslhandshakeexception,ssl exception
+passwortzurucksetz,passwort zurücksetzen
+kaput,kaputt
+sensoren+aktor,sensor aktor
+nocheinmal,noch einmal
+daruf,darauf
+macbook?,macbook
+aspiration/,aspiration
+herunterrlad,herunterladen
+locat,lokal
+installationsprgramm,installationsprogramm
+verchied,verschieden
+problehm,problem
+internetverbing,internetverbindung
+koonn,können
+authorisiert,autorisieren
+norme-auuszug,normen auszug
+screenhot,screenshot
+..mehr,mehr
+anderun,andere
+sost,sonst
+geschrib,schreiben
+troz,trotzdem
+mail-adressexxx,e-mail
+konnnt,können
+kollega,kolleg
+xxft,oft
+unterrichtseb,unterrichten
+e-mail-verkehr,e-mail verkehr
+grateanzahl,geräteanzahl
+vollzug,vollzug
+furr,für
+trozd,trotzdem
+lehrgangsunterlag,lehrgangsunterlagen
+aufbeheb,aufheben
+freunlich,freundlich
+pangsioniert,pensionieren
+anderort,anderer ort
+bucherzugriff,bücher zugriff
+ubershchritt,überschreiten
+fr-buch,französisch buch
+bgut,gut
+kapit,kaputt
+berufslehr,berufslehre
+synkronisiert,synchronisiert
+normen-auszug,normen auszug
+koennt,können
+zweitgerat,zweitgerät
+ploetzlich,plötzlich
+neuaufsetz,nau aufsetzen
+ichhab,ich habe
+natel,smartphone
+protokoll-datei,protokoll datei
+problemanfrag,problem anfrage
+waage+dosiergerat,waage dosiergerät
+durchklick,durch klicken
+schulkollegin,schulkollegin
+angemuld,anmelden
+teanzahl,geräteanzahl
+couponscod,coupon code
+dasssss,dass
+eingellost,eingelöst
+beook-profil,beook profil
+verwechslt,verwechseln
+anmeldungsdat,anmeldung
+entregistri,abmelden
+.gerateanzahl,geräteanzahl
+aussschliess,ausschliessen
+benutzernamen.xxx,benutzernamen
+ressourcenmonitor,ressourcen monitor
+automobilgewerb,automobil gewerbe
+keiknzugeidf,kein zugriff
+freundliche,freundlich
+jezt,jetzt
+requested,anfordern
+berit,bereit
+einschik,einschicken
+ika-lehrerein,lehrerin
+isch,ist
+ahb,ab
+linzenzentfern,lizenz entfernen
+einschrieb,einschreiben
+funktioniet,funktionieren
+ignoriert.,ignorieren
+seiennumm,seriennummer
+kostenwes,kosten
+samsungnotebook,samsung notebook
+ensteht,entsteht
+kien,kein
+beok,beook
+mac-adress,mac addresse
+nierg,niedrig
+kapput,kaputt
+..die,die
+aspiration,aspiration
+bez,beziehungsweise
+inkscape/intern,inkscape
+.bitt,bitte
+vidografi,videographie
+fehlurteil,fehlurteil
+backerin/konditorin,bäckerin konditorin
+flachdach,flachdach
+nootbook,notebook
+automobil-mechatroniker/-in,automobil mechatroniker
+aktivierungcod,aktivierungscode
+calling,anruf
+hochgeschaltet,hoch geschaltet
+handslungsspezif,handlungsspezifisch
+ezahlt,gezahlt
+buech,buch
+unabl,unmöglich
+paaswort,passwort
+funktiontiert,funktionieren
+faild,bild
+synchronsisi,synchronisiert
+abbrach,abbrechen
+testlizenzbuch,test lizenz buch
+gillt,gilt
+warnumg,warnung
+grunlagenbuch,grundlage buch
+medienkatalog,medien katalog
+einschreibt,einschreiben
+gerateanzal,geräteanzahl
+topt,toppen
+untersturtz,unterstützen
+furt,fort
+labtop,laptop
+vertiefungsfrag,vertiefungsfragen
+ubernehem,übernehmen
+instalir,installieren
+leuchtstift,leuchtstift
+uberschrit,überschreiten
+leng,lang
+honor,ehre
+funktionieret,funktionieren
+aktualsiert,aktualisieren
+berufsbildner/inn,berufsbildende
+lizenztyp,lizenz typ
+aktievierungscod,aktivierungscode
+inksap,inkscape
+verstantnis,verständnis
+insgesammt,total
+fehelermel,fehlermeldung
+netzwerkfehl,netzwerkfehler
+umsezipebx,umsetzen
+totalschad,totalschaden
+beabeit,bearbeiten
+uptad,updaten
+loginversuch,login versuch
+instelliert-,installieren
+ameld,anmelden
+regestriert,registrieren
+aktiveri,aktiv
+aufschalt,aufschalten
+elektroniker/inn,elektroniker
+berabeit,bearbeiten
+eingelogt,einloggen
+berufsbildn,berufsbildner
+zigt,zeigen
+.es,ich
+zuschalt,zuschnallen
+habezuerstdieappaufmeinemiphoneaktiviert.daichmirjetzteinipadgekaufthabemochteichdieappaufdiesemnutzen.dasiphonekanngeloschtwerd,habe zuerst die app auf meinem iphone aktiviert. Da ich mir jetzt ein ipad gekauft habe möchte ich die app auf diesem nutzen. Das iphone kann gelöscht werden
+abklar,abklären
+fer,für
+geratenzahl,geräteanzahl
+gelosch,löschen
+neugekauft,neu kaufen
+erfolgslos,erfolglos
+eingezahlt,einzahlen
+aufgestartet,aufstarten
+registriet,registrieren
+irgend,irgend
+updatet,updaten
+trosch,trotzdem
+sturtz,stürzen
+daten/markierungen/arbeitsblatt,daten markerungen arbeitsblatt
+lerhbuch,lehrbuch
+vermahl,vermalen
+faltsch,falsch
+interent,internet
+ersatzcomput,ersatz computer
+nachgefrat,nachfragen
+villig,billig
+sun.security.valdator.validatorexception,validator exception
+beookbildschirm,beook bildschirm
+korriegi,korrigieren
+losun,lösung
+nachgemacht,nachmachen
+anderernfall,anderen fall
+felhermeld,fehlermeldung
+erschent,erscheinen
+onlinebuch,online buch
+kapittel,kapitel
+funktionirt,funktionieren
+santlich,sämtlich
+ihen,ihnen
+solt,sollen
+zuruckknopf,zurück knopf
+baukonstruktion,bau konstruktion
+*gerateanzahl*,geräteanzahl
+freunldich,freundlich
+entspech,entsprechen
+d?in,dein
+internet-einstell,internet einstellungen
+aufsezt,aufseufzen
+aktualis,aktualisieren
+einemn,einem
+kann/muss,kann
+heim-pc,computer
+floating-lizenz,lizenz
+lauk,laut
+schonn,schon
+dargetsellt,darstellen
+freigeschalt,freigeschalten
+desshalb,deshalb
+d.h,das heisst
+weitergeholf,weiterhelfen
+probook,pro book
+leihcomput,computer
+nootebok,notebook
+bearbeited,bearbeiten
+finde/bekomm,finden
+rechtslehrmittel,rechts lernmittel
+lernmitteln,lernmittel
+zeichnungsfen,zeichnung
+freischaltungscod,aktivierungscode
+imoment,moment
+gruse,gruss
+elitebook,elite book
+ergeht,er geht
+modellehrgang,modell lehrgang
+losungen/wort,lösung wort
+could,cloud
+eingetroff,eintreffen
+hatte..,haben
+vido,video
+mittarbeit,mitarbeiten
+kilick,kicken
+deusch,deutsch
+.konn,können
+service-techn,service
+wegg,weg
+larin,darin
+reinschreib,rein schreiben
+schnel,schnell
+mochtr,möchte
+rumzuschlag,rumschlagen
+kontitorei,konditorei
+leistungsziel,ziel
+funktiniert,funktionieren
+library.,library
+macbookpro,mac book pro
+vonnallenngerat,von allen geräten
+eingeg,eingegeben
+grat,gerät
+android-gerat,android gerät
+netzwerk/kommunikationsfehl,netzwerkfehler
+liez,lizenz
+amson,samsung
+habe.hab,haben
+lizenccod,lizenz code
+problemart,problem art
+erstanmeld,erst anmeldung
+adresss,addresse
+herunterglad,herunterladen
+tiptop,gut
+lizenzgeschicht,lizenz geschichte
+gerateidentifikation,geräte identifikation
+medion-tabletandroid,android gerät
+app-aktualisier,applikation aktualisieren
+fachblatt-epap,fachblatt
+schalten..,schalten
+coupong,coupon
+aktualisierungscodewird,aktualisierungscode wird
+e-books-lizenz,e-book lizenz
+anmeldeforgang,anmelden
+aufgehankt,aufhängen
+fehrlermeld,fehlermeldung
+kontoeingab,konto eingabe
+immr,immer
+fachrechenbuch,fachrechen buch
+weiterenneu,weiteren neu
+lehrmittelcoupon,lehrmittel coupon
+jedesmal,jedes mal
+freuund,freund
+heruntergeland,heruntergeladen
+organi,organisation
+fuktion,funktion
+akktivierungscod,aktivierungscode
+ausbildungsein,ausbildung sein
+zusammenschiss,zusammenschiessen
+landschaftsgartnerin,landschaftsgärtnerin
+allllllll,all
+erkenbar,erkennbar
+ip-adress,ip addresse
+moch,mich
+lizens-limit,lizenz limit
+instalirt,installieren
+eien,einen
+duch,doch
+netzwerk-/kommunikationsfehl,netzwerkfehler
+lizenzunterlag,lizenz unterlag
+kundg,kunde
+auszulogg,ausloggen
+desktop-pc,computer
+vollversin,vollversion
+buch/dokument,buch dokument
+repeti,repetieren
+anmelden..,anmelden
+unvollstandi,unvollständig
+pc-,pc
+maschi,maschine
+aufloes,auflösen
+hilfe-seit,hilfe seite
+gutentag,guten tag
+bucher-icon,bücher icon
+zusatzaufgab,zusatz aufgabe
+aktivierungs-,aktivierungscode
+uek-laptop,computer
+zulad,zuladen
+konnto,konto
+wiederzubekomm,wiederbekommen
+ahang,anhang
+bissher,bisher
+chefexpertin,expertin
+einlosen/,einlösen
+berufsbildungsverantwort,berufsbildung verantwortlicher
+.ich,ich
+zugeschikt,senden
+zugemacht,zumachen
+mermal,merkmal
+klind,kind
+suport,support
+europa-fachbuch,europa fachbuch
+synchrinisiert,synchronisiert
+smartphonefotos,smartphone fotos
+gedownloadet,downloaden
+kabbut,kaput
+klassen-lehrperson,klasse
+europalehrmittel,europa lehrmittel
+domanen-adminrecht,adminrecht
+heisssssssst,heissen
+ledigich,leidlich
+mehreremal,mehrere male
+synchronisationsproblem,synchronisations problem
+beook-sofwar,beook software
+sommerpaus,sommer pause
+schulungspc,computer
+wischeinstell,einstellung
+vielmal,viele male
+jdeoch,jedoch
+repetitionsaufgab,repetitionsaufgabe
+widerhol,wiederholen
+eventuel,eventuell
+algebra-buch,algebra buch
+drinn,drin
+latop,laptop
+aktivierung/deaktivier,aktivierung
+aktualiesi,aktualisieren
+ausfuhl,ausfahren
+entlich,endlich
+teilen-funktion,teilen funtion
+vorbereitungsklass,vorbereitungsklasse
+geratenazahl,geräteanzahl
+passwwort,passwort
+tablet-pc,tablet
+ersatz-,ersatz
+intalliert,installieren
+tablet/,tablet
+collecting,sammeln
+itern,intern
+aufstart,aufstarten
+pasiert,passieren
+log-fil,log datei
+istalliert,installieren
+werkstatlehr,werkstatt
+gespeichrt,speichern
+herumzickt,herum zicken
+gerateuberschreit,geräteanzahl überschritten
+geschaftsaccount-,geschäftsaccount
+aufzustart,aufstarten
+zuruckstell,zurückstellen
+ausbildn,ausbilden
+einpaar,ein paar
+machineworld-buch,machine world buch
+leptop,laptop
+zuruckzusetzt,zurücksetzen
+bittedringen,bitte dringend
+aufjedenfall,auf jeden fall
+nichtmehr,nicht mehr
+zuruksetz,zurücksetzen
+verbrennungsmotor-motorbauart,verbrennungsmotor motorbauart
+richemontkonto,richemont konto
+oeffn,offen
+reichen?,reichen
+instralli,installieren
+ubernom,übernehmen
+funkutioniert,funktionieren
+zeischnungseditor,zeichnung
+energieverteilung-leistungsberechn,energieverteilung leistungsberechnung
+gerateinstallation,geräte installation
+kan.,können
+geroteanzahl,geräteanzahl
+nfz,nfc
+lapotop,laptop
+e-lehrmittelapp,belehrt
+ausschalten/neu,ausschalten neustarten
+reperatur,reparieren
+reingeh,rein gehen
+home-pc,computer
+ect,echt
+ubergangsmass,übergangsmassnahme
+angezeit,anzeigen
+gelosst,gelöst
+moglichdass,möglich dass
+-hp,computer
+testbuch,test buch
+moglicht,gleichen
+luftungsanlag,lüftungsanlage
+elektik-elektron,elektriker
+speichere/,speichern
+mmer,immer
+zeichnungsvorlag,zeichnungsvorlage
+jenig,jenige
+mettalwork,metallarbeit
+instaliert?,installieren
+-all,all
+warscheindloch,warscheinlich
+geselschaftsbuch,gesellschafsbuch
+heizungs-,heizung
+deie,die
+ersatzhandy,ersatz smartphone
+geupdatet,aktualisieren
+bekahm,kommen
+baustoffkund,baustoffkunde
+motot,motor
+bereitz,bereits
+rauslosch,gelöscht
+zuruckgestzt,zurücksetzen
+ersatzgerat,ersatzgerät
+jez,jetzt
+bildschirmbruch,bildschirm kaputt
+zugangslizenz,lizenz
+immerzu,immer zu
+ubernohm,übernehmen
+linuxbetriebssystem,linux betriebssystem
+geerht,ehren
+aufschrieb,aufschreiben
+?vitalzeich,vital zeichen
+ueberschritt,überschrift
+ihrkonntallecomputergerateloschenspieltkeinerolle.habekeinederangeeldetengeratemehr,ihr konnt alle computer geräte löschen spielt keine rolle. Habe keine der angeeldeten gerate mehr
+eingegebn,eingeben
+aktualiwiert,aktualisieren
+tuen,tun
+freunldcih,freundlich
+uberrschritt,überschreiten
+enem,einem
+gin,gin
+email-adress,e-mail-addresse
+aktulisi,aktualisieren
+gefugt,einfügen
+uninstalling,deinstallieren
+fechkundebuch,fachkunde buch
+wals,falls
+beook.cloud,beook cloud
+zurucksezt,zurücksetzen
+ausbildungscent,ausbildungszenter
+freischallt,freischalten
+-konditor,konditor
+netzfehl,netzwerkfehler
+w.,wo
+deinstaliert,deinstallieren
+prufungsbuch,prüfungsbuch
+hur,für
+berufsmaturitat,berufsmaturität
+meldungall,meldung alle
+lediglichan,leidlich an
+ubernihmt,übernehmen
+imein,mein
+ihrgend,irgend
+felde/seit,feld seit
+ubeschritt,überschreiten
+fleischwirtschaft,fleisch wirtschaft
+buchcod,buch code
+ordung,ordnung
+zeichung,zeichnung
+insallation/aktualisiser,installation aktualisieren
+desinstaliert,deinstallieren
+durum,darum
+habendoch,haben doch
+einparmal,ein paarmal
+beook-buch,beook buch
+gerate-anzahl,geräteanzahl
+geret,gerät
+aussermvon,ausser von
+snv,sinnvoll
+neies,neues
+abgeloff,abklopfen
+macadress,mac addresse
+portalansicht,portal ansicht
+ofnet,öffen
+schik,schicken
+finanz-,finanz
+zugelegt,zulegen
+schonmal,schon mal
+gutan,tun
+intensiev,intensiv
+grudlagebuch,grundlage
+inscap,inkscape
+coponcod,coupon code
+bildberatbeitungsprogramm,bild bearbeitungsprogramm
+kooperatio,kooperation
+x-telefon,telefon
+garnicht,gar nicht
+genutzt-,nutzen
+schulmailadress,schul e-mail-addresse
+kreditkauf,kredit kauf
+grundlagenband,grundlagen band
+offizeill,offiziell
+nivht,nicht
+aktualisierungspfeil,aktualisierung pfeil
+anwort,antwort
+fachrechnungsbuch,fachrechnung buch
+sonstnoch,sonst nocht
+fachunterlag,fachunterlagen
+mettl,mittel
+erlichgesagt,erlich gesagt
+anshliess,anschliessen
