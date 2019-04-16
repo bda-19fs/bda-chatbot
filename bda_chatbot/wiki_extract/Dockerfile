@@ -6,3 +6,5 @@ RUN mkdir /app/wiki_dumps
 
 ADD ./wiki_extract /app
 ADD ./app /app
+
+RUN pip install -r /app/requirements.txt
