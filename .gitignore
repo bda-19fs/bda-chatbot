@@ -12,6 +12,13 @@ __pycache__/
 *.txt
 *.csv
 
+# bda_core files
+!custom_ch_grammar.txt
+!custom_ch_stopwords.txt
+!custom_en_stopwords.txt
+!custom_ch_vocabular.txt
+!custom_en_vocabular.txt
+
 # requirements.txt
 !requirements.txt
 !de_article_ids_ionesoft.csv
