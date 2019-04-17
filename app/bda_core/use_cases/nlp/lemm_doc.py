@@ -1,5 +1,4 @@
 import click
-import spacy
 from bda_core.entities.file.reader import file_as_dict
 from bda_core.entities.nlp.lemming import lemm
 
