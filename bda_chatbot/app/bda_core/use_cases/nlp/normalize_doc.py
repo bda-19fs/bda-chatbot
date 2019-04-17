@@ -23,3 +23,14 @@ def normalize_doc(doc):
     '''
     doc = list(filter(lambda x: x != '', doc))
     return list(map(lambda x: normalize(x), doc))
+
+
+def normalize_json(json_doc, text_key):
+    '''
+    Normalizes the content of one json property.
+    :param json_doc: The json document
+    :param text_key: The key of the text property
+    :return: Normalized json document
+    '''
+    json_doc[text_key] = normalize(json_doc[text_key])
+    return json_doc
