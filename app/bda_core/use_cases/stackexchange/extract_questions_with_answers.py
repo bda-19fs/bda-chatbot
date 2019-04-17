@@ -16,7 +16,3 @@ def extract_questions_with_answers(xml, save_file):
 
     with open(save_file, 'w', encoding='utf-8') as f:
         json.dump(store, f, indent=2)
-
-
-if __name__ == '__main__':
-    extract_questions_with_answers()
