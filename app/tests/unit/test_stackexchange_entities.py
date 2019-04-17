@@ -4,13 +4,27 @@ from bda_core.entities.stackexchange.utils import (
     is_question,
     extract_text_with_id,
     extract_answer_id,
-    save_as_json
+    save_as_json,
+    update_answer_or_save,
+    update_question_or_save
 )
 
 row = {
     'Id': '1',
     'AcceptedAnswerId': '925',
     'Body': '&lt;p&gt;My chocolate chips cookies are always too crisp. How can I get chewy cookies, like those of Starbucks?&lt;/p&gt;&#xA;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;Thank you to everyone who has answered.\n So far the tip that had the biggest impact was to chill and rest the dough, however I also increased the brown sugar ratio and increased a bit the butter. Also adding maple syrup helped. &lt;/p&gt;&#xA;'
+}
+
+row_two = {
+    'Id': '2',
+    'AcceptedAnswerId': '123',
+    'Body': 'How old am I?'
+}
+
+row_answer = {
+    'Id': '123',
+    'AcceptedAnswerId': None,
+    'Body': '1993'
 }
 
 def test_stip_html():
@@ -47,5 +61,65 @@ def test_save_as_json():
             'answer_id': answer_id,
             'question': question,
             'answer': answer
+        }
+    ]
+
+def test_update_answer_or_save_should_update_answer():
+    store = {'questions_answers': [
+        {
+            'answer_id': 123,
+            'question': None,
+            'answer': '1993'
+        }
+    ]}
+    answer_ids = [123]
+    update_answer_or_save(row_two, answer_ids, store)
+    assert store['questions_answers'] == [
+        {
+            'answer_id': 123,
+            'question': 'How old am I?',
+            'answer': '1993'
+        }
+    ]
+
+def test_update_answer_or_save_should_save():
+    store = {'questions_answers': []}
+    answer_ids = []
+    update_answer_or_save(row_two, answer_ids, store)
+    assert store['questions_answers'] == [
+        {
+            'answer_id': 123,
+            'question': 'How old am I?',
+            'answer': None
+        }
+    ]
+
+def test_update_question_or_save_should_update():
+    store = {'questions_answers': [
+        {
+            'answer_id': 123,
+            'question': 'How old am I?',
+            'answer': None
+        }
+    ]}
+    answer_ids = [123]
+    update_question_or_save(row_answer, answer_ids, store)
+    assert store['questions_answers'] == [
+        {
+            'answer_id': 123,
+            'question': 'How old am I?',
+            'answer': '1993'
+        }
+    ]
+
+def test_update_question_or_save_should_save():
+    store = {'questions_answers': []}
+    answer_ids = []
+    update_question_or_save(row_answer, answer_ids, store)
+    assert store['questions_answers'] == [
+        {
+            'answer_id': 123,
+            'question': None,
+            'answer': '1993'
         }
     ]
