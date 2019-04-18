@@ -29,3 +29,8 @@ __pycache__/
 
 # coverage
 .coverage
+
+# release
+.eggs/
+bda_chatbot.egg-info/
+build/
