@@ -13,13 +13,14 @@ INSTALL_REQUIRES = [
 
 setuptools.setup(
     name='bda-chatbot',
-    version='0.0.1',
+    version='0.0.2',
     author='Alan Meile, Cyrill Jauner',
     author_email='alan.meile@gmail.com',
     description='Source code for the bda chatbot bachelor thesis fs19',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/bda-19fs/bda-chatbot',
+    package_dir={'': 'app'},
     packages=setuptools.find_packages(),
     scripts=[
         './app/extract.py',
