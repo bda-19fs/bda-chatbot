@@ -35,3 +35,13 @@ INTO OUTFILE '/var/lib/mysql-files/bda_id_whitelist.csv'
 
 # copy the csv out of the docker container
 docker cp <container id>:/var/lib/mysql-files/bda_id_whitelist.csv ./
+
+
+
+
+# SPARQL
+SELECT ?food, ?id
+WHERE {
+  ?food rdf:type dbo:Food .
+  ?food dbo:wikiPageID ?id
+}
