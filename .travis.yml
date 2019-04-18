@@ -9,3 +9,11 @@ script:
 - pytest --cov=app/bda_core/ app/tests/
 after_success:
 - coveralls
+deploy:
+  provider: pypi
+  user: binerdy
+  distributions: sdist bdist_wheel
+  skip_upload_docs: true
+  skip_existing: true
+  password:
+    secure: TC9236Dvs6HrKgZwk/iRv0YhP6kGlsnJKlvvYAxnUrn2iD+YiUpVN/T3D9eiMxBE34SmPz5iQomYhl8JQfXnJZ5iSYyYImN4RFyuMkHkEXtFgKnUIDacztjDtPuKJDpLb8S8hTrBxJf3VjKp3oMFfrhVTxlpyZvxjBAKOupKUm7ew5FNEZpTmy1Edb6OdlaYDyKGle8/eSlYVG17BnBfuYLvOcV+hacqPjooTu6Vrhi1y9NRBylGGm/V+fXb+rUTJG86VwoV0mgAaTS5ASuauV3jD51zu0Sou8OvWlAgDwZgJ4s6hH3tE406sH2QfAplxILEiJbM2shMO6MWf71cfwUzsMmxKrHU4Dd99OZ4/8nWUmTR13HOzI2N/dSy5mjCOO3vmXiYCjKh3IIkVg9CtLG4u69nJszhmpufRV6vT12pte5EY9Om9BnxkdLHKWGsHsHIhIvAtzX324tufcycujFbBY6Mss44B2GIm9uwJycJqE02eEIFxnR5bVtdAT0GbA4DONt/pZxYo7VvwkVT2oySbYgWqrPZ3IpFZ55af4nuOCw2t+lFi1CljmCxjr6fItMxBvubR9oksS3XgRHjzW9NhDfy7astUHYBBemh1cJh2S1r3AtENA18v5qM+J6R/4ViAOW2afhpTBk/7ndfDYyH5zyA0FX+XEWdWO91i9M=
