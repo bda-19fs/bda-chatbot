@@ -4,14 +4,21 @@ services:
     build:
       context: ./web_ui
     ports:
-      - "7000:80"
+      - '7000:80'
     hostname: web_ui
+  backend:
+    build:
+      context: ./
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - '7001:5000'
+    hostname: backend
   wiki_extract:
     build:
       context: ./
       dockerfile: ./wiki_extract/Dockerfile
     volumes:
-      - "./wiki_dumps:/app/wiki_dumps"
+      - './wiki_dumps:/app/wiki_dumps'
     working_dir: /app
     command: bash run.sh
     hostname: wiki_extract
