@@ -12,10 +12,10 @@ def from_str_to_json(line):
 
 def dump_json(json_doc):
     '''
-    Converts the given json document (dict) to a json string
+    Converts the given json document (dict) to a json string.
+    The ensure_ascii flag is necessary that the json module
+    doesn't use ascii for the encoding.
     :param json_doc: The input dict
     :return: A json string
     '''
-    # the ensure_ascii flag is necessary that the json module
-    # doesn't use ascii for the encoding.
     return json.dumps(json_doc, ensure_ascii=False)
