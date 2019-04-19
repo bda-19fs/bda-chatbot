@@ -14,11 +14,7 @@ from bda_core.use_cases.nlp.stemm_doc import stemm_json
 
 
 @click.command()
-@click.option(
-    '-l', '--language', type=click.STRING, default='de',
-    help='choose vocabular language (default is "de")'
-)
-def extract(language):
+def extract():
     start = watch.time()
     doc = click.get_text_stream('stdin', 'utf-8').read()
 
