@@ -8,6 +8,14 @@ def extract_json_documents(doc):
     return json_data
 
 
+def extract_json_document(doc):
+    return from_str_to_json(doc)
+
+
 def write_articles_out(json_docs):
     for doc in json_docs:
-        click.get_text_stream('stdout', 'utf-8').write(dump_json(doc) + '\n')
+        write_article_out(doc)
+
+
+def write_article_out(json_doc):
+    click.get_text_stream('stdout', 'utf-8').write(dump_json(json_doc) + '\n')
