@@ -3,7 +3,7 @@ import click
 import time as watch
 from bda_core.use_cases.log.log_info import log_info
 from bda_core.use_cases.nlp.normalize_doc import normalize_json_stream
-from bda_core.use_cases.wiki.extract_article import extract_json_documents
+from bda_core.use_cases.file.extract_json import extract_json_documents
 
 
 @click.command()

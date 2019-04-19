@@ -1,6 +1,6 @@
 import click
 from bda_core.entities.nlp.normalize import normalize
-from bda_core.entities.wiki.json_handler import dump_json
+from bda_core.entities.file.json_handler import dump_json
 
 
 def normalize_doc_stream(doc):

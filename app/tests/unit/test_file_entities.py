@@ -1,4 +1,4 @@
-from bda_core.entities.wiki.json_handler import (
+from bda_core.entities.file.json_handler import (
     from_str_to_json,
     dump_json
 )
