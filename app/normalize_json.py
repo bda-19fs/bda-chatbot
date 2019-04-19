@@ -11,9 +11,8 @@ def normalize():
     start = watch.time()
     doc = click.get_text_stream('stdin', 'utf-8').read()
 
-    log_info(f'normalizing')
+    log_info(f'normalizing json')
 
-    print(doc)
     doc = extract_json_documents(doc)
     normalize_json_stream(doc)
 
