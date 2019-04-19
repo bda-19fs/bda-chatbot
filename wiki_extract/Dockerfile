@@ -2,7 +2,7 @@ FROM python:3.7-alpine
 
 RUN apk add --no-cache bash
 RUN mkdir /app
-RUN mkdir /app/wiki_dumps
+RUN mkdir /app/data
 
 ADD ./wiki_extract /app
 ADD ./app /app
