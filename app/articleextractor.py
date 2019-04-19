@@ -6,7 +6,7 @@ from os import sys, path
 # add modules from parent to path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from bda_core.use_cases.log.log_info import log_info
-from bda_core.use_cases.file.extract_json import extract_json_documents, write_article_out
+from bda_core.use_cases.file.extract_json import extract_json_documents, write_json_doc_out
 
 from bda_core.use_cases.nlp.normalize_doc import normalize_json
 from bda_core.use_cases.nlp.remove_stopwords import remove_stopwords_json
@@ -29,7 +29,7 @@ def extract(language):
     #write_articles_out(norm_json_docs)
 
     for doc in json_docs:
-        write_article_out(doc)
+        write_json_doc_out(doc)
 
     log_info(f'article extracting ended in {watch.time() - start}s\n')
 
