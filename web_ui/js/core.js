@@ -1,5 +1,5 @@
 let ask = function(question, config) {
-  return postData('//localhost:7001/run', {
+  return postData('//localhost:7001/api/v1/run', {
       question: question,
       config: config
     })
@@ -7,7 +7,7 @@ let ask = function(question, config) {
 }
 
 let pipelines = function() {
-  return fetch('//localhost:7001/')
+  return fetch('//localhost:7001/api/v1/pipelines')
     .then(response => response.json());
 }
 
@@ -16,16 +16,13 @@ let postData = function(url = '', data = {}) {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
-        credentials: 'same-origin',
         headers: {
-            'Content-Type': 'application/json',
-
+            'Content-Type': 'application/json'
         },
-        redirect: 'follow',
-        referrer: 'no-referrer',
         body: JSON.stringify(data),
     });
 }
 
 // demo
 pipelines().then(data => console.log(JSON.stringify(data)));
+ask('How old am I?', 0).then(data => console.log(JSON.stringify(data)));
