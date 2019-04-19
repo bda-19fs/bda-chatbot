@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
-from flask import Flask
+import logging
+from flask import Flask, jsonify
 from flask_cors import CORS
-from flask_restful import Resource, Api
-
-
-class Pipeline(Resource):
-    def get(self):
-        return {
-            'Pipelines': [
-                'TF-IDF',
-                'TF-IDF with stemming'
-            ]
-        }
 
 
 app = Flask(__name__)
-cors = CORS(app, supports_credentials=True)
-api = Api(app)
+logging.basicConfig(level=logging.INFO)
+logging.getLogger('flask_cors').level = logging.DEBUG
+CORS(app, resources=r'/api/*')
 
-api.add_resource(Pipeline, '/')
+@app.route("/api/v1/pipelines/")
+def list_pipelines():
+    return jsonify(pipelines = [
+        'TF-IDF',
+        'TF-IDF with stemming'
+    ])
+
+@app.route("/api/v1/run", methods=['POST'])
+def run():
+    return jsonify(success = True)
 
 
 if __name__ == '__main__':
