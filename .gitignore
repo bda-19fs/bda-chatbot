@@ -34,3 +34,4 @@ __pycache__/
 .eggs/
 bda_chatbot.egg-info/
 build/
+dist/
