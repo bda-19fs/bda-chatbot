@@ -16,4 +16,6 @@ def dump_json(json_doc):
     :param json_doc: The input dict
     :return: A json string
     '''
-    return json.dumps(json_doc)
+    # the ensure_ascii flag is necessary that the json module
+    # doesn't use ascii for the encoding.
+    return json.dumps(json_doc, ensure_ascii=False)
