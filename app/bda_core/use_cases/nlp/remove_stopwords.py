@@ -1,6 +1,7 @@
 import click
 from bda_core.entities.file.reader import file_as_list
 from bda_core.entities.nlp.stopwords import remove
+from bda_core.entities.file.json_handler import dump_json
 
 
 def remove_stopwords_stream(doc, stopwords):
@@ -16,6 +17,16 @@ def remove_stopwords_stream(doc, stopwords):
         click.get_text_stream('stdout', 'utf-8').write(cleaned_line + '\n')
         lines += 1
     return lines
+
+
+def remove_stopwords_json_stream(json_docs, stopwords, text_key='text'):
+    '''
+    Removes stopwords in stdin defined as json documents.
+    '''
+    stopwords = file_as_list(stopwords)
+    for doc in json_docs:
+        doc[text_key] = remove(doc[text_key], stopwords)
+        click.get_text_stream('stdout', 'utf-8').write(dump_json(doc) + '\n')
 
 
 def remove_stopwords(doc, stopwords='res/custom_ch_stopwords.txt'):
