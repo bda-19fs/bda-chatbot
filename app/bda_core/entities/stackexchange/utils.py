@@ -11,10 +11,10 @@ def is_question(row):
     return True if extract_answer_id(row) else False
 
 def extract_text_with_id(row):
-    question_id = int(row['Id'])
-    question = strip_html(row['Body'])
-    question = remove_newline(question)
-    return question, question_id
+    id = int(row['Id'])
+    text = strip_html(row['Body'])
+    text = remove_newline(text)
+    return text, id
 
 def extract_answer_id(row):
     answer_id = row['AcceptedAnswerId']
