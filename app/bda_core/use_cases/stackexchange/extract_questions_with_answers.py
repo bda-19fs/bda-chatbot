@@ -1,8 +1,7 @@
-import json
 from bda_core.entities.stackexchange.utils import is_question, update_answer_or_save, update_question_or_save
 
 
-def extract_questions_with_answers(xml, save_file):
+def extract_questions_with_answers(xml):
     store = {'questions_answers': []}
     question, answer = None, None
     answer_ids = []
@@ -14,5 +13,4 @@ def extract_questions_with_answers(xml, save_file):
         else:
             update_question_or_save(row, answer_ids, store)
 
-    with open(save_file, 'w', encoding='utf-8') as f:
-        json.dump(store, f, indent=2)
+    return store
