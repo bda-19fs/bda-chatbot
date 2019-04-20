@@ -5,7 +5,8 @@ def strip_html(text):
     return re.sub('&[^;]+;|<[^>]+>', '', text)
 
 def remove_newline(text):
-    return text.replace('\n', ' ')
+    text = text.replace('\n', ' ')
+    return re.sub('\s\s+', ' ', text)
 
 def is_question(row):
     return True if extract_answer_id(row) else False

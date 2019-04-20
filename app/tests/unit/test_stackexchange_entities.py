@@ -31,7 +31,7 @@ def test_stip_html():
     assert strip_html(row['Body']) == 'pMy chocolate chips cookies are always too crisp. How can I get chewy cookies, like those of Starbucks?/phrpThank you to everyone who has answered.\n So far the tip that had the biggest impact was to chill and rest the dough, however I also increased the brown sugar ratio and increased a bit the butter. Also adding maple syrup helped. /p'
 
 def test_remove_newline():
-    assert remove_newline(row['Body']) == '&lt;p&gt;My chocolate chips cookies are always too crisp. How can I get chewy cookies, like those of Starbucks?&lt;/p&gt;&#xA;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;Thank you to everyone who has answered.  So far the tip that had the biggest impact was to chill and rest the dough, however I also increased the brown sugar ratio and increased a bit the butter. Also adding maple syrup helped. &lt;/p&gt;&#xA;'
+    assert remove_newline(row['Body']) == '&lt;p&gt;My chocolate chips cookies are always too crisp. How can I get chewy cookies, like those of Starbucks?&lt;/p&gt;&#xA;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;Thank you to everyone who has answered. So far the tip that had the biggest impact was to chill and rest the dough, however I also increased the brown sugar ratio and increased a bit the butter. Also adding maple syrup helped. &lt;/p&gt;&#xA;'
 
 def test_is_question_should_be_true():
     assert is_question(row) == True
@@ -44,7 +44,7 @@ def test_is_question_should_be_false():
 
 def test_extract_text_with_id():
     text, id = extract_text_with_id(row)
-    assert text == 'pMy chocolate chips cookies are always too crisp. How can I get chewy cookies, like those of Starbucks?/phrpThank you to everyone who has answered.  So far the tip that had the biggest impact was to chill and rest the dough, however I also increased the brown sugar ratio and increased a bit the butter. Also adding maple syrup helped. /p'
+    assert text == 'pMy chocolate chips cookies are always too crisp. How can I get chewy cookies, like those of Starbucks?/phrpThank you to everyone who has answered. So far the tip that had the biggest impact was to chill and rest the dough, however I also increased the brown sugar ratio and increased a bit the butter. Also adding maple syrup helped. /p'
     assert id == 1
 
 def test_extract_answer_id():
