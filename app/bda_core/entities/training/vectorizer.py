@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def fit_concepts(concepts):
-    vectorizer = TfidfVectorizer()
+    vectorizer = TfidfVectorizer(use_idf=True)
     X = vectorizer.fit_transform(concepts)
     return X, vectorizer
 
