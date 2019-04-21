@@ -8,16 +8,33 @@ from bda_core.use_cases.stackexchange.extract_questions_with_answers import (
 )
 
 
+def save(extract, questions_file, answers_file):
+    with open(questions_file, 'w', encoding='utf-8') as q_file:
+        with open(answers_file, 'w', encoding='utf-8') as a_file:
+            for element in extract['questions_answers']:
+                q = element['question']
+                a = element['answer']
+                if q and a:
+                    q = q.replace(',', '')
+                    a = a.replace(',', '')
+                    q_file.write(f'{q}\n')
+                    a_file.write(f'{a}\n')
+
+
 @click.command()
 @click.option(
     '-x', '--xml_file', type=click.STRING, default='data/posts.xml',
     help='choose stackexchange xml file (default is "data/posts.xml")'
 )
 @click.option(
-    '-s', '--save_file', type=click.STRING, default='stackexchange_questions_answers.txt',
-    help='choose output file name (default is "stackexchange_questions_answers.txt")'
+    '-q', '--questions_file', type=click.STRING, default='stackexchange_questions.txt',
+    help='choose output file name (default is "stackexchange_questions.txt")'
 )
-def stackexchange(xml_file, save_file):
+@click.option(
+    '-a', '--answers_file', type=click.STRING, default='stackexchange_answers.txt',
+    help='choose output file name (default is "stackexchange_answers.txt")'
+)
+def stackexchange(xml_file, questions_file, answers_file):
     start = watch.time()
 
     log_info(f'extract questions with answers from stackexchange')
@@ -25,14 +42,7 @@ def stackexchange(xml_file, save_file):
     xml = untangle.parse(xml_file)
     extract = extract_questions_with_answers(xml)
 
-    with open(save_file, 'w', encoding='utf-8') as f:
-        for element in extract['questions_answers']:
-            q = element['question']
-            a = element['answer']
-            if q and a:
-                q = q.replace(',', '')
-                a = a.replace(',', '')
-                f.write(f'{q},{a}\n')
+    save(extract, questions_file, answers_file)
 
     log_info(f'extraction completed in {watch.time() - start}s\n')
 
