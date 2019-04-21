@@ -1,7 +1,8 @@
 import setuptools
 
-with open('README.md', 'r') as fh:
-    long_description = fh.read()
+long_description = '''
+BDA Chatbot fs19
+'''
 
 INSTALL_REQUIRES = [
     'Click==7.0',
@@ -20,15 +21,15 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/bda-19fs/bda-chatbot',
-    package_dir={'': 'app'},
     packages=setuptools.find_packages(),
+    include_package_data=True,
     scripts=[
-        './app/extract.py',
-        './app/grammar.py',
-        './app/lemm.py',
-        './app/normalize.py',
-        './app/stemm.py',
-        './app/stopwords.py',
+        './extract.py',
+        './grammar.py',
+        './lemm.py',
+        './normalize.py',
+        './stemm.py',
+        './stopwords.py',
     ],
     classifiers=[
         'Programming Language :: Python :: 3',
