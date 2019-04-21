@@ -9,6 +9,7 @@ script:
 - pytest --cov=app/bda_core/ app/tests/
 after_success:
 - coveralls
+before_deploy: cd app/
 deploy:
   provider: pypi
   user: binerdy
