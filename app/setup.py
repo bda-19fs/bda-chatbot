@@ -14,7 +14,7 @@ INSTALL_REQUIRES = [
 
 setuptools.setup(
     name='bda-chatbot',
-    version='0.0.2',
+    version='0.0.3',
     author='Alan Meile, Cyrill Jauner',
     author_email='alan.meile@gmail.com',
     description='Source code for the bda chatbot bachelor thesis fs19',
