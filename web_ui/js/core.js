@@ -23,6 +23,11 @@ let postData = function(url = '', data = {}) {
     });
 }
 
+let ask_question = function() {
+  question = document.querySelector('#question').value;
+  ask(question, '').then(data => console.log(JSON.stringify(data)));
+}
+
 // demo
 pipelines().then(data => console.log(JSON.stringify(data)));
 ask('How old am I?', 0).then(data => console.log(JSON.stringify(data)));
