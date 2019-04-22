@@ -9,4 +9,4 @@ def fit_concepts(concepts):
 
 def transform_knowledge(vectorizer, questions):
     tfidf = vectorizer.transform(questions)
-    return tfidf
+    return tfidf, vectorizer
