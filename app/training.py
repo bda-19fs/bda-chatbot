@@ -54,7 +54,7 @@ def training(wiki_extracts, questions, file_name):
     model, vectorizer = create_language_model(concepts, questions)
 
     save(model, file_name)
-    save(vectorizer, file_name + 'vec')
+    save(vectorizer, f'file_name_vectorizer')
 
     log_info(f'training completed in {watch.time() - start}s\n')
 
