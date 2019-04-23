@@ -5,35 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="static/imgs/icon-microservices-colored.png">
-
     <link href="css/vanilla-framework-version-1.8.1.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div class="row">
-      <h1>Question Answering Model</h1>
+      <h1 style="margin-bottom: 0">Demo: BDA Chatbot</h1>
+      <h5 style="margin-bottom: 3rem;">Cyrill Jauner, Alan Meile</h5>
     </div>
     <div class="row">
-        <div class="u-equal-height">
-          <div class="p-card col-6">
-            <h2 class="p-card__title">Question</h2>
-            <div class="p-card__content">
-              <textarea id="question" rows="3" style="resize: none" placeholder="Ask me anything..">
-              </textarea>
-              <button class="p-button--neutral" onclick="ask_question()">Ask</button>
-            </div>
+      <div class="col-2">
+        <div class="p-navigation--sidebar">
+          <div class="row">
+            <h3>Settings</h3>
           </div>
-
-          <div class="p-card col-6">
-            <h2 class="p-card__title">Answers</h2>
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">0.042348 Gerät entfernen, neu starten</li>
-              <li class="p-list__item is-ticked">0.032211 Geräteanzahl überschritten</li>
-              <li class="p-list__item is-ticked">0.012671 Gerät entfernt Apple</li>
-            </ul>
+          <div class="sidebar__content js-sidebar-toggle u-hide" aria-hidden="true">
+            <select name="dataset" id="dataset">
+              <option value="0">Stackexchange</option>
+              <option value="1">Ionesoft</option>
+            </select>
+            <select name="algoritm" id="algorithm">
+            </select>
+            <select name="algoritm" id="algorithm">
+              <option value="0">0% - 100%</option>
+              <option value="1">15% - 85%</option>
+              <option value="1">25% - 75%</option>
+            </select>
           </div>
         </div>
       </div>
+      <div class="col-10">
+        <div class="row">
+          <div class="u-equal-height">
+            <div class="p-card col-6">
+              <h2 class="p-card__title">Question</h2>
+              <div class="p-card__content">
+                <textarea id="question" rows="3" style="resize: none" value="">
+                </textarea>
+                <button class="p-button--neutral" onclick="ask_question()">Ask</button>
+              </div>
+            </div>
 
-      <script src="js/core.js"></script>
+            <div class="p-card col-6">
+              <h2 class="p-card__title">Answers</h2>
+              <ul class="p-list" id="answers">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/core.js"></script>
   </body>
 </html>
