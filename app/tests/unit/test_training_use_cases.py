@@ -1,4 +1,4 @@
-from bda_core.use_cases.training.utils import (
+from bda_core.use_cases.training.model import (
     create_language_model
 )
 
@@ -15,5 +15,6 @@ questions = [
 ]
 
 def test_create_language_model():
-    language_model = create_language_model(concepts, questions)
+    language_model, vectorizer = create_language_model(concepts, questions)
     assert language_model.shape == (3, 93)
+    assert vectorizer != None

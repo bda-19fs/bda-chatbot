@@ -3,9 +3,9 @@ import os
 import json
 import click
 import time as watch
-from joblib import dump, load
+from joblib import dump
 from bda_core.use_cases.log.log_info import log_info
-from bda_core.use_cases.training.utils import create_language_model
+from bda_core.use_cases.training.model import create_language_model
 from bda_core.entities.file.json_handler import from_str_to_json
 
 
