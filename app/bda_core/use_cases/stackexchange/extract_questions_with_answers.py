@@ -1,4 +1,8 @@
-from bda_core.entities.stackexchange.utils import is_question, update_answer_or_save, update_question_or_save
+from bda_core.entities.stackexchange.utils import (
+    is_question,
+    update_answer_or_save,
+    update_question_or_save
+)
 
 
 def extract_questions_with_answers(xml):

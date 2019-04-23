@@ -17,6 +17,7 @@ def test_extract_questions_with_answers():
         {
             'answer_id': 925,
             'question': 'How old am I?',
-            'answer': '1993'
+            'answer': '1993',
+            'tags': '<baking><cookies><texture>'
         }
     ]
