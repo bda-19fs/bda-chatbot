@@ -8,5 +8,5 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-def log_info(msg):
-    logging.info(msg)
+def log_info(msg, log=logging):
+    log.info(msg)
