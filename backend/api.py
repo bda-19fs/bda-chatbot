@@ -2,8 +2,7 @@
 import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from joblib import load
-from bda_core.use_cases.prediction.utils import predict_n_answers
+from lib.handler import handle_request
 
 
 app = Flask(__name__)
@@ -15,22 +14,16 @@ CORS(app, resources=r'/api/*')
 def list_pipelines():
     return jsonify(pipelines = [
         'TF-IDF',
-        'TF-IDF with stemming'
+        'TF-IDF with stemming',
+        'TF-IDF with lemming'
     ])
 
 @app.route('/api/v1/run', methods=['POST'])
 def run():
     data = request.get_json(force=True)
-    language_model = load('models/language_model.joblib')
-    vectorizer = load('models/language_modelvec.joblib')
-    answers = file_as_list('models/stackexchange_answers.txt')
-    questions = [data['question']]
-    result = predict_n_answers(language_model, vectorizer, questions, answers, 10)
+    result = handle_request(data['question'])
     return jsonify(result=result)
 
-def file_as_list(file):
-    with open(file, 'r', encoding='utf-8') as file:
-        return list(map(lambda line: line.strip(), file.readlines()))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
