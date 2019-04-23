@@ -1,11 +1,30 @@
-from bda_core.use_cases.nlp.normalize_doc import normalize_doc
-from bda_core.use_cases.nlp.normalize_doc import normalize_json
-from bda_core.use_cases.nlp.correct_grammar import correct_grammar
-from bda_core.use_cases.nlp.remove_stopwords import remove_stopwords
-from bda_core.use_cases.nlp.remove_stopwords import remove_stopwords_json
-from bda_core.use_cases.nlp.stemm_doc import stemm_doc
-from bda_core.use_cases.nlp.stemm_doc import stemm_json
-from bda_core.use_cases.nlp.lemm_doc import lemm_doc
+from os import linesep
+from bda_core.use_cases.nlp.normalize_doc import (
+    normalize_doc,
+    normalize_json,
+    normalize_doc_stream,
+    normalize_json_stream
+)
+from bda_core.use_cases.nlp.correct_grammar import (
+    correct_grammar,
+    correct_grammar_stream
+)
+from bda_core.use_cases.nlp.remove_stopwords import (
+    remove_stopwords,
+    remove_stopwords_json,
+    remove_stopwords_stream,
+    remove_stopwords_json_stream
+)
+from bda_core.use_cases.nlp.stemm_doc import (
+    stemm_doc,
+    stemm_json,
+    stemm_doc_stream
+)
+from bda_core.use_cases.nlp.lemm_doc import (
+    lemm_doc,
+    lemm_doc_stream
+)
+
 
 doc = [
     'ich kann die bilder in übungen nicht bearbeiten.',
@@ -16,6 +35,9 @@ doc = [
 en_doc = [
     'I have a unit test up and running'
 ]
+
+doc_stream = str.join('\n', doc)
+en_doc_stream = str.join('\n', en_doc)
 
 def test_normalize_doc():
     normalized_doc = normalize_doc(doc)
@@ -33,6 +55,26 @@ def test_normalize_json():
         'text': 'ich kann die bilder in übungen nicht bearbeiten'
     }
 
+def test_normalize_doc_stream(capsys):
+    corrected_doc = normalize_doc_stream(doc_stream)
+    captured = capsys.readouterr()
+
+    corrected_doc = str.join(linesep, [
+        'ich kann die bilder in übungen nicht bearbeiten',
+        'lückentxte weg datenn verloren gegangen von pp von rabatt',
+        'bitte deaktivieren sie dieses gerät vielen dank',
+        ''
+    ])
+    assert captured.out == corrected_doc
+
+def test_normalize_json_stream(capsys):
+    test_json = [{'name': 'Artikel ABC', "text": doc[0]}]
+    corrected_doc = normalize_json_stream(test_json)
+    captured = capsys.readouterr()
+
+    corrected_doc = '{"name": "Artikel ABC", "text": "ich kann die bilder in übungen nicht bearbeiten"}' + linesep
+    assert captured.out == corrected_doc
+
 def test_correct_grammar():
     corrected_doc = correct_grammar(doc)
     assert corrected_doc == [
@@ -40,6 +82,18 @@ def test_correct_grammar():
         'lückentexte weg daten verloren gegangen von pp 1.3.3 von rabatt',
         'bitte deaktivieren sie dieses gerät. vielen dank.'
     ]
+
+def test_correct_grammar_stream(capsys):
+    corrected_doc = correct_grammar_stream(doc_stream)
+    captured = capsys.readouterr()
+
+    corrected_doc = str.join(linesep, [
+        'ich kann die bilder in übungen nicht bearbeiten.',
+        'lückentexte weg daten verloren gegangen von pp 1.3.3 von rabatt',
+        'bitte deaktivieren sie dieses gerät. vielen dank.',
+        ''
+    ])
+    assert captured.out == corrected_doc
 
 def test_remove_stopwords():
     cleaned_doc = remove_stopwords(doc)
@@ -49,6 +103,18 @@ def test_remove_stopwords():
         'bitte deaktivieren gerät. dank.'
     ]
 
+def test_remove_stopwords_stream(capsys):
+    corrected_doc = remove_stopwords_stream(doc_stream)
+    captured = capsys.readouterr()
+
+    corrected_doc = str.join(linesep, [
+        'bilder übungen bearbeiten.',
+        'lückentxte datenn verloren gegangen pp 1.3.3 rabatt',
+        'bitte deaktivieren gerät. dank.',
+        ''
+    ])
+    assert captured.out == corrected_doc
+
 def test_remove_stopwords_json():
     test_json = {'name': 'Artikel ABC', "text": doc[0]}
     cleaned_doc = remove_stopwords_json(test_json, 'text')
@@ -56,6 +122,14 @@ def test_remove_stopwords_json():
         'name':'Artikel ABC',
         'text':'bilder übungen bearbeiten.'
     }
+
+def test_remove_stopwords_json_stream(capsys):
+    test_json = [{'name': 'Artikel ABC', "text": doc[0]}]
+    corrected_doc = remove_stopwords_json_stream(test_json, text_key='text')
+    captured = capsys.readouterr()
+
+    corrected_doc = '{"name": "Artikel ABC", "text": "bilder übungen bearbeiten."}' + linesep
+    assert captured.out == corrected_doc
 
 def test_stemming_de():
     stemmed_doc = stemm_doc(doc, 'de')
@@ -87,6 +161,28 @@ def test_stemming_json_en():
         'text':'i have a unit test up and run'
     }
 
+def test_stemming_de_stream(capsys):
+    corrected_doc = stemm_doc_stream(doc_stream, 'de')
+    captured = capsys.readouterr()
+
+    corrected_doc = str.join(linesep, [
+        'ich kann die bild in ubung nicht bearbeiten.',
+        'luckentxt weg datenn verlor gegang von pp 1.3.3 von rabatt',
+        'bitt deaktivi sie dies gerat. viel dank.',
+        ''
+    ])
+    assert captured.out == corrected_doc
+
+def test_stemming_en_stream(capsys):
+    corrected_doc = stemm_doc_stream(en_doc_stream, 'en')
+    captured = capsys.readouterr()
+
+    corrected_doc = str.join(linesep, [
+        'i have a unit test up and run',
+        ''
+    ])
+    assert captured.out == corrected_doc
+
 def test_lemming_de():
     lemmed_doc = lemm_doc(doc, 'de')
     assert lemmed_doc == [
@@ -100,3 +196,15 @@ def test_lemming_en():
     assert lemmed_doc == [
         'I have a unit test up and run'
     ]
+
+def test_lemming_de_stream(capsys):
+    corrected_doc = lemm_doc_stream(doc_stream, 'de')
+    captured = capsys.readouterr()
+
+    corrected_doc = str.join(linesep, [
+        'ich können der bild in übung nicht bearbeiten.',
+        'lückentxte weg datenn verlieren gehen von pp 1.3.3 von rabatt',
+        'bitte deaktivieren ich dies geraten. viel danken.',
+        ''
+    ])
+    assert captured.out == corrected_doc

@@ -8,14 +8,9 @@ def normalize_doc_stream(doc):
         Normalizes a stdin stream by removing all characters that are
         not in the swiss alphabet.
     '''
-    doc = list(filter(lambda x: x != '', doc.split('\n')))
-
-    lines = 0
-    for line in doc:
-        normalized_line = normalize(line)
-        click.get_text_stream('stdout', 'utf-8').write(normalized_line + '\n')
-        lines += 1
-    return lines
+    doc = normalize_doc(doc.split('\n'))
+    [click.get_text_stream('stdout', 'utf-8').write(line + '\n') for line in doc]
+    return len(doc)
 
 def normalize_json_stream(json_docs, text_key='text'):
     '''

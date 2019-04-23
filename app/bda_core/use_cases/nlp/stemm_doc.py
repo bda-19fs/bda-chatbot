@@ -13,15 +13,9 @@ def stemm_doc_stream(doc, language):
     '''
         Stemms all words in stdin stream.
     '''
-    doc = list(filter(lambda x: x != '', doc.split('\n')))
-    stemmer = SnowballStemmer(stemm_dic[language])
-
-    lines = 0
-    for line in doc:
-        stemmed_line = stemm(line, stemmer)
-        click.get_text_stream('stdout', 'utf-8').write(stemmed_line + '\n')
-        lines += 1
-    return lines
+    doc = stemm_doc(doc.split('\n'), language)
+    [click.get_text_stream('stdout', 'utf-8').write(line + '\n') for line in doc]
+    return len(doc)
 
 
 def stemm_doc(doc, language):
