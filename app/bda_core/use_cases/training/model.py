@@ -6,5 +6,5 @@ from bda_core.entities.training.vectorizer import (
 
 def create_language_model(concepts, questions):
     X, vectorizer = fit_concepts(concepts)
-    language_model = transform_knowledge(vectorizer, questions)
+    language_model, vectorizer = transform_knowledge(vectorizer, questions)
     return language_model, vectorizer
