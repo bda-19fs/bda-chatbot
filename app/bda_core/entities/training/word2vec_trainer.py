@@ -28,7 +28,7 @@ def fit_model(sentences, config):
     return model
 
 
-def avg_document_vector(model, word_list):
+def avg_word_vector(model, word_list):
     '''
     Calculates the average vector of a list of words. The average vector is the mean
     of all word vectors. Only words of the Word2Vec vocabulary can be considered.
