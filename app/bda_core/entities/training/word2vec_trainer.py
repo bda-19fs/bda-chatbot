@@ -40,3 +40,22 @@ def avg_word_vector(model, word_list):
     '''
     words = [word for word in word_list if word in model.wv.vocab]
     return np.mean(model.wv.__getitem__(words), axis=0)
+
+
+def create_sentence_vectors(model, questions):
+    '''
+    Calculates the average vectors for all questions. The order of the sentences list
+    will remain in the returned list of vectors.
+    :param model: The trained Word2Vec model
+    :param questions: A python list of word lists
+    :return: A list of average vectors
+    '''
+    vectors = []
+    for i in range(len(questions)):
+        word_list = [word for word in questions[i] if word in model.wv.vocab]
+        avg_vector = None
+        if len(word_list) > 0:
+            avg_vector = avg_word_vector(model, word_list)
+        vectors.append((i, avg_vector))
+    return vectors
+
