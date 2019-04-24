@@ -16,7 +16,8 @@ class Config:
 
 def fit_model(sentences, config):
     '''
-    Fits the Word2Vec model with the given sentences.
+    Fits the Word2Vec model with the given sentences. The vectors were normalized after the training.
+    A further training of the model is not possible.
     :param sentences: A python list of sentences
     :param config: The config for the model
     :return: The trained Word2Vec model
@@ -25,6 +26,7 @@ def fit_model(sentences, config):
                                    sg=config.use_skip_gram)
     model.build_vocab(sentences)
     model.train(sentences, total_examples=len(sentences), epochs=config.epochs)
+    model.init_sims(replace=True)
     return model
 
 
