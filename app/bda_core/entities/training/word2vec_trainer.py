@@ -1,4 +1,5 @@
 import gensim
+import numpy as np
 
 
 class Config:
@@ -25,3 +26,15 @@ def fit_model(sentences, config):
     model.build_vocab(sentences)
     model.train(sentences, total_examples=len(sentences), epochs=config.epochs)
     return model
+
+
+def avg_document_vector(model, word_list):
+    '''
+    Calculates the average vector of a list of words. The average vector is the mean
+    of all word vectors. Only words of the Word2Vec vocabulary can be considered.
+    :param model: The trained Word2Vec model
+    :param word_list: A python list of words
+    :return: The average vector
+    '''
+    words = [word for word in word_list if word in model.wv.vocab]
+    return np.mean(model.wv.__getitem__(words), axis=0)
