@@ -22,9 +22,12 @@ class WordVectorMock:
     def __getitem__(self, item):
         vector_list = []
         for i in range(len(item)):
+            vector = []
             for j in range(len(self.vocab)):
                 if item[i] == self.vocab[j]:
-                    vector_list.append(self.vectors[j])
+                    vector = self.vectors[j]
+                    break
+            vector_list.append(vector)
         return vector_list
 
 
@@ -39,8 +42,15 @@ def test_fit_concepts():
     assert vectorizer != None
 
 
-def test_avg_document_vector():
+def test_avg_word_vector():
     model_mock = W2VModelMock()
     mean = avg_word_vector(model_mock, model_mock.wv.vocab)
     assert mean[0] == 2.0
     assert mean[1] == 3.0
+
+
+def test_avg_word_vector_nan():
+    model_mock = W2VModelMock()
+    mean = avg_word_vector(model_mock, ['not', 'in', 'vocab'])
+    assert np.isnan(mean)
+
