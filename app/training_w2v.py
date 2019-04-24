@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
-import json
 import click
+import pickle
 import time as watch
 from bda_core.use_cases.log.log_info import log_info
 from bda_core.use_cases.training.model import create_w2v_model
@@ -26,8 +26,12 @@ def file_as_list(file):
         return list(map(lambda line: line.strip().lower().split(), file.readlines()))
 
 
-def save(model, file_name):
+def save_model(model, file_name):
     model.save(file_name)
+
+
+def save_pre_computed_vectors(vectors, file_name):
+    pickle.dump(vectors, open(file_name, 'wb'))
 
 
 @click.command()
@@ -56,7 +60,8 @@ def training(wiki_extracts, questions, file_name):
     log_info(f'creating language model')
     model, vectors = create_w2v_model(concepts, questions)
 
-    save(model, file_name)
+    save_model(model, file_name)
+    save_pre_computed_vectors(vectors, file_name + '_vectors')
 
     log_info(f'training completed in {watch.time() - start}s\n')
 
