@@ -26,8 +26,11 @@ def run():
     data = request.get_json(force=True)
     algorithm = algorithm_strategy(data['config'])
     tags, answers = load_tags_answers()
-    tfidf_tags, tfidf_answers = algorithm(data['question'], tags, answers)
-    return jsonify(tfidf_tags=tfidf_tags, tfidf_answers=tfidf_answers, skip_gram=[])
+    tt, ta, wt, wa = algorithm(data['question'], tags, answers)
+    return jsonify(
+        tfidf_tags=tt, tfidf_answers=ta,
+        w2v_tags=wt, w2v_answers=wa
+    )
 
 
 if __name__ == '__main__':
