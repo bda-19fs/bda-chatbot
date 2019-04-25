@@ -49,12 +49,12 @@ def training(wiki_extracts, questions):
 
     log_info(f'creating language model')
     model_100, vectorizer_100 = create_language_model(concepts, questions, 0)
-    model_85, vectorizer_85 = create_language_model(concepts, questions, 0.15)
-    model_75, vectorizer_75 = create_language_model(concepts, questions, 0.25)
+    model_95, vectorizer_95 = create_language_model(concepts, questions, 0.05)
+    model_90, vectorizer_90 = create_language_model(concepts, questions, 0.1)
 
     save(model_100, vectorizer_100, 'tfidf_100_model', 'tfidf_100_vectorizer')
-    save(model_85, vectorizer_85, 'tfidf_85_model', 'tfidf_85_vectorizer')
-    save(model_75, vectorizer_75, 'tfidf_75_model', 'tfidf_75_vectorizer')
+    save(model_95, vectorizer_95, 'tfidf_95_model', 'tfidf_95_vectorizer')
+    save(model_90, vectorizer_90, 'tfidf_90_model', 'tfidf_90_vectorizer')
 
     log_info(f'training completed in {watch.time() - start}s\n')
 
