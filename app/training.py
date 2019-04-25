@@ -24,8 +24,9 @@ def file_as_list(file):
     with open(file, 'r', encoding='utf-8') as file:
         return list(map(lambda line: line.strip(), file.readlines()))
 
-def save(model, file_name):
-    dump(model, f'{file_name}.joblib')
+def save(model, vectorizer, model_name, vec_name):
+    dump(model, f'{model_name}.joblib')
+    dump(vectorizer, f'{vec_name}.joblib')
 
 @click.command()
 @click.option(
@@ -36,11 +37,7 @@ def save(model, file_name):
     '-q', '--questions', type=click.STRING, required=True,
     help='choose questions file'
 )
-@click.option(
-    '-f', '--file_name', type=click.STRING, default='language_model',
-    help='choose name for language model. default("language_model")'
-)
-def training(wiki_extracts, questions, file_name):
+def training(wiki_extracts, questions):
     start = watch.time()
 
     log_info(f'collecting wiki_extracts from folder {wiki_extracts}')
@@ -51,10 +48,13 @@ def training(wiki_extracts, questions, file_name):
     log_info(f'collected {len(questions)} questions')
 
     log_info(f'creating language model')
-    model, vectorizer = create_language_model(concepts, questions)
+    model_100, vectorizer_100 = create_language_model(concepts, questions, 0)
+    model_85, vectorizer_85 = create_language_model(concepts, questions, 0.15)
+    model_75, vectorizer_75 = create_language_model(concepts, questions, 0.25)
 
-    save(model, file_name)
-    save(vectorizer, f'{file_name}_vectorizer')
+    save(model_100, vectorizer_100, 'tfidf_100_model', 'tfidf_100_vectorizer')
+    save(model_85, vectorizer_85, 'tfidf_85_model', 'tfidf_85_vectorizer')
+    save(model_75, vectorizer_75, 'tfidf_75_model', 'tfidf_75_vectorizer')
 
     log_info(f'training completed in {watch.time() - start}s\n')
 
