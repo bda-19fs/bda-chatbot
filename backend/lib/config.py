@@ -18,8 +18,8 @@ def ui_config():
         'SKIP-GRAM stopwords lemmatization'
     ]
     domain_limit = [
-        '0% - 100%',
-        '15% - 85%',
-        '25% - 75%'
+        ' 0%  - 100%',
+        ' 5%  -  95%',
+        '10%  -  90%'
     ]
     return dataset, algorithm, domain_limit
