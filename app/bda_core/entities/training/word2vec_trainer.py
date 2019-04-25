@@ -56,6 +56,7 @@ def create_sentence_vectors(model, questions):
         avg_vector = None
         if len(word_list) > 0:
             avg_vector = avg_word_vector(model, word_list)
-        vectors.append((i, avg_vector))
+        vectors.append(avg_vector)
+    vectors = np.array(vectors)
     return vectors
 

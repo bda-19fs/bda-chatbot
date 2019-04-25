@@ -1,6 +1,7 @@
 from bda_core.entities.prediction.similarity import (
     predict_closest,
-    predict_closest_vectors
+    predict_closest_vectors,
+    predict_closest_w2v
 )
 from bda_core.entities.training.word2vec_trainer import avg_word_vector
 
@@ -14,5 +15,5 @@ def predict_n_answers(X, vectorizer, texts, tags, answers, n=10):
 
 def predict_n_w2v_answers(question, model, question_vectors, tags, answers, n=10):
     X = avg_word_vector(model, question.split(' '))
-    probs = predict_closest_vectors(X, question_vectors)
+    probs = predict_closest_w2v(X, question_vectors)
     return readable(probs[:n], tags), readable(probs[:n], answers)
