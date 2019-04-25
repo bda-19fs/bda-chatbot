@@ -46,7 +46,7 @@ def test_is_question_should_be_false():
     assert is_question(answer_row) == False
 
 def test_extract_tags():
-    assert extract_tags(row) == '<test>'
+    assert extract_tags(row) == 'test'
 
 def test_extract_text_with_id():
     text, id = extract_text_with_id(row)
@@ -61,14 +61,14 @@ def test_save_as_json():
     question = 'when was I born?'
     answer_id = 42
     answer = '1993'
-    tags = '<test><testing>'
+    tags = 'test testing'
     save_as_json(question, answer_id, answer, tags, store)
     assert store['questions_answers'] == [
         {
             'answer_id': answer_id,
             'question': question,
             'answer': answer,
-            'tags': '<test><testing>'
+            'tags': 'test testing'
         }
     ]
 
@@ -87,7 +87,7 @@ def test_update_answer_or_save_should_update_answer():
             'answer_id': 123,
             'question': 'How old am I?',
             'answer': '1993',
-            'tags': '<test><testing>'
+            'tags': 'test testing'
         }
     ]
 
@@ -100,7 +100,7 @@ def test_update_answer_or_save_should_save():
             'answer_id': 123,
             'question': 'How old am I?',
             'answer': None,
-            'tags': '<test><testing>'
+            'tags': 'test testing'
         }
     ]
 
