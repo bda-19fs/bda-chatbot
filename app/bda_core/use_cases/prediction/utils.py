@@ -1,4 +1,4 @@
-from bda_core.entities.prediction.similarity import predict_closest
+from bda_core.entities.prediction.similarity import predict_closest, predict_closest_vectors
 
 
 def readable(probs, answers):
@@ -7,3 +7,7 @@ def readable(probs, answers):
 def predict_n_answers(X, vectorizer, texts, tags, answers, n=10):
     probs = predict_closest(X, vectorizer, texts, n)
     return readable(probs, tags), readable(probs, answers)
+
+def predict_n_w2v_answers(quest, question_vectors, answers, n=10):
+    probs = predict_closest_vectors(quest, question_vectors)
+    return readable(probs[:n], answers)

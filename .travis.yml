@@ -3,6 +3,8 @@ language: python
 python:
 - '3.7'
 sudo: required
+before_install:
+  - sudo rm -f /etc/boto.cfg
 install:
 - pip install -r requirements.txt
 script:
