@@ -3,8 +3,9 @@ let ask_question = function() {
   question = document.querySelector('#question').value;
   config = load_config();
   ask(question, config).then(result => {
+    console.log(result);
     fill_answers('tfidf_answers', result['tfidf_tags'], result['tfidf_answers']);
-    fill_answers('skipgram_answers', result['skip_gram']);
+    fill_answers('skipgram_answers', result['w2v_tags'], result['w2v_answers']);
     console.timeEnd('ask_question');
   });
 }
