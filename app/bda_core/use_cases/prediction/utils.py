@@ -1,4 +1,8 @@
-from bda_core.entities.prediction.similarity import predict_closest, predict_closest_vectors
+from bda_core.entities.prediction.similarity import (
+    predict_closest,
+    predict_closest_vectors
+)
+from bda_core.entities.training.word2vec_trainer import avg_word_vector
 
 
 def readable(probs, answers):

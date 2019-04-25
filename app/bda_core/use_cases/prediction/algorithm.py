@@ -33,13 +33,13 @@ def stackexchange_tfidf_100(question, tags, answers):
     return predict_n_answers(language_model, vectorizer, [question], tags, answers, 10)
 
 def stackexchange_tfidf_85(question, tags, answers):
-    language_model = load(f'{stack_path}tfidf_85_model.joblib')
-    vectorizer = load(f'{stack_path}tfidf_85_vectorizer.joblib')
+    language_model = load(f'{stack_path}tfidf_95_model.joblib')
+    vectorizer = load(f'{stack_path}tfidf_95_vectorizer.joblib')
     return predict_n_answers(language_model, vectorizer, [question], tags, answers, 10)
 
 def stackexchange_tfidf_75(question, tags, answers):
-    language_model = load(f'{stack_path}tfidf_75_model.joblib')
-    vectorizer = load(f'{stack_path}tfidf_75_vectorizer.joblib')
+    language_model = load(f'{stack_path}tfidf_90_model.joblib')
+    vectorizer = load(f'{stack_path}tfidf_90_vectorizer.joblib')
     return predict_n_answers(language_model, vectorizer, [question], tags, answers, 10)
 
 def stackexchange_w2v_100(question, tags, answers):
