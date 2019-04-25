@@ -5,8 +5,8 @@ let ask_question = function() {
   ask(question, config).then(result => {
     fill_tfidf_answers(result['tfidf']);
     fill_skipgram_answers(result['skip_gram']);
+    console.timeEnd('ask_question');
   });
-  console.timeEnd('ask_question');
 }
 
 let load_config = function() {
