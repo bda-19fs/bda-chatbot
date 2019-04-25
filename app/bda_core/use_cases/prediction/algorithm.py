@@ -15,8 +15,8 @@ def algorithm_strategy(config):
     config = f'{config["dataset"]}{config["algorithm"]}{config["domain_limit"]}'
     strategy = {
         '000': stackexchange_tfidf_100,
-        '001': stackexchange_tfidf_85,
-        '002': stackexchange_tfidf_75,
+        '001': stackexchange_tfidf_95,
+        '002': stackexchange_tfidf_90,
         '060': stackexchange_w2v_100
     }
     return strategy.get(config, 'unknown config')
@@ -32,12 +32,12 @@ def stackexchange_tfidf_100(question, tags, answers):
     vectorizer = load(f'{stack_path}tfidf_100_vectorizer.joblib')
     return predict_n_answers(language_model, vectorizer, [question], tags, answers, 10)
 
-def stackexchange_tfidf_85(question, tags, answers):
+def stackexchange_tfidf_95(question, tags, answers):
     language_model = load(f'{stack_path}tfidf_95_model.joblib')
     vectorizer = load(f'{stack_path}tfidf_95_vectorizer.joblib')
     return predict_n_answers(language_model, vectorizer, [question], tags, answers, 10)
 
-def stackexchange_tfidf_75(question, tags, answers):
+def stackexchange_tfidf_90(question, tags, answers):
     language_model = load(f'{stack_path}tfidf_90_model.joblib')
     vectorizer = load(f'{stack_path}tfidf_90_vectorizer.joblib')
     return predict_n_answers(language_model, vectorizer, [question], tags, answers, 10)
