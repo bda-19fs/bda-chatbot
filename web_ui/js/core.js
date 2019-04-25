@@ -3,8 +3,8 @@ let ask_question = function() {
   question = document.querySelector('#question').value;
   config = load_config();
   ask(question, config).then(result => {
-    fill_tfidf_answers(result['tfidf']);
-    fill_skipgram_answers(result['skip_gram']);
+    fill_answers('tfidf_answers', result['tfidf_tags'], result['tfidf_answers']);
+    fill_answers('skipgram_answers', result['skip_gram']);
     console.timeEnd('ask_question');
   });
 }
@@ -46,42 +46,43 @@ let fill_settings = function(id, values) {
   let select = document.querySelector(`#${id}`);
   values.forEach(function(text, i) {
     var opt = document.createElement('option');
-    opt.value = i
-    opt.text = text
-    select.add(opt)
+    opt.value = i;
+    opt.text = text;
+    select.add(opt);
   })
 }
 
-let fill_tfidf_answers = function(values) {
-  let tfidf_answers = document.querySelector('#tfidf_answers');
-  tfidf_answers.innerHTML = '';
-  values[0].forEach(function(text) {
+let fill_answers = function(id, tags, answer) {
+  let answers = document.querySelector(`#${id}`);
+  answers.innerHTML = '';
+  tags.forEach(function(text, i) {
     var text = text.split(',')
-    text[1] = text[1].replace('><', ',')
-    text[1] = text[1].replace('<', '')
-    text[1] = text[1].replace('>', '')
     var li = document.createElement('li');
-    li.classList.add('p-list__item')
-    li.classList.add('is-ticked')
-    li.innerHTML = `${parseFloat(text[0]).toFixed(4)} ${text[1]}`
-    tfidf_answers.append(li)
-  })
+    li.classList.add('p-list__item');
+    li.classList.add('is-ticked');
+    li.classList.add('p-accordion__group');
+    var button = document.createElement('button');
+    button.innerHTML = `${parseFloat(text[0]).toFixed(4)} ${text[1]}`;
+    button.classList.add('p-accordion__tab');
+    button.setAttribute('aria-expanded', true);
+    button.onclick = function() { toggle_answer(this); };
+    var section = document.createElement('section');
+    section.classList.add('p-accordion__panel');
+    section.setAttribute('aria-hidden', true);
+    section.innerHTML = answer[i].split(',')[1];
+    li.append(button);
+    li.append(section);
+    answers.append(li);
+  });
 }
 
-let fill_skipgram_answers = function(values) {
-  let skipgram_answers = document.querySelector('#skipgram_answers');
-  skipgram_answers.innerHTML = '';
-  values.forEach(function(text) {
-    var text = text.split(',')
-    text[1] = text[1].replace('><', ',')
-    text[1] = text[1].replace('<', '')
-    text[1] = text[1].replace('>', '')
-    var li = document.createElement('li');
-    li.classList.add('p-list__item')
-    li.classList.add('is-ticked')
-    li.innerHTML = `${parseFloat(text[0]).toFixed(4)} ${text[1]}`
-    skipgram_answers.append(li)
-  })
+var toggle_answer = function(e) {
+  let parent = e.parentElement;
+  let answer_section = parent.lastChild;
+  answer_section.setAttribute(
+    'aria-hidden',
+    (answer_section.getAttribute('aria-hidden')) == "false" ? true : false
+  );
 }
 
 // load settings
@@ -93,4 +94,4 @@ pipelines().then(data => {
 });
 
 // empty questions
-document.querySelector('#question').value = ''
+document.querySelector('#question').value = '';
