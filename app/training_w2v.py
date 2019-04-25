@@ -2,6 +2,7 @@
 import os
 import click
 import pickle
+import nltk
 import time as watch
 from bda_core.use_cases.log.log_info import log_info
 from bda_core.use_cases.training.model import create_w2v_model
@@ -16,14 +17,22 @@ def get_concepts_from_folder(wiki_extracts):
             with open(wiki_extracts + extract, 'r', encoding='utf-8') as f:
                 for line in f.readlines():
                     json_concept = from_str_to_json(line)
-                    sentences_list = json_concept['text'].split()
-                    concepts.append(sentences_list)
+                    concepts.append(json_concept['text'])
     return concepts
+
+
+def get_sentences_from_concepts(concepts):
+    sentences = []
+    for concept in concepts:
+        sents = concept.split('\n')
+        for sent in sents:
+            sentences.append(nltk.word_tokenize(sent))
+    return sentences
 
 
 def file_as_list(file):
     with open(file, 'r', encoding='utf-8') as file:
-        return list(map(lambda line: line.strip().lower().split(), file.readlines()))
+        return list(map(lambda line: line.strip(), file.readlines()))
 
 
 def save_model(model, file_name):
@@ -54,11 +63,19 @@ def training(wiki_extracts, questions, file_name):
     concepts = get_concepts_from_folder(wiki_extracts)
     log_info(f'found {len(concepts)} concepts')
 
-    questions = file_as_list(questions)
-    log_info(f'collected {len(questions)} questions')
+    sentences = get_sentences_from_concepts(concepts)
+    log_info(f'found {len(sentences)} sentences')
+
+    knowledge = file_as_list(questions)
+    quests = []
+    for line in knowledge:
+        line = line.split(',')
+        splitted = [w for w in line[0].lower().split()]
+        quests.append(splitted)
+    log_info(f'collected {len(quests)} questions')
 
     log_info(f'creating language model')
-    model, vectors = create_w2v_model(concepts, questions)
+    model, vectors = create_w2v_model(sentences, quests)
 
     save_model(model, file_name)
     save_pre_computed_vectors(vectors, file_name + '_vectors')
