@@ -14,7 +14,17 @@ questions = [
     'Certain types of meat like chicken breast seem to have such a short window of being done. Cooking too little can be unhealthy and cooking too much can dry it out. So it seems most cooks are very careful with not overcooking these types of meats. Yet I see all kinds of recipes about how to reuse leftover roast chicken or chicken pot pie recipes where you\'re supposed to cook the chicken first (or use leftover cooked chicken) and then put it in the oven for another 15 - 45 minutes (depending on the recipe). I just can\'t understand how we\'re expected not to severely dry out and overcook the meat in these types of recipes. Is there some kind of a trick I\'m missing? If there is enough liquid are we able to drastically slow the cooking process? But even braised chicken breast can be overcooked without too much extra time. Can we optimize for this second cooking by using large pieces or trying to not completely cook the meat in the first cooking?'
 ]
 
-def test_create_language_model():
-    language_model, vectorizer = create_language_model(concepts, questions)
+def test_create_language_model_100():
+    language_model, vectorizer = create_language_model(concepts, questions, 0)
     assert language_model.shape == (3, 93)
+    assert vectorizer != None
+
+def test_create_language_model_85():
+    language_model, vectorizer = create_language_model(concepts, questions, 0.15)
+    assert language_model.shape == (3, 88)
+    assert vectorizer != None
+
+def test_create_language_model_75():
+    language_model, vectorizer = create_language_model(concepts, questions, 0.25)
+    assert language_model.shape == (3, 88)
     assert vectorizer != None

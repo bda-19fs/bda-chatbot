@@ -37,7 +37,7 @@ class W2VModelMock:
 
 
 def test_fit_concepts():
-    X, vectorizer = fit_concepts(concepts)
+    X, vectorizer = fit_concepts(concepts, domain_limit=0)
     assert X.shape == (3, 93)
     assert vectorizer != None
 
@@ -53,4 +53,3 @@ def test_avg_word_vector_nan():
     model_mock = W2VModelMock()
     mean = avg_word_vector(model_mock, ['not', 'in', 'vocab'])
     assert np.isnan(mean)
-
