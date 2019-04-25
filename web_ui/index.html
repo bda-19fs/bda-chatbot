@@ -14,19 +14,19 @@
       <h5 style="margin-bottom: 3rem;">Cyrill Jauner, Alan Meile</h5>
     </div>
     <div class="row">
-      <div class="col-2">
+      <div class="col-3">
         <div class="p-navigation--sidebar">
-          <div class="row">
-            <h3>Settings</h3>
-          </div>
           <div class="sidebar__content js-sidebar-toggle u-hide" aria-hidden="true">
+            <div class="row">
+              <h3>Settings</h3>
+            </div>
             <select name="dataset" id="dataset">
               <option value="0">Stackexchange</option>
               <option value="1">Ionesoft</option>
             </select>
             <select name="algoritm" id="algorithm">
             </select>
-            <select name="algoritm" id="algorithm">
+            <select name="domain_limit" id="domain_limit">
               <option value="0">0% - 100%</option>
               <option value="1">15% - 85%</option>
               <option value="1">25% - 75%</option>
@@ -34,24 +34,30 @@
           </div>
         </div>
       </div>
-      <div class="col-10">
+      <div class="col-9">
         <div class="row">
-          <div class="u-equal-height">
-            <div class="p-card col-6">
-              <h2 class="p-card__title">Question</h2>
-              <div class="p-card__content">
-                <textarea id="question" rows="3" style="resize: none" value="">
-                </textarea>
-                <button class="p-button--neutral" onclick="ask_question()">Ask</button>
-              </div>
-            </div>
-
-            <div class="p-card col-6">
-              <h2 class="p-card__title">Answers</h2>
-              <ul class="p-list" id="answers">
-              </ul>
+          <div class="p-card" style="width: 100%">
+            <h2 class="p-card__title">Question</h2>
+            <div class="p-card__content">
+              <textarea id="question" rows="3" style="resize: none" value="">
+              </textarea>
+              <button class="p-button--neutral" onclick="ask_question()">Ask</button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="u-equal-height">
+        <div class="p-card col-6">
+          <h2 class="p-card__title">TF-IDF Answers</h2>
+          <ul class="p-list" id="tfidf_answers">
+          </ul>
+        </div>
+        <div class="p-card col-6">
+          <h2 class="p-card__title">SKIP-GRAM Answers</h2>
+          <ul class="p-list" id="skipgram_answers">
+          </ul>
         </div>
       </div>
     </div>
