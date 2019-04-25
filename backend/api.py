@@ -2,7 +2,10 @@
 import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from bda_core.use_cases.prediction.algorithm import algorithm_strategy
+from bda_core.use_cases.prediction.algorithm import (
+    load_tags_answers,
+    algorithm_strategy
+)
 from lib.config import (
     ui_config
 )
@@ -22,7 +25,8 @@ def list_pipelines():
 def run():
     data = request.get_json(force=True)
     algorithm = algorithm_strategy(data['config'])
-    result = algorithm(data['question'])
+    tags, answers = load_tags_answers()
+    result = algorithm(data['question'], tags, answers)
     return jsonify(tfidf=result, skip_gram=[])
 
 
