@@ -14,10 +14,9 @@ def file_as_list(file):
 def algorithm_strategy(config):
     config = f'{config["dataset"]}{config["algorithm"]}{config["domain_limit"]}'
     strategy = {
-        '000': stackexchange_tfidf_100,
-        '001': stackexchange_tfidf_95,
-        '002': stackexchange_tfidf_90,
-        '060': stackexchange_w2v_100
+        '000': stackexchange_100,
+        '001': stackexchange_95,
+        '002': stackexchange_90
     }
     return strategy.get(config, 'unknown config')
 
@@ -26,6 +25,21 @@ def load_tags_answers():
     tags = file_as_list(f'{stack_path}stackexchange_tags.txt')
     answers = file_as_list(f'{stack_path}stackexchange_answers.txt')
     return tags, answers
+
+def stackexchange_100(question, tags, answers):
+    tfidf_tags, tfidf_answers = stackexchange_tfidf_100(question, tags, answers)
+    w2v_tags, w2v_answers = stackexchange_w2v_100(question, tags, answers)
+    return tfidf_tags, tfidf_answers, w2v_tags, w2v_answers
+
+def stackexchange_95(question, tags, answers):
+    tfidf_tags, tfidf_answers = stackexchange_tfidf_95(question, tags, answers)
+    w2v_tags, w2v_answers = stackexchange_w2v_100(question, tags, answers)
+    return tfidf_tags, tfidf_answers, w2v_tags, w2v_answers
+
+def stackexchange_90(question, tags, answers):
+    tfidf_tags, tfidf_answers = stackexchange_tfidf_90(question, tags, answers)
+    w2v_tags, w2v_answers = stackexchange_w2v_100(question, tags, answers)
+    return tfidf_tags, tfidf_answers, w2v_tags, w2v_answers
 
 def stackexchange_tfidf_100(question, tags, answers):
     language_model = load(f'{stack_path}tfidf_100_model.joblib')
