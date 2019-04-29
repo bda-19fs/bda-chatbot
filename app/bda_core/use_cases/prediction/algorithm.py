@@ -43,7 +43,7 @@ def stackexchange_90(question, tags, answers):
 
 def ionesoft_100(question, tags, answers):
     tfidf_tags, tfidf_answers = ionesoft_tfidf_100(question, tags, answers)
-    w2v_tags, w2v_answers = ionesoft_tfidf_100(question, tags, answers)
+    w2v_tags, w2v_answers = ionesoft_w2v_100(question, tags, answers)
     return tfidf_tags, tfidf_answers, w2v_tags, w2v_answers
 
 def ionesoft_95(question, tags, answers):
