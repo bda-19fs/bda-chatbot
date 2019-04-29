@@ -23,9 +23,11 @@ def list_pipelines():
 
 @app.route('/api/v1/run', methods=['POST'])
 def run():
+    dataset, _, _ = ui_config()
     data = request.get_json(force=True)
     algorithm = algorithm_strategy(data['config'])
-    tags, answers = load_tags_answers()
+    dataset = dataset[int(data['config']['dataset'])].lower()
+    tags, answers = load_tags_answers(dataset)
     tt, ta, wt, wa = algorithm(data['question'], tags, answers)
     return jsonify(
         tfidf_tags=tt, tfidf_answers=ta,
