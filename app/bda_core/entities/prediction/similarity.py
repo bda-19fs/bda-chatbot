@@ -1,5 +1,5 @@
 from sklearn.metrics.pairwise import cosine_similarity
-
+import numpy as np
 
 def getKey(item):
     return item[1]
@@ -20,5 +20,6 @@ def predict_closest_vectors(X, pre_calculated_vectors):
 def predict_closest_w2v(X, pre_calculated_vectors):
     probs = []
     for vec in pre_calculated_vectors:
-        probs.append(cosine_similarity([X], [vec]))
+        if vec is not None:
+            probs.append(cosine_similarity([X], [vec]))
     return sorted(list(enumerate(probs)), key=getKey, reverse=True)
