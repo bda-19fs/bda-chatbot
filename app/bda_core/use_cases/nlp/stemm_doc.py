@@ -15,8 +15,7 @@ def stemm_doc_stream(doc, language):
     stemmer = SnowballStemmer(stemm_dic[language])
     doc = (x.replace('\n', '') for x in doc)
     doc = (x for x in doc if x != '')
-    for line in doc:
-        yield stemm(line, stemmer)
+    return map(lambda x: stemm(x, stemmer), doc)
 
 
 def stemm_doc(doc, language):
