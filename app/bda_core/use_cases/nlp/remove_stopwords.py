@@ -8,9 +8,8 @@ def remove_stopwords_stream(doc, stopwords='res/custom_ch_stopwords.txt'):
     '''
         Remove stopwords in stdin defined in a file.
     '''
-    doc = remove_stopwords(doc.split('\n'), stopwords)
-    [click.get_text_stream('stdout', 'utf-8').write(line + '\n') for line in doc]
-    return len(doc)
+    stopwords = file_as_list(stopwords)
+    return map(lambda x: remove(x, stopwords), doc)
 
 
 def remove_stopwords_json_stream(json_docs, stopwords='res/custom_ch_stopwords.txt', text_key='text'):

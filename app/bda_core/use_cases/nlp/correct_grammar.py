@@ -1,12 +1,12 @@
-import click
 from bda_core.entities.file.reader import file_as_dict
 from bda_core.entities.nlp.grammar import correct
 
 
 def correct_grammar_stream(doc, grammar='res/custom_ch_grammar.txt'):
-    doc = correct_grammar(doc.split('\n'), grammar)
-    [click.get_text_stream('stdout', 'utf-8').write(line + '\n') for line in doc]
-    return len(doc)
+    grammar = file_as_dict(grammar)
+    for line in doc:
+        yield correct(line, grammar)
+
 
 def correct_grammar(doc, grammar='res/custom_ch_grammar.txt'):
     grammar = file_as_dict(grammar)

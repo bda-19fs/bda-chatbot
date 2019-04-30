@@ -1,4 +1,3 @@
-import click
 from bda_core.entities.file.reader import file_as_dict
 from bda_core.entities.nlp.lemming import lemm
 
@@ -7,13 +6,14 @@ file_map = {
     'en': 'res/custom_en_vocabular.txt'
 }
 
+
 def lemm_doc_stream(doc, language):
     '''
         Lemms all words in stdin stream.
     '''
-    doc = lemm_doc(doc.split('\n'), language)
-    [click.get_text_stream('stdout', 'utf-8').write(line + '\n') for line in doc]
-    return len(doc)
+    vocabular = file_as_dict(file_map[language])
+    return map(lambda x: lemm(x, vocabular), doc)
+
 
 def lemm_doc(doc, language='de'):
     '''
