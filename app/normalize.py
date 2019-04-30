@@ -8,7 +8,7 @@ from bda_core.use_cases.nlp.normalize_doc import normalize_doc_stream
 @click.command()
 def normalize():
     start = watch.time()
-    doc = click.get_text_stream('stdin', 'utf-8').read()
+    doc = click.get_text_stream('stdin', 'utf-8').readlines()
 
     log_info(f'normalizing')
 

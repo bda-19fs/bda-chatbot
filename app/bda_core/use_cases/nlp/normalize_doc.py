@@ -1,6 +1,6 @@
 import click
-from bda_core.entities.nlp.normalize import normalize
 from bda_core.entities.file.json_handler import dump_json
+from bda_core.entities.nlp.normalize import normalize
 
 
 def normalize_doc_stream(doc):
@@ -8,9 +8,9 @@ def normalize_doc_stream(doc):
         Normalizes a stdin stream by removing all characters that are
         not in the swiss alphabet.
     '''
-    #doc = normalize_doc(doc.split('\n'))
-    for line in doc:
-        yield normalize(line)
+    doc = (x for x in doc if x != '\n')
+    return map(lambda x: normalize(x), doc)
+
 
 def normalize_json_stream(json_docs, text_key='text'):
     '''
@@ -20,6 +20,7 @@ def normalize_json_stream(json_docs, text_key='text'):
     for doc in json_docs:
         doc[text_key] = normalize(doc[text_key])
         click.get_text_stream('stdout', 'utf-8').write(dump_json(doc) + '\n')
+
 
 def normalize_doc(doc):
     '''
