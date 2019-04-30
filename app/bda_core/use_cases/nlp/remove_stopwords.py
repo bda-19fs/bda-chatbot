@@ -9,6 +9,7 @@ def remove_stopwords_stream(doc, stopwords='res/custom_ch_stopwords.txt'):
         Remove stopwords in stdin defined in a file.
     '''
     stopwords = file_as_list(stopwords)
+    doc = (x for x in doc if x != '\n')
     return map(lambda x: remove(x, stopwords), doc)
 
 

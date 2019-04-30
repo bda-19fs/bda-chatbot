@@ -12,13 +12,14 @@ from bda_core.use_cases.nlp.remove_stopwords import remove_stopwords_stream
 )
 def stopwords(stopwords):
     start = watch.time()
-    doc = click.get_text_stream('stdin', 'utf-8').read()
+    doc = click.get_text_stream('stdin', 'utf-8').readlines()
 
     log_info(f'remove stopwords')
 
-    lines = remove_stopwords_stream(doc, stopwords)
+    for i, line in enumerate(remove_stopwords_stream(doc, stopwords)):
+        click.get_text_stream('stdout', 'utf-8').write(f'{line}')
 
-    log_info(f'removed stopwords from {lines} lines')
+    log_info(f'removed stopwords from {i+1} lines')
     log_info(f'removal of stopwords completed in {watch.time() - start}s\n')
 
 
