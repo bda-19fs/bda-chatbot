@@ -12,13 +12,14 @@ from bda_core.use_cases.nlp.lemm_doc import lemm_doc_stream
 )
 def lemm(language):
     start = watch.time()
-    doc = click.get_text_stream('stdin', 'utf-8').read()
+    doc = click.get_text_stream('stdin', 'utf-8').readlines()
 
     log_info(f'lemming')
 
-    lines = lemm_doc_stream(doc, language)
+    for i, line in enumerate(lemm_doc_stream(doc, language)):
+        click.get_text_stream('stdout', 'utf-8').write(f'{line}\n')
 
-    log_info(f'lemmed {lines} lines')
+    log_info(f'lemmed {i+1} lines')
     log_info(f'lemming completed in {watch.time() - start}s\n')
 
 

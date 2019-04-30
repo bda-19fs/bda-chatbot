@@ -12,6 +12,8 @@ def lemm_doc_stream(doc, language):
         Lemms all words in stdin stream.
     '''
     vocabular = file_as_dict(file_map[language])
+    doc = (x.replace('\n', '') for x in doc)
+    doc = (x for x in doc if x != '')
     return map(lambda x: lemm(x, vocabular), doc)
 
 
