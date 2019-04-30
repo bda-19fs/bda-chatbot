@@ -1,6 +1,5 @@
-import click
 from nltk.stem.snowball import SnowballStemmer
-from bda_core.entities.file.reader import file_as_dict
+
 from bda_core.entities.nlp.stemming import stemm
 
 stemm_dic = {
@@ -14,6 +13,8 @@ def stemm_doc_stream(doc, language):
         Stemms all words in stdin stream.
     '''
     stemmer = SnowballStemmer(stemm_dic[language])
+    doc = (x.replace('\n', '') for x in doc)
+    doc = (x for x in doc if x != '')
     for line in doc:
         yield stemm(line, stemmer)
 
