@@ -12,13 +12,14 @@ from bda_core.use_cases.nlp.correct_grammar import correct_grammar_stream
 )
 def grammar(grammar):
     start = watch.time()
-    doc = click.get_text_stream('stdin', 'utf-8').read()
+    doc = click.get_text_stream('stdin', 'utf-8').readlines()
 
     log_info(f'correcting with grammar: {grammar}')
 
-    lines = correct_grammar_stream(doc, grammar)
+    for i, line in enumerate(correct_grammar_stream(doc, grammar)):
+        click.get_text_stream('stdout', 'utf-8').write(f'{line}')
 
-    log_info(f'corrected {lines} lines')
+    log_info(f'corrected {i+1} lines')
     log_info(f'correction completed in {watch.time() - start}s\n')
 
 
