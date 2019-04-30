@@ -35,3 +35,6 @@ __pycache__/
 bda_chatbot.egg-info/
 build/
 dist/
+
+# temp files
+app/test_tmp/
