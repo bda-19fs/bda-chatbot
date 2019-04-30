@@ -12,9 +12,10 @@ def normalize():
 
     log_info(f'normalizing')
 
-    lines = normalize_doc_stream(doc)
+    for i, line in enumerate(normalize_doc_stream(doc)):
+        click.get_text_stream('stdout', 'utf-8').write(f'{line}\n')
 
-    log_info(f'normalized {lines} lines')
+    log_info(f'normalized {i+1} lines')
     log_info(f'normalization completed in {watch.time() - start}s\n')
 
 
