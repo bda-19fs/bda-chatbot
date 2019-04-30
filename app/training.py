@@ -2,8 +2,8 @@
 import os
 
 import click
+import time as watch
 from joblib import dump
-
 from bda_core.entities.file.json_handler import from_str_to_json
 from bda_core.entities.file.reader import file_as_list
 from bda_core.use_cases.log.log_info import log_info
@@ -12,6 +12,7 @@ from bda_core.use_cases.nlp.correct_grammar import correct_grammar_stream
 from bda_core.use_cases.nlp.remove_stopwords import remove_stopwords_stream
 from bda_core.use_cases.nlp.stemm_doc import stemm_doc_stream
 from bda_core.use_cases.nlp.lemm_doc import lemm_doc_stream
+from bda_core.use_cases.training.model import create_language_model
 
 
 def get_concepts_from_folder(wiki_extracts):
@@ -46,13 +47,22 @@ def cli(wiki_extracts, questions):
 
 @cli.resultcallback()
 def process_pipeline(processors, wiki_extracts, questions):
+    start = watch.time()
     concepts = get_concepts_from_folder(wiki_extracts)
     questions = (line.rstrip('\r\n') for line in file_as_list(questions, local=False))
     for processor in processors:
         questions = processor(questions)
         concepts = processor(concepts)
-    for item in concepts:
-        click.get_text_stream('stdout', 'utf-8').write(f'{item}\n')
+    concepts = list(concepts)
+    questions = list(questions)
+    log_info(f'creating language model')
+    model_100, vectorizer_100 = create_language_model(concepts, questions, 0)
+    model_95, vectorizer_95 = create_language_model(concepts, questions, 0.05)
+    model_90, vectorizer_90 = create_language_model(concepts, questions, 0.1)
+    save(model_100, vectorizer_100, 'tfidf_100_model', 'tfidf_100_vectorizer')
+    save(model_95, vectorizer_95, 'tfidf_95_model', 'tfidf_95_vectorizer')
+    save(model_90, vectorizer_90, 'tfidf_90_model', 'tfidf_90_vectorizer')
+    log_info(f'training completed in {watch.time() - start}s\n')
 
 
 @cli.command('normalize')
