@@ -46,7 +46,7 @@ def test_is_question_should_be_false():
     assert is_question(answer_row) == False
 
 def test_extract_tags():
-    assert extract_tags(row) == 'test'
+    assert extract_tags(row) == '&lt;test&gt;'
 
 def test_extract_text_with_id():
     text, id = extract_text_with_id(row)
@@ -87,7 +87,7 @@ def test_update_answer_or_save_should_update_answer():
             'answer_id': 123,
             'question': 'How old am I?',
             'answer': '1993',
-            'tags': 'test testing'
+            'tags': '&lt;test&gt;&lt;testing&gt;'
         }
     ]
 
@@ -100,7 +100,7 @@ def test_update_answer_or_save_should_save():
             'answer_id': 123,
             'question': 'How old am I?',
             'answer': None,
-            'tags': 'test testing'
+            'tags': '&lt;test&gt;&lt;testing&gt;'
         }
     ]
 
