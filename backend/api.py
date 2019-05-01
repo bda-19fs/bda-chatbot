@@ -27,11 +27,11 @@ def run():
     data = request.get_json(force=True)
     algorithm = algorithm_strategy(data['config'])
     dataset = dataset[int(data['config']['dataset'])].lower()
-    tags, answers = load_tags_answers(dataset)
-    tt, ta, wt, wa = algorithm(data['question'], tags, answers)
+    tags, answers, questions = load_tags_answers(dataset)
+    tt, ta, tq, wt, wa, wq = algorithm(data['question'], tags, answers, questions)
     return jsonify(
-        tfidf_tags=tt, tfidf_answers=ta,
-        w2v_tags=wt, w2v_answers=wa
+        tfidf_tags=tt, tfidf_answers=ta, tfidf_questions=tq,
+        w2v_tags=wt, w2v_answers=wa, w2v_questions=wq
     )
 
 
