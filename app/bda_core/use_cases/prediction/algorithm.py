@@ -25,6 +25,12 @@ def algorithm_strategy(config):
         '030': stackexchange_stopwords_100,
         '031': stackexchange_stopwords_95,
         '032': stackexchange_stopwords_90,
+        '040': stackexchange_stopwords_stemming_100,
+        '041': stackexchange_stopwords_stemming_95,
+        '042': stackexchange_stopwords_stemming_90,
+        '050': stackexchange_stopwords_lemming_100,
+        '051': stackexchange_stopwords_lemming_95,
+        '052': stackexchange_stopwords_lemming_90,
         '100': ionesoft_100,
         '101': ionesoft_95,
         '102': ionesoft_90,
@@ -125,6 +131,42 @@ def stackexchange_stopwords_95(question, tags, answers, questions):
 
 def stackexchange_stopwords_90(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_tfidf_90(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
+
+
+def stackexchange_stopwords_stemming_100(question, tags, answers, questions):
+    tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_stemming_tfidf_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
+
+
+def stackexchange_stopwords_stemming_95(question, tags, answers, questions):
+    tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_stemming_tfidf_95(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
+
+
+def stackexchange_stopwords_stemming_90(question, tags, answers, questions):
+    tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_stemming_tfidf_90(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
+
+
+def stackexchange_stopwords_lemming_100(question, tags, answers, questions):
+    tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_lemming_tfidf_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
+
+
+def stackexchange_stopwords_lemming_95(question, tags, answers, questions):
+    tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_lemming_tfidf_95(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
+
+
+def stackexchange_stopwords_lemming_90(question, tags, answers, questions):
+    tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_lemming_tfidf_90(question, tags, answers, questions)
     w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
@@ -306,6 +348,42 @@ def stackexchange_stopwords_tfidf_95(question, tags, answers, questions):
 def stackexchange_stopwords_tfidf_90(question, tags, answers, questions):
     language_model = load(f'{stack_path}tfidf_stopwords_90_model.joblib')
     vectorizer = load(f'{stack_path}tfidf_stopwords_90_vectorizer.joblib')
+    return predict_n_answers(language_model, vectorizer, [question], tags, answers, questions, 10)
+
+
+def stackexchange_stopwords_stemming_tfidf_100(question, tags, answers, questions):
+    language_model = load(f'{stack_path}tfidf_stopwords_stemming_100_model.joblib')
+    vectorizer = load(f'{stack_path}tfidf_stopwords_stemming_100_vectorizer.joblib')
+    return predict_n_answers(language_model, vectorizer, [question], tags, answers, questions, 10)
+
+
+def stackexchange_stopwords_stemming_tfidf_95(question, tags, answers, questions):
+    language_model = load(f'{stack_path}tfidf_stopwords_stemming_95_model.joblib')
+    vectorizer = load(f'{stack_path}tfidf_stopwords_stemming_95_vectorizer.joblib')
+    return predict_n_answers(language_model, vectorizer, [question], tags, answers, questions, 10)
+
+
+def stackexchange_stopwords_stemming_tfidf_90(question, tags, answers, questions):
+    language_model = load(f'{stack_path}tfidf_stopwords_stemming_90_model.joblib')
+    vectorizer = load(f'{stack_path}tfidf_stopwords_stemming_90_vectorizer.joblib')
+    return predict_n_answers(language_model, vectorizer, [question], tags, answers, questions, 10)
+
+
+def stackexchange_stopwords_lemming_tfidf_100(question, tags, answers, questions):
+    language_model = load(f'{stack_path}tfidf_stopwords_lemming_100_model.joblib')
+    vectorizer = load(f'{stack_path}tfidf_stopwords_lemming_100_vectorizer.joblib')
+    return predict_n_answers(language_model, vectorizer, [question], tags, answers, questions, 10)
+
+
+def stackexchange_stopwords_lemming_tfidf_95(question, tags, answers, questions):
+    language_model = load(f'{stack_path}tfidf_stopwords_lemming_95_model.joblib')
+    vectorizer = load(f'{stack_path}tfidf_stopwords_lemming_95_vectorizer.joblib')
+    return predict_n_answers(language_model, vectorizer, [question], tags, answers, questions, 10)
+
+
+def stackexchange_stopwords_lemming_tfidf_90(question, tags, answers, questions):
+    language_model = load(f'{stack_path}tfidf_stopwords_lemming_90_model.joblib')
+    vectorizer = load(f'{stack_path}tfidf_stopwords_lemming_90_vectorizer.joblib')
     return predict_n_answers(language_model, vectorizer, [question], tags, answers, questions, 10)
 
 
