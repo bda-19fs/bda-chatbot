@@ -14,7 +14,7 @@ def is_question(row):
 
 def extract_tags(row):
     tags = row['Tags']
-    tags = re.sub('&[^;]+;', ' ', tags)
+    tags = tags.replace('><', ',')
     tags = re.sub('<|>', ' ', tags)
     return remove_newline(tags)
 
