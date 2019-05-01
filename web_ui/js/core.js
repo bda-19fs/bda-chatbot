@@ -3,9 +3,9 @@ let ask_question = function() {
   question = document.querySelector('#question').value;
   config = load_config();
   ask(question, config).then(result => {
-    console.log(result);
-    fill_answers('tfidf_answers', result['tfidf_tags'], result['tfidf_answers']);
-    fill_answers('skipgram_answers', result['w2v_tags'], result['w2v_answers']);
+    console.table(result['tfidf_questions']);
+    fill_answers('tfidf_answers', result['tfidf_tags'], result['tfidf_answers'], result['tfidf_questions']);
+    fill_answers('skipgram_answers', result['w2v_tags'], result['w2v_answers'], result['w2v_questions']);
     console.timeEnd('ask_question');
   });
 }
@@ -53,7 +53,8 @@ let fill_settings = function(id, values) {
   })
 }
 
-let fill_answers = function(id, tags, answer) {
+let fill_answers = function(id, tags, answer, question) {
+  console.log(question[0]);
   let answers = document.querySelector(`#${id}`);
   answers.innerHTML = '';
   tags.forEach(function(text, i) {
@@ -67,10 +68,21 @@ let fill_answers = function(id, tags, answer) {
     button.classList.add('p-accordion__tab');
     button.setAttribute('aria-expanded', true);
     button.onclick = function() { toggle_answer(this); };
+    var question_title = document.createElement('h5');
+    question_title.innerHTML = 'Question';
+    var question_p = document.createElement('p');
+    question_p.innerHTML = question[0].split(',')[1];
+    var answer_title = document.createElement('h5');
+    answer_title.innerHTML = 'Answer';
+    var answer_p = document.createElement('p');
+    answer_p.innerHTML = answer[i].split(',')[1];
     var section = document.createElement('section');
     section.classList.add('p-accordion__panel');
     section.setAttribute('aria-hidden', true);
-    section.innerHTML = answer[i].split(',')[1];
+    section.append(question_title);
+    section.append(question_p);
+    section.append(answer_title);
+    section.append(answer_p);
     li.append(button);
     li.append(section);
     answers.append(li);
