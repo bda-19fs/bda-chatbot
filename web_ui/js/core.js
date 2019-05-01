@@ -54,7 +54,7 @@ let fill_settings = function(id, values) {
 }
 
 let fill_answers = function(id, tags, answer, question) {
-  console.log(question[0]);
+  let dataset = document.querySelector('#dataset').value;
   let answers = document.querySelector(`#${id}`);
   answers.innerHTML = '';
   tags.forEach(function(text, i) {
@@ -72,17 +72,19 @@ let fill_answers = function(id, tags, answer, question) {
     question_title.innerHTML = 'Question';
     var question_p = document.createElement('p');
     question_p.innerHTML = question[i].split(',')[1];
-    var answer_title = document.createElement('h5');
-    answer_title.innerHTML = 'Answer';
-    var answer_p = document.createElement('p');
-    answer_p.innerHTML = answer[i].split(',')[1];
     var section = document.createElement('section');
     section.classList.add('p-accordion__panel');
     section.setAttribute('aria-hidden', true);
     section.append(question_title);
     section.append(question_p);
-    section.append(answer_title);
-    section.append(answer_p);
+    if (dataset == '0') {
+      var answer_title = document.createElement('h5');
+      answer_title.innerHTML = 'Answer';
+      var answer_p = document.createElement('p');
+      answer_p.innerHTML = answer[i].split(',')[1];
+      section.append(answer_title);
+      section.append(answer_p);
+    }
     li.append(button);
     li.append(section);
     answers.append(li);
