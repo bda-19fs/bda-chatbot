@@ -5,6 +5,12 @@ import pickle
 import nltk
 import time as watch
 from bda_core.use_cases.log.log_info import log_info
+from bda_core.entities.file.reader import file_as_list
+from bda_core.use_cases.nlp.normalize_doc import normalize_doc_stream
+from bda_core.use_cases.nlp.correct_grammar import correct_grammar_stream
+from bda_core.use_cases.nlp.remove_stopwords import remove_stopwords_stream
+from bda_core.use_cases.nlp.stemm_doc import stemm_doc_stream
+from bda_core.use_cases.nlp.lemm_doc import lemm_doc_stream
 from bda_core.use_cases.training.model import create_w2v_model
 from bda_core.entities.file.json_handler import from_str_to_json
 
@@ -22,17 +28,14 @@ def get_concepts_from_folder(wiki_extracts):
 
 
 def get_sentences_from_concepts(concepts):
-    sentences = []
+    concepts_sentences = []
     for concept in concepts:
-        sents = concept.split('\n')
-        for sent in sents:
-            sentences.append(nltk.word_tokenize(sent))
-    return sentences
+        concepts_sentences.extend(concept.split('\n'))
+    return concepts_sentences
 
 
-def file_as_list(file):
-    with open(file, 'r', encoding='utf-8') as file:
-        return list(map(lambda line: line.strip(), file.readlines()))
+def get_words_from_sentences(sentences):
+    return [nltk.word_tokenize(sentence) for sentence in sentences]
 
 
 def save_model(model, file_name):
@@ -43,7 +46,7 @@ def save_pre_computed_vectors(vectors, file_name):
     pickle.dump(vectors, open(file_name, 'wb'))
 
 
-@click.command()
+@click.group(chain=True, invoke_without_command=True)
 @click.option(
     '-w', '--wiki_extracts', type=click.STRING, required=True,
     help='choose wiki extract folder'
@@ -52,36 +55,96 @@ def save_pre_computed_vectors(vectors, file_name):
     '-q', '--questions', type=click.STRING, required=True,
     help='choose questions file'
 )
-@click.option(
-    '-f', '--file_name', type=click.STRING, default='w2v_model',
-    help='choose name for language model. default("w2v_model")'
-)
-def training(wiki_extracts, questions, file_name):
+def cli(wiki_extracts, questions):
+    pass
+
+
+@cli.resultcallback()
+def training(processors, wiki_extracts, questions):
     start = watch.time()
 
     log_info(f'collecting wiki_extracts from folder {wiki_extracts}')
+
     concepts = get_concepts_from_folder(wiki_extracts)
-    log_info(f'found {len(concepts)} concepts')
+    concepts_sentences = get_sentences_from_concepts(concepts)
+    questions = (line.rstrip('\r\n') for line in file_as_list(questions, local=False))
 
-    sentences = get_sentences_from_concepts(concepts)
-    log_info(f'found {len(sentences)} sentences')
+    for processor in processors:
+        questions = processor(questions)
+        concepts_sentences = processor(concepts_sentences)
 
-    knowledge = file_as_list(questions)
-    quests = []
-    for line in knowledge:
-        line = line.split(',')
-        splitted = [w for w in line[0].lower().split()]
-        quests.append(splitted)
-    log_info(f'collected {len(quests)} questions')
+    concepts_sentences = list(concepts_sentences)
+    questions = list(questions)
+
+    log_info(f'found {len(concepts_sentences)} sentences')
+    log_info(f'collected {len(questions)} questions')
+
+    sentences = get_words_from_sentences(concepts_sentences)
+    questions = get_words_from_sentences(questions)
 
     log_info(f'creating language model')
-    model, vectors = create_w2v_model(sentences, quests)
+    model, vectors = create_w2v_model(sentences, questions)
 
-    save_model(model, file_name)
-    save_pre_computed_vectors(vectors, file_name + '_vectors')
+    save_model(model, 'w2v_100_model.w2v')
+    save_pre_computed_vectors(vectors, 'w2v_100_vectors.pickle')
 
     log_info(f'training completed in {watch.time() - start}s\n')
 
+@cli.command('normalize')
+def normalize():
+    def processor(doc):
+        for line in normalize_doc_stream(doc):
+            yield f'{line}'
+    return processor
+
+
+@cli.command('grammar')
+@click.option(
+    '-g', '--grammar', type=click.STRING, default='res/custom_ch_grammar.txt',
+    help='use grammar file to correct words (default is "res/custom_ch_grammar.txt")'
+)
+def stopwords(grammar):
+    def processor(doc):
+        for line in correct_grammar_stream(doc, grammar):
+            yield f'{line}'
+    return processor
+
+
+@cli.command('stopwords')
+@click.option(
+    '-l', '--language', type=click.STRING, default='res/custom_ch_stopwords.txt',
+    help='stopwords file in pipeline (default is "res/custom_ch_stopwords.txt")'
+)
+def stopwords(language):
+    def processor(doc):
+        for line in remove_stopwords_stream(doc, language):
+            yield f'{line}'
+    return processor
+
+
+@cli.command('stemm')
+@click.option(
+    '-l', '--language', type=click.STRING, default='de',
+    help='choose vocabular language (default is "de")'
+)
+def stopwords(language):
+    def processor(doc):
+        for line in stemm_doc_stream(doc, language):
+            yield f'{line}'
+    return processor
+
+
+@cli.command('lemm')
+@click.option(
+    '-l', '--language', type=click.STRING, default='de',
+    help='choose vocabular language (default is "de")'
+)
+def stopwords(language):
+    def processor(doc):
+        for line in lemm_doc_stream(doc, language):
+            yield f'{line}'
+    return processor
+
 
 if __name__ == '__main__':
-    training()
+    cli()
