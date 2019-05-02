@@ -1,9 +1,11 @@
 let ask_question = function() {
-  console.time('ask_question');
   question = document.querySelector('#question').value;
+  if (question == '') return;
+  console.time('ask_question');
   config = load_config();
   ask(question, config).then(result => {
-    console.table(result['tfidf_questions']);
+    document.querySelector('#nlp_question').setAttribute('style', 'display: block;');
+    show_diff(question, result['nlp_question']);
     fill_answers('tfidf_answers', result['tfidf_tags'], result['tfidf_answers'], result['tfidf_questions']);
     fill_answers('skipgram_answers', result['w2v_tags'], result['w2v_answers'], result['w2v_questions']);
     console.timeEnd('ask_question');
@@ -50,7 +52,21 @@ let fill_settings = function(id, values) {
     opt.value = i;
     opt.text = text;
     select.add(opt);
-  })
+  });
+}
+
+var show_diff = function(question, nlp_question) {
+  var code = document.querySelector('#nlp_question');
+  while (code.firstChild) {
+    code.removeChild(code.firstChild);
+  }
+  var span = document.createElement('span');
+  span.innerHTML = nlp_question;
+  code.append(span);
+  var nlp_title = document.createElement('span');
+  nlp_title.innerHTML = 'Preprocessing Result';
+  nlp_title.classList.add('bda-nlp-title');
+  code.append(nlp_title);
 }
 
 let fill_answers = function(id, tags, answer, question) {
@@ -108,5 +124,13 @@ pipelines().then(data => {
   fill_settings('domain_limit', domain_limit);
 });
 
-// empty questions
+// init
 document.querySelector('#question').value = '';
+document.querySelector('#nlp_question').addEventListener('click', event => {
+  document.querySelector('#nlp_question').setAttribute("style", "display: none;");
+});
+
+// extend
+Array.prototype.diff = function(a) {
+  return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
