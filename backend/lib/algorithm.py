@@ -83,91 +83,91 @@ def stackexchange_90(question, tags, answers, questions):
 
 def stackexchange_stemming_100(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stemming_tfidf_100(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stemming_95(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stemming_tfidf_95(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stemming_90(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stemming_tfidf_90(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_lemming_100(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_lemming_tfidf_100(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_lemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_lemming_95(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_lemming_tfidf_95(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_lemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_lemming_90(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_lemming_tfidf_90(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_lemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stopwords_100(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_tfidf_100(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stopwords_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stopwords_95(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_tfidf_95(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stopwords_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stopwords_90(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_tfidf_90(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stopwords_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stopwords_stemming_100(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_stemming_tfidf_100(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stopwords_stemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stopwords_stemming_95(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_stemming_tfidf_95(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stopwords_stemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stopwords_stemming_90(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_stemming_tfidf_90(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stopwords_stemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stopwords_lemming_100(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_lemming_tfidf_100(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stopwords_lemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stopwords_lemming_95(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_lemming_tfidf_95(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stopwords_lemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
 def stackexchange_stopwords_lemming_90(question, tags, answers, questions):
     tfidf_tags, tfidf_answers, tfidf_questions = stackexchange_stopwords_lemming_tfidf_90(question, tags, answers, questions)
-    w2v_tags, w2v_answers, w2v_questions = stackexchange_w2v_100(question, tags, answers, questions)
+    w2v_tags, w2v_answers, w2v_questions = stackexchange_stopwords_lemming_w2v_100(question, tags, answers, questions)
     return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
 
 
@@ -393,6 +393,36 @@ def stackexchange_w2v_100(question, tags, answers, questions):
     return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
 
 
+def stackexchange_stemming_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{stack_path}w2v_stemming_100_model.w2v')
+    question_vectors = pickle.load(open(f'{stack_path}w2v_stemming_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def stackexchange_lemming_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{stack_path}w2v_lemming_100_model.w2v')
+    question_vectors = pickle.load(open(f'{stack_path}w2v_lemming_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def stackexchange_stopwords_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{stack_path}w2v_stopwords_100_model.w2v')
+    question_vectors = pickle.load(open(f'{stack_path}w2v_stopwords_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def stackexchange_stopwords_stemming_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{stack_path}w2v_stopwords_stemming_100_model.w2v')
+    question_vectors = pickle.load(open(f'{stack_path}w2v_stopwords_stemming_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def stackexchange_stopwords_lemming_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{stack_path}w2v_stopwords_lemming_100_model.w2v')
+    question_vectors = pickle.load(open(f'{stack_path}w2v_stopwords_lemming_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
 ione_path = 'models/ionesoft/'
 
 
@@ -507,4 +537,40 @@ def ionesoft_stopwords_lemming_tfidf_90(question, tags, answers, questions):
 def ionesoft_w2v_100(question, tags, answers, questions):
     model = Word2Vec.load(f'{ione_path}w2v_100_model.w2v')
     question_vectors = pickle.load(open(f'{ione_path}w2v_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def ionesoft_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{ione_path}w2v_100_model.w2v')
+    question_vectors = pickle.load(open(f'{ione_path}w2v_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def ionesoft_stemming_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{ione_path}w2v_stemming_100_model.w2v')
+    question_vectors = pickle.load(open(f'{ione_path}w2v_stemming_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def ionesoft_lemming_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{ione_path}w2v_lemming_100_model.w2v')
+    question_vectors = pickle.load(open(f'{ione_path}w2v_lemming_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def ionesoft_stopwords_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{ione_path}w2v_stopwords_100_model.w2v')
+    question_vectors = pickle.load(open(f'{ione_path}w2v_stopwords_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def ionesoft_stopwords_stemming_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{ione_path}w2v_stopwords_stemming_100_model.w2v')
+    question_vectors = pickle.load(open(f'{ione_path}w2v_stopwords_stemming_100_vectors.pickle', 'rb'))
+    return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
+
+
+def ionesoft_stopwords_lemming_w2v_100(question, tags, answers, questions):
+    model = Word2Vec.load(f'{ione_path}w2v_stopwords_lemming_100_model.w2v')
+    question_vectors = pickle.load(open(f'{ione_path}w2v_stopwords_lemming_100_vectors.pickle', 'rb'))
     return predict_n_w2v_answers(question, model, question_vectors, tags, answers, questions, 10)
