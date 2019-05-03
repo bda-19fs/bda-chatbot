@@ -2,34 +2,6 @@ aside > ul > li > section {
     padding-left: 0 !important;
 }
 
-.fa.fa-header,
-.fa.fa-bold,
-.fa.fa-italic,
-.fa.fa-header.active,
-.fa.fa-quote-left,
-.fa.fa-list-ul,
-.fa.fa-list-ol,
-.fa.fa-link,
-.fa.fa-picture-o,
-.fa.fa-eye.no-disable,
-.fa.fa-columns.no-disable.no-mobile,
-.fa.fa-question-circle {
-  display: none;
-}
-
-.separator {
-  display: none !important;
-}
-
-.CodeMirror {
-	height: 100px;
-  min-height: 100px;
-}
-
-.CodeMirror .cm-spell-error {
-  background-color: transparent !important;
-}
-
 textarea {
   box-sizing: border-box;
 }
