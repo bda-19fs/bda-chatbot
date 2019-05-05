@@ -34,3 +34,17 @@ textarea {
 .bda-white {
   color: white;
 }
+
+.bda-tag {
+  color: white;
+  background: gray;
+  padding: 0 4px;
+  margin-left: 3px;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.bda-tag i {
+  margin: 0 4px 0 2px;
+}
