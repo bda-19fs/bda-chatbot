@@ -74,7 +74,7 @@ let fill_answers = function(id, tags, answer, question) {
   let answers = document.querySelector(`#${id}`);
   answers.innerHTML = '';
   tags.forEach(function(text, i) {
-    var text = text.split(',')
+    var text = text.split(',');
     var li = document.createElement('li');
     li.classList.add('p-list__item');
     li.classList.add('is-ticked');
