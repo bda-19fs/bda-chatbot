@@ -11,6 +11,7 @@ def file_as_dict(file, sep=',', local=True):
             file_dict[pair[0]] = pair[1].strip()
     return file_dict
 
+
 def file_as_list(file, local=True):
     if local:
         file = os.path.join(os.path.dirname(__file__), file)
