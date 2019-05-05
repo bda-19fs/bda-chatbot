@@ -60,6 +60,19 @@ let show_preprocessing = function(nlp_question) {
   code.value = nlp_question;
 }
 
+let create_span = function(text, is_tag) {
+  var span = document.createElement('span');
+  if (is_tag) {
+    var icon = document.createElement('i');
+    icon.classList.add('fas');
+    icon.classList.add('fa-tag');
+    span.classList.add('bda-tag');
+    span.append(icon);
+  }
+  span.append(text.trimLeft());
+  return span;
+}
+
 let fill_answers = function(id, tags, answer, question) {
   console.log(tags);
   let dataset = document.querySelector('#dataset').value;
@@ -67,11 +80,16 @@ let fill_answers = function(id, tags, answer, question) {
   answers.innerHTML = '';
   tags.forEach(function(text, i) {
     var text = text.split(/,(.+)/);
+    var relevanz = create_span(`${parseFloat(text[0]).toFixed(4)}`, false);
+    var tags = text[1].split(',');
     var li = document.createElement('li');
     li.classList.add('p-list__item');
     li.classList.add('p-accordion__group');
     var button = document.createElement('button');
-    button.innerHTML = `${parseFloat(text[0]).toFixed(4)} ${text[1]}`;
+    button.append(relevanz);
+    tags.forEach(tag => {
+      button.append(create_span(tag, true));
+    });
     button.classList.add('p-accordion__tab');
     button.setAttribute('aria-expanded', true);
     button.onclick = function() { toggle_answer(this); };
