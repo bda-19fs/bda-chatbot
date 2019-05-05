@@ -5,14 +5,11 @@ from gensim.models import Word2Vec
 from joblib import load
 
 from bda_core.entities.file.reader import file_as_list
-from bda_core.use_cases.prediction.utils import (
-    predict_n_answers,
-    predict_n_w2v_answers
-)
+
 
 stack = 'models/stackexchange/'
 ione = 'models/ionesoft/'
-def algorithm_strategy(config):
+def get_model_components(config):
     config = f'{config["dataset"]}{config["algorithm"]}{config["domain_limit"]}'
     strategy = {
         '000': (stack, '_100_model', '_100_vectors'),
@@ -53,28 +50,18 @@ def algorithm_strategy(config):
         '152': (ione, '_stopwords_lemming_90_model', '_stopwords_lemming_90_vectors')
     }
     strategy = strategy.get(config, 'unknown config')
-    return setup_algorithm(strategy)
+    return strategy[0], strategy[1], strategy[2]
 
 
-def setup_algorithm(strategy):
-    folder, model, vectors = strategy[0], strategy[1], strategy[2]
-
-    def algorithm(question, tags, answers, questions):
-        language_model_tfidf = load(f'{folder}tfidf{model}.joblib')
-        vectors_tfidf = load(f'{folder}tfidf{vectors}.joblib')
-        # fix because there are currently only 100 w2v models
-        model_w2v = re.sub('_\d{2}_', '_100_', model)
-        vectors_w2v = re.sub('_\d{2}_', '_100_', vectors)
-        language_model_w2v = load(f'{folder}w2v{model_w2v}.w2v')
-        vectors_w2v = load(f'{folder}w2v{vectors_w2v}.pickle')
-        tfidf_tags, tfidf_answers, tfidf_questions = predict_n_answers(
-            language_model_tfidf, vectors_tfidf, [question], tags, answers, questions, 10
-        )
-        w2v_tags, w2v_answers, w2v_questions = predict_n_w2v_answers(
-            question, language_model_w2v, vectors_w2v, tags, answers, questions, 10
-        )
-        return tfidf_tags, tfidf_answers, tfidf_questions, w2v_tags, w2v_answers, w2v_questions
-    return algorithm
+def load_models(folder, model, vectors):
+    language_model_tfidf = load(f'{folder}tfidf{model}.joblib')
+    vectors_tfidf = load(f'{folder}tfidf{vectors}.joblib')
+    # fix because there are currently only 100 w2v models
+    model_w2v = re.sub('_\d{2}_', '_100_', model)
+    vectors_w2v = re.sub('_\d{2}_', '_100_', vectors)
+    language_model_w2v = load(f'{folder}w2v{model_w2v}.w2v')
+    vectors_w2v = load(f'{folder}w2v{vectors_w2v}.pickle')
+    return language_model_tfidf, vectors_tfidf, language_model_w2v, vectors_w2v
 
 
 def load_tags_answers(dataset):
