@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+import pickle
 import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+
 from lib.config import ui_config
 from lib.preprocessing import nlp_strategy
 from lib.algorithm import (
@@ -10,15 +12,19 @@ from lib.algorithm import (
 )
 
 
-app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('flask_cors').level = logging.DEBUG
+
+
+app = Flask(__name__)
 CORS(app, resources=r'/api/*')
+
 
 @app.route('/api/v1/pipelines/')
 def list_pipelines():
     dataset, algorithm, domain_limit = ui_config()
     return jsonify(dataset=dataset, algorithm=algorithm, domain_limit=domain_limit)
+
 
 @app.route('/api/v1/run', methods=['POST'])
 def run():
