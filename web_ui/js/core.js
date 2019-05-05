@@ -5,7 +5,7 @@ let ask_question = function() {
   config = load_config();
   ask(question, config).then(result => {
     document.querySelector('#nlp_question').setAttribute('style', 'display: block;');
-    show_diff(question, result['nlp_question']);
+    show_preprocessing(result['nlp_question']);
     fill_answers('tfidf_answers', result['tfidf_tags'], result['tfidf_answers'], result['tfidf_questions']);
     fill_answers('skipgram_answers', result['w2v_tags'], result['w2v_answers'], result['w2v_questions']);
     console.timeEnd('ask_question');
@@ -55,29 +55,20 @@ let fill_settings = function(id, values) {
   });
 }
 
-var show_diff = function(question, nlp_question) {
+let show_preprocessing = function(nlp_question) {
   var code = document.querySelector('#nlp_question');
-  while (code.firstChild) {
-    code.removeChild(code.firstChild);
-  }
-  var span = document.createElement('span');
-  span.innerHTML = nlp_question;
-  code.append(span);
-  var nlp_title = document.createElement('span');
-  nlp_title.innerHTML = 'Preprocessing Result';
-  nlp_title.classList.add('bda-nlp-title');
-  code.append(nlp_title);
+  code.value = nlp_question;
 }
 
 let fill_answers = function(id, tags, answer, question) {
+  console.log(tags);
   let dataset = document.querySelector('#dataset').value;
   let answers = document.querySelector(`#${id}`);
   answers.innerHTML = '';
   tags.forEach(function(text, i) {
-    var text = text.split(',');
+    var text = text.split(/,(.+)/);
     var li = document.createElement('li');
     li.classList.add('p-list__item');
-    li.classList.add('is-ticked');
     li.classList.add('p-accordion__group');
     var button = document.createElement('button');
     button.innerHTML = `${parseFloat(text[0]).toFixed(4)} ${text[1]}`;
@@ -126,9 +117,7 @@ pipelines().then(data => {
 
 // init
 document.querySelector('#question').value = '';
-document.querySelector('#nlp_question').addEventListener('click', event => {
-  document.querySelector('#nlp_question').setAttribute("style", "display: none;");
-});
+document.querySelector('#nlp_question').value = '';
 
 // extend
 Array.prototype.diff = function(a) {
