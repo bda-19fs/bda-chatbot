@@ -69,3 +69,9 @@ def load_tags_answers(dataset):
     answers = file_as_list(f'models/{dataset}/{dataset}_answers.txt', local=False)
     questions = file_as_list(f'models/{dataset}/{dataset}_questions.txt', local=False)
     return tags, answers, questions
+
+
+def load_vocab_match(vocab, question):
+    question = question.split(' ')
+    question = filter(lambda x: x in vocab, question)
+    return str.join(' ', question)

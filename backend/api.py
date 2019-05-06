@@ -16,7 +16,8 @@ from lib.preprocessing import nlp_strategy
 from lib.loader import (
     load_tags_answers,
     get_model_components,
-    load_models
+    load_models,
+    load_vocab_match
 )
 
 
@@ -44,12 +45,14 @@ def run():
     dataset = dataset[int(data['config']['dataset'])].lower()
     tags, answers, questions = load_tags_answers(dataset)
     language_model_tfidf, vectors_tfidf, language_model_w2v, vectors_w2v = load_models_with_caching(data['config'])
+    tfidf_vocab = load_vocab_match(load_tfidf_vocabulary(vectors_tfidf), question)
+    w2v_vocab = load_vocab_match(load_w2v_vocabulary(language_model_w2v), question)
     tt, ta, tq = predict_n_answers(language_model_tfidf, vectors_tfidf, [question], tags, answers, questions, 10)
     wt, wa, wq = predict_n_w2v_answers(question, language_model_w2v, vectors_w2v, tags, answers, questions, 10)
     return jsonify(
         nlp_question=question,
-        tfidf_tags=tt, tfidf_answers=ta, tfidf_questions=tq,
-        w2v_tags=wt, w2v_answers=wa, w2v_questions=wq
+        tfidf_tags=tt, tfidf_answers=ta, tfidf_questions=tq, tfidf_vocab=tfidf_vocab,
+        w2v_tags=wt, w2v_answers=wa, w2v_questions=wq, w2v_vocab=w2v_vocab
     )
 
 
@@ -57,6 +60,16 @@ def run():
 def load_models_with_caching(config):
     folder, model, vectors = get_model_components(config)
     return load_models(folder, model, vectors)
+
+
+@cache.memoize(timeout=0)
+def load_tfidf_vocabulary(model):
+    return model.vocabulary_
+
+
+@cache.memoize(timeout=0)
+def load_w2v_vocabulary(model):
+    return model.wv.vocab
 
 
 if __name__ == '__main__':
