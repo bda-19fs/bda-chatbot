@@ -7,11 +7,15 @@ textarea {
 }
 
 #question,
-#nlp_question {
+#nlp_question,
+#tfidf_vocab,
+#w2v_vocab {
   resize: none !important;
 }
 
-#nlp_question {
+#nlp_question,
+#tfidf_vocab,
+#w2v_vocab {
   background-color: black;
   color: white;
   cursor: default;
@@ -47,4 +51,8 @@ textarea {
 
 .bda-tag i {
   margin: 0 4px 0 2px;
+}
+
+button span:first-child {
+    margin-right: 14px;
 }

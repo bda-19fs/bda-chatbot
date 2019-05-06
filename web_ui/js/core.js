@@ -4,7 +4,8 @@ let ask_question = function() {
   console.time('ask_question');
   config = load_config();
   ask(question, config).then(result => {
-    document.querySelector('#nlp_question').setAttribute('style', 'display: block;');
+    show_vocab('tfidf_vocab', result['tfidf_vocab']);
+    show_vocab('w2v_vocab', result['w2v_vocab']);
     show_preprocessing(result['nlp_question']);
     fill_answers('tfidf_answers', result['tfidf_tags'], result['tfidf_answers'], result['tfidf_questions']);
     fill_answers('skipgram_answers', result['w2v_tags'], result['w2v_answers'], result['w2v_questions']);
@@ -55,6 +56,11 @@ let fill_settings = function(id, values) {
   });
 }
 
+let show_vocab = function(id, vocab) {
+  var area = document.querySelector(`#${id}`);
+  area.value = vocab;
+}
+
 let show_preprocessing = function(nlp_question) {
   var code = document.querySelector('#nlp_question');
   code.value = nlp_question;
@@ -74,7 +80,6 @@ let create_span = function(text, is_tag) {
 }
 
 let fill_answers = function(id, tags, answer, question) {
-  console.log(tags);
   let dataset = document.querySelector('#dataset').value;
   let answers = document.querySelector(`#${id}`);
   answers.innerHTML = '';
@@ -136,6 +141,8 @@ pipelines().then(data => {
 // init
 document.querySelector('#question').value = '';
 document.querySelector('#nlp_question').value = '';
+document.querySelector('#tfidf_vocab').value = '';
+document.querySelector('#w2v_vocab').value = '';
 
 // extend
 Array.prototype.diff = function(a) {

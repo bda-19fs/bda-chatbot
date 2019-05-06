@@ -40,8 +40,8 @@
                   <textarea id="question" rows="1">
                   </textarea>
                   <span class="bda-description">Inquiry</span>
-                </div style="position: relative;">
-                <div>
+                </div>
+                <div style="position: relative;">
                   <textarea id="nlp_question" rows="1" disabled>
                   </textarea>
                   <span class="bda-description bda-white">NLP Preprocessing</span>
@@ -57,8 +57,13 @@
       <div class="u-equal-height">
         <div class="p-card col-6">
           <h3 class="p-card__title">TF-IDF Top 10 Predictions</h3>
+          <div style="position: relative;">
+            <textarea id="tfidf_vocab" rows="1" disabled>
+            </textarea>
+            <span class="bda-description bda-white">TF-IDF Vocabulary</span>
+          </div>
           <p style="font-weight: bold;font-size: 15px;margin-bottom: 0;">
-            Relevanz Category
+            Relevance Category
           </p>
           <aside class="p-accordion" role="tablist" aria-multiselect="true">
             <ul id="tfidf_answers" class="p-list p-accordion__list">
@@ -67,8 +72,13 @@
         </div>
         <div class="p-card col-6">
           <h3 class="p-card__title">SKIP-GRAM Top 10 Predictions</h3>
+          <div style="position: relative;">
+            <textarea id="w2v_vocab" rows="1" disabled>
+            </textarea>
+            <span class="bda-description bda-white">SKIP-GRAM Vocabulary</span>
+          </div>
           <p style="font-weight: bold;font-size: 15px;margin-bottom: 0;">
-            Relevanz Category
+            Relevance Category
           </p>
           <aside class="p-accordion" role="tablist" aria-multiselect="true">
             <ul id="skipgram_answers" class="p-list p-accordion__list">
