@@ -42,7 +42,7 @@ def get_model_components(config):
         '130': (ione, '_stopwords_100_model', '_stopwords_100_vectors'),
         '131': (ione, '_stopwords_95_model', '_stopwords_95_vectors'),
         '132': (ione, '_stopwords_90_model', '_stopwords_90_vectors'),
-        '140': (ione, '_stopwords_stemming_100_model', 's_topwords_stemming_100_vectors'),
+        '140': (ione, '_stopwords_stemming_100_model', '_stopwords_stemming_100_vectors'),
         '141': (ione, '_stopwords_stemming_95_model', '_stopwords_stemming_95_vectors'),
         '142': (ione, '_stopwords_stemming_90_model', '_stopwords_stemming_90_vectors'),
         '150': (ione, '_stopwords_lemming_100_model', '_stopwords_lemming_100_vectors'),
