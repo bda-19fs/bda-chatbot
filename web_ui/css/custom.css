@@ -6,13 +6,6 @@ textarea {
   box-sizing: border-box;
 }
 
-#question,
-#nlp_question,
-#tfidf_vocab,
-#w2v_vocab {
-  resize: none !important;
-}
-
 #nlp_question,
 #tfidf_vocab,
 #w2v_vocab {
