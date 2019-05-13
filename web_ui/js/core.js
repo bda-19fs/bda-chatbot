@@ -4,6 +4,7 @@ let ask_question = function() {
   console.time('ask_question');
   config = load_config();
   ask(question, config).then(result => {
+    console.log(result);
     show_vocab('tfidf_vocab', result['tfidf_vocab']);
     show_vocab('w2v_vocab', result['w2v_vocab']);
     show_preprocessing(result['nlp_question']);
@@ -11,6 +12,21 @@ let ask_question = function() {
     fill_answers('skipgram_answers', result['w2v_tags'], result['w2v_answers'], result['w2v_questions']);
     console.timeEnd('ask_question');
   });
+}
+
+let ask_cvcube = function() {
+  question = document.querySelector('#question').value;
+  if (question == '') return;
+  console.time('ask_cvcube');
+  post_cvcube(question).then(result => {
+    console.log(result);
+    fill_answers('cvcube_answers', result['cube_tags'], result['cube_answers'], result['cube_questions']);
+    console.timeEnd('ask_cvcube');
+  });
+}
+
+let adapt_tags = function(tags) {
+  return tags.map(x => x.join(','));
 }
 
 let load_config = function() {
@@ -25,6 +41,20 @@ let ask = function(question, config) {
   return post_data('//localhost:7001/api/v1/run', {
       question: question,
       config: config
+    })
+    .then(response => response.json());
+}
+
+let post_cvcube = function(question) {
+  data = {question: question};
+  return fetch('//bdaf19-tbjauner.el.eee.intern:5002/api/v1/run', {
+      method: 'POST',
+      cache: 'no-cache',
+      mode: 'cors',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     })
     .then(response => response.json());
 }

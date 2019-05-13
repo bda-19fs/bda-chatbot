@@ -15,7 +15,8 @@
       <h5 style="margin-bottom: 3rem;">Cyrill Jauner, Alan Meile</h5>
     </div>
     <div class="row">
-      <div class="col-3">
+      <div class="col-2"></div>
+      <div class="col-2">
         <div class="p-navigation--sidebar">
           <div class="sidebar__content js-sidebar-toggle u-hide" aria-hidden="true">
             <div class="row">
@@ -30,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="col-9">
+      <div class="col-8">
         <div class="row">
           <div class="p-card" style="width: 100%">
             <h3 class="p-card__title">User Input - NLP Pipeline</h3>
@@ -82,6 +83,24 @@
           </p>
           <aside class="p-accordion" role="tablist" aria-multiselect="true">
             <ul id="skipgram_answers" class="p-list p-accordion__list">
+            </ul>
+          </aside>
+        </div>
+        <div class="p-card col-6">
+          <h3 class="p-card__title">
+            CVCube Top 10 Predictions
+            <button class="p-button--neutral" onclick="ask_cvcube()">Ask</button>
+          </h3>
+          <div style="position: relative;">
+            <textarea id="cvcube_vocab" rows="3" disabled>
+            </textarea>
+            <span class="bda-description bda-white">CVCube Vocabulary</span>
+          </div>
+          <p style="font-weight: bold;font-size: 15px;margin-bottom: 0;">
+            Relevance Category
+          </p>
+          <aside class="p-accordion" role="tablist" aria-multiselect="true">
+            <ul id="cvcube_answers" class="p-list p-accordion__list">
             </ul>
           </aside>
         </div>

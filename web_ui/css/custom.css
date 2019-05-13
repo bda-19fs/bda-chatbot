@@ -6,9 +6,18 @@ textarea {
   box-sizing: border-box;
 }
 
+body > .row {
+  max-width: 100%;
+}
+
+h3 > button {
+  float: right;
+}
+
 #nlp_question,
 #tfidf_vocab,
-#w2v_vocab {
+#w2v_vocab,
+#cvcube_vocab {
   background-color: black;
   color: white;
   cursor: default;
