@@ -4,7 +4,6 @@ let ask_question = function() {
   console.time('ask_question');
   config = load_config();
   ask(question, config).then(result => {
-    console.log(result);
     show_vocab('tfidf_vocab', result['tfidf_vocab']);
     show_vocab('w2v_vocab', result['w2v_vocab']);
     show_preprocessing(result['nlp_question']);
@@ -19,7 +18,6 @@ let ask_cvcube = function() {
   if (question == '') return;
   console.time('ask_cvcube');
   post_cvcube(question).then(result => {
-    console.log(result);
     cube_answers = adapt(result['cube_answers']);
     cube_questions = adapt(result['cube_questions']);
     fill_answers('cvcube_answers', result['cube_tags'], cube_answers, cube_questions);
@@ -40,7 +38,7 @@ let load_config = function() {
 }
 
 let ask = function(question, config) {
-  return post_data('//localhost:7001/api/v1/run', {
+  return post_data(REST_RUN_API, {
       question: question,
       config: config
     })
@@ -49,7 +47,7 @@ let ask = function(question, config) {
 
 let post_cvcube = function(question) {
   data = {question: question};
-  return fetch('//bdaf19-tbjauner.el.eee.intern:5002/api/v1/run', {
+  return fetch(REST_CV_API, {
       method: 'POST',
       cache: 'no-cache',
       mode: 'cors',
@@ -62,7 +60,7 @@ let post_cvcube = function(question) {
 }
 
 let pipelines = function() {
-  return fetch('//localhost:7001/api/v1/pipelines')
+  return fetch(REST_PIPELINE_API)
     .then(response => response.json());
 }
 
