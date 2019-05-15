@@ -59,9 +59,9 @@ def process_pipeline(processors, wiki_extracts, questions):
     model_100, vectorizer_100 = create_language_model(concepts, questions, 0)
     model_95, vectorizer_95 = create_language_model(concepts, questions, 0.05)
     model_90, vectorizer_90 = create_language_model(concepts, questions, 0.1)
-    save(model_100, vectorizer_100, 'tfidf_100_model', 'tfidf_100_vectorizer')
-    save(model_95, vectorizer_95, 'tfidf_95_model', 'tfidf_95_vectorizer')
-    save(model_90, vectorizer_90, 'tfidf_90_model', 'tfidf_90_vectorizer')
+    save(model_100, vectorizer_100, 'tfidf_100_model', 'tfidf_100_vectors')
+    save(model_95, vectorizer_95, 'tfidf_95_model', 'tfidf_95_vectors')
+    save(model_90, vectorizer_90, 'tfidf_90_model', 'tfidf_90_vectors')
     log_info(f'training completed in {watch.time() - start}s\n')
 
 
