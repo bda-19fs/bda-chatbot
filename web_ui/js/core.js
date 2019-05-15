@@ -20,13 +20,15 @@ let ask_cvcube = function() {
   console.time('ask_cvcube');
   post_cvcube(question).then(result => {
     console.log(result);
-    fill_answers('cvcube_answers', result['cube_tags'], result['cube_answers'], result['cube_questions']);
+    cube_answers = adapt(result['cube_answers']);
+    cube_questions = adapt(result['cube_questions']);
+    fill_answers('cvcube_answers', result['cube_tags'], cube_answers, cube_questions);
     console.timeEnd('ask_cvcube');
   });
 }
 
-let adapt_tags = function(tags) {
-  return tags.map(x => x.join(','));
+let adapt = function(list) {
+  return list.map(x => ''.concat(',', x));
 }
 
 let load_config = function() {
