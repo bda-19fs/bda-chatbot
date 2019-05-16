@@ -41,12 +41,16 @@ def save(model, vectorizer, model_name, vec_name):
     '-q', '--questions', type=click.STRING, required=True,
     help='choose questions file'
 )
-def cli(wiki_extracts, questions):
+@click.option(
+    '-n', '--name', type=click.STRING, required=True,
+    help='select output file name'
+)
+def cli(wiki_extracts, questions, name):
     pass
 
 
 @cli.resultcallback()
-def process_pipeline(processors, wiki_extracts, questions):
+def process_pipeline(processors, wiki_extracts, questions, name):
     start = watch.time()
     concepts = get_concepts_from_folder(wiki_extracts)
     questions = (line.rstrip('\r\n') for line in file_as_list(questions, local=False))
@@ -59,9 +63,9 @@ def process_pipeline(processors, wiki_extracts, questions):
     model_100, vectorizer_100 = create_language_model(concepts, questions, 0)
     model_95, vectorizer_95 = create_language_model(concepts, questions, 0.05)
     model_90, vectorizer_90 = create_language_model(concepts, questions, 0.1)
-    save(model_100, vectorizer_100, 'tfidf_100_model', 'tfidf_100_vectors')
-    save(model_95, vectorizer_95, 'tfidf_95_model', 'tfidf_95_vectors')
-    save(model_90, vectorizer_90, 'tfidf_90_model', 'tfidf_90_vectors')
+    save(model_100, vectorizer_100, f'tfidf_{name}_100_model', f'tfidf_{name}_100_vectors')
+    save(model_95, vectorizer_95, f'tfidf_{name}_95_model', f'tfidf_{name}_95_vectors')
+    save(model_90, vectorizer_90, f'tfidf_{name}_90_model', f'tfidf_{name}_90_vectors')
     log_info(f'training completed in {watch.time() - start}s\n')
 
 
