@@ -18,9 +18,7 @@ services:
       context: ./
       dockerfile: ./training/Dockerfile
     volumes:
-      - './data:/app/data'
-    working_dir: /app
-    command: bash run.sh
+      - '$(pwd)/data:/mnt/data'
     hostname: training
   wiki_extract:
     build:
