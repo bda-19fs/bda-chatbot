@@ -55,12 +55,16 @@ def save_pre_computed_vectors(vectors, file_name):
     '-q', '--questions', type=click.STRING, required=True,
     help='choose questions file'
 )
-def cli(wiki_extracts, questions):
+@click.option(
+    '-n', '--name', type=click.STRING, default='',
+    help='select output file name (default = "")'
+)
+def cli(wiki_extracts, questions, name):
     pass
 
 
 @cli.resultcallback()
-def training(processors, wiki_extracts, questions):
+def training(processors, wiki_extracts, questions, name):
     start = watch.time()
 
     log_info(f'collecting wiki_extracts from folder {wiki_extracts}')
@@ -85,8 +89,8 @@ def training(processors, wiki_extracts, questions):
     log_info(f'creating language model')
     model, vectors = create_w2v_model(sentences, questions)
 
-    save_model(model, 'w2v_100_model.w2v')
-    save_pre_computed_vectors(vectors, 'w2v_100_vectors.pickle')
+    save_model(model, f'w2v_{name}100_model.w2v')
+    save_pre_computed_vectors(vectors, f'w2v_{name}100_vectors.pickle')
 
     log_info(f'training completed in {watch.time() - start}s\n')
 
