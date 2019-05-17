@@ -1,8 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.7.3
 
-RUN apk add --no-cache bash
-WORKDIR /app
-ADD ./app .
-ADD ./training .
 
-RUN pip install -r /app/requirements.txt
+WORKDIR /app/data
