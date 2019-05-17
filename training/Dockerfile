@@ -15,4 +15,3 @@ CMD ["/training/train_stackexchange.sh"]
 
 WORKDIR /mnt/data/models/ionesoft
 CMD ["/training/train_ionesoft.sh"]
-
