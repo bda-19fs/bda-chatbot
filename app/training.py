@@ -42,8 +42,8 @@ def save(model, vectorizer, model_name, vec_name):
     help='choose questions file'
 )
 @click.option(
-    '-n', '--name', type=click.STRING, required=True,
-    help='select output file name'
+    '-n', '--name', type=click.STRING, default='',
+    help='select output file name (default = "")'
 )
 def cli(wiki_extracts, questions, name):
     pass
