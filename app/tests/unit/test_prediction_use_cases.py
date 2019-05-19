@@ -12,5 +12,5 @@ def test_readable():
 
 def test_readable_w2v():
     answers = ['1993']
-    probs = [(0, [[1.0]])]
+    probs = [(0, [1.0])]
     assert readable_w2v(probs, answers) == ['1.0, 1993']
