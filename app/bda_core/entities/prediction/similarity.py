@@ -18,8 +18,9 @@ def predict_closest_vectors(X, pre_calculated_vectors):
 
 
 def predict_closest_w2v(X, pre_calculated_vectors):
-    probs = []
-    for vec in pre_calculated_vectors:
-        if vec is not None:
-            probs.append(cosine_similarity([X], [vec]))
+    #probs = []
+    #for vec in pre_calculated_vectors:
+    #    if vec is not None:
+    #        probs.append(cosine_similarity([X], [vec]))
+    probs = cosine_similarity(pre_calculated_vectors, X)
     return sorted(list(enumerate(probs)), key=getKey, reverse=True)
