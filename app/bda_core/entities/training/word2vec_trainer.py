@@ -80,8 +80,10 @@ def create_matrix_from_vectors(vectors):
     if vectors_len > 0:
         matrix = transpose_vector(vectors[0])
         for i in range(1, vectors_len):
-            transposed = transpose_vector(vectors[i])
-            matrix = np.concatenate((matrix, transposed), axis=0)
+            vec = vectors[i]
+            if vec is not None:
+                transposed = transpose_vector(vectors[i])
+                matrix = np.concatenate((matrix, transposed), axis=0)
         return matrix
     else:
         raise Exception('the given list of vectors is empty')
