@@ -42,6 +42,15 @@ def avg_word_vector(model, word_list):
     return np.mean(model.wv.__getitem__(words), axis=0)
 
 
+def transpose_vector(vec):
+    '''
+    Returns a new vector that is the transposition of the given vector.
+    :param vec: The vector to transpose
+    :return: The transposition vector
+    '''
+    return vec[np.newaxis]
+
+
 def create_sentence_vectors(model, questions):
     '''
     Calculates the average vectors for all questions. The order of the sentences list
@@ -60,3 +69,19 @@ def create_sentence_vectors(model, questions):
     vectors = np.array(vectors)
     return vectors
 
+
+def create_matrix_from_vectors(vectors):
+    '''
+    Creates a matrix that contains all vectors of the given vector list as row vectors.
+    :param vectors: A list of vectors with the same dimension
+    :return: The concatenation matrix of the given vectors
+    '''
+    vectors_len = len(vectors)
+    if vectors_len > 0:
+        matrix = transpose_vector(vectors[0])
+        for i in range(1, vectors_len):
+            transposed = transpose_vector(vectors[i])
+            matrix = np.concatenate((matrix, transposed), axis=0)
+        return matrix
+    else:
+        raise Exception('the given list of vectors is empty')
