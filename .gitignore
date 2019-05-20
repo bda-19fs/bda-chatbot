@@ -42,3 +42,8 @@ app/test_tmp/
 
 # intellij
 */.idea/*
+
+# models
+*.joblib
+*.w2v
+*.pickle
