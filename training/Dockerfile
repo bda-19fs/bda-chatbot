@@ -11,10 +11,6 @@ RUN chmod +x train_stackexchange.sh
 RUN chmod +x train_ionesoft.sh
 RUN chmod +x nltk_download.sh
 
-CMD ["/training/nltk_download.sh"]
+RUN /training/nltk_download.sh
 
-WORKDIR /mnt/data/models/stackexchange
-CMD ["/training/train_stackexchange.sh"]
-
-WORKDIR /mnt/data/models/ionesoft
-CMD ["/training/train_ionesoft.sh"]
+CMD cd /mnt/data/models/stackexchange && /training/train_stackexchange.sh && cd /mnt/data/models/ionesoft && /training/train_ionesoft.sh
