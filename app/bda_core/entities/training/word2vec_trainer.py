@@ -6,11 +6,17 @@ class Config:
     '''
     This class represents the configuration for the Word2Vec model.
     '''
-    def __init__(self, dimension=150, window_size=5, workers=3, use_skip_gram=1, epochs=10):
+    def __init__(self, dimension=150, hierarchical_softmax=0, negative_sampling=0, ns_exponent=0,
+                 sample=0, window_size=5, workers=3, use_skip_gram=1, min_count=2, epochs=10):
         self.dimension = dimension
+        self.hierarchical_softmax = hierarchical_softmax
+        self.negative_sampling = negative_sampling
+        self.ns_exponent = ns_exponent
+        self.sample = sample
         self.window_size = window_size
         self.workers = workers
         self.use_skip_gram = use_skip_gram
+        self.min_count = min_count
         self.epochs = epochs
 
 
@@ -22,8 +28,9 @@ def fit_model(sentences, config):
     :param config: The config for the model
     :return: The trained Word2Vec model
     '''
-    model = gensim.models.Word2Vec(size=config.dimension, window=config.window_size, workers=config.workers,
-                                   sg=config.use_skip_gram)
+    model = gensim.models.Word2Vec(size=config.dimension, hs=config.hierarchical_softmax, window=config.window_size,
+                                   workers=config.workers, sg=config.use_skip_gram, min_count=2)
+
     model.build_vocab(sentences)
     model.train(sentences, total_examples=len(sentences), epochs=config.epochs)
     model.init_sims(replace=True)
