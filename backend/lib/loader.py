@@ -7,8 +7,8 @@ from joblib import load
 from bda_core.entities.file.reader import file_as_list
 
 
-stack = 'models/stackexchange/'
-ione = 'models/ionesoft/'
+stack = '/mnt/data/models/stackexchange/'
+ione = '/mnt/data/models/ionesoft/'
 def get_model_components(config):
     config = f'{config["dataset"]}{config["algorithm"]}{config["domain_limit"]}'
     strategy = {
@@ -65,9 +65,9 @@ def load_models(folder, model, vectors):
 
 
 def load_tags_answers(dataset):
-    tags = file_as_list(f'models/{dataset}/{dataset}_tags.txt', local=False)
-    answers = file_as_list(f'models/{dataset}/{dataset}_answers.txt', local=False)
-    questions = file_as_list(f'models/{dataset}/{dataset}_questions.txt', local=False)
+    tags = file_as_list(f'/mnt/data/raw/{dataset}_tags.txt', local=False)
+    answers = file_as_list(f'/mnt/data/raw/{dataset}_answers.txt', local=False)
+    questions = file_as_list(f'/mnt/data/raw/{dataset}_questions.txt', local=False)
     return tags, answers, questions
 
 
