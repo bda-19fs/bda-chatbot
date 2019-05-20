@@ -22,6 +22,7 @@ __pycache__/
 # requirements.txt
 !requirements.txt
 !de_article_ids_ionesoft.csv
+!en_article_ids_stackexchange.csv
 
 # intellij
 .idea/*
