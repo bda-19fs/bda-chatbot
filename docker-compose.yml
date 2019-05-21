@@ -27,7 +27,5 @@ services:
       context: ./
       dockerfile: ./wiki_extract/Dockerfile
     volumes:
-      - './data:/app/data'
-    working_dir: /app
-    command: bash run.sh
+      - './data:/mnt/data'
     hostname: wiki_extract
