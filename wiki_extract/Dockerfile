@@ -9,4 +9,4 @@ WORKDIR /wiki_extract
 RUN pip3 install -r requirements.txt
 RUN chmod +x wiki_extract.sh
 
-CMD sleep 60000
+CMD ./wiki_extract.sh
