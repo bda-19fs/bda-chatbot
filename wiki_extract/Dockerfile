@@ -1,10 +1,12 @@
-FROM python:3.7-alpine
+FROM python:3.7.3-alpine
 
-RUN apk add --no-cache bash
-RUN mkdir /app
-RUN mkdir /app/data
 
-ADD ./wiki_extract /app
+ADD ./wiki_extract /wiki_extract
 ADD ./app /app
 
-RUN pip install -r /app/requirements.txt
+WORKDIR /wiki_extract
+
+RUN pip3 install -r requirements.txt
+RUN chmod +x wiki_extract.sh
+
+CMD sleep 60000
