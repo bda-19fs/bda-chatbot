@@ -172,8 +172,7 @@ let highlight = function(category_list) {
 
 let highlight_categories  = function() {
   let input = document.querySelector('#categories').value;
-  input = input.replace(/\s/g, '');
-  let category_list = input.split(',');
+  let category_list = input.split(' ');
   highlight(category_list);
 }
 
