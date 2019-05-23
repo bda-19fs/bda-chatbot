@@ -55,6 +55,10 @@ h3 > button {
   margin: 0 4px 0 2px;
 }
 
+.bda-tag.bda-highlight {
+  background-color: #424242;
+}
+
 button span:first-child {
     margin-right: 14px;
 }
