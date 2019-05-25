@@ -151,13 +151,29 @@ let fill_answers = function(id, tags, answer, question) {
   });
 }
 
-var toggle_answer = function(e) {
+let toggle_answer = function(e) {
   let parent = e.parentElement;
   let answer_section = parent.lastChild;
   answer_section.setAttribute(
     'aria-hidden',
     (answer_section.getAttribute('aria-hidden')) == "false" ? true : false
   );
+}
+
+let highlight = function(category_list) {
+  let slides = document.getElementsByClassName("bda-tag");
+  for (var slide of slides) {
+    slide.classList.remove('bda-highlight');
+    if (category_list.indexOf(slide.innerText) >= 0) {
+      slide.classList.add('bda-highlight');
+    }
+  }
+}
+
+let highlight_categories  = function() {
+  let input = document.querySelector('#categories').value;
+  let category_list = input.split(' ');
+  highlight(category_list);
 }
 
 // load settings
