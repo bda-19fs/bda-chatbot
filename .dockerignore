@@ -1,0 +1,4 @@
+# prevent loading large xml files
+data/*
+dewiki-21032019-pages-articles.xml
+enwiki-latest-pages-articles.xml
