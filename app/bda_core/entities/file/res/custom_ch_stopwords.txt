@@ -1,4 +1,3 @@
-a
 ab
 aber
 ach
@@ -28,7 +27,6 @@ anderer
 anderes
 anderm
 andern
-anderr
 anders
 au
 auch
@@ -36,9 +34,8 @@ auf
 aus
 ausser
 ausserdem
-außer
-außerdem
-b
+ausser
+ausserdem
 bald
 bei
 beide
@@ -54,8 +51,6 @@ bin
 bis
 bisher
 bist
-c
-d
 d.h
 da
 dabei
@@ -89,7 +84,7 @@ davon
 davor
 dazu
 dazwischen
-daß
+dass
 dein
 deine
 deinem
@@ -100,7 +95,7 @@ dem
 dementsprechend
 demgegenüber
 demgemäss
-demgemäß
+demgemäss
 demselben
 demzufolge
 den
@@ -113,7 +108,7 @@ derer
 derjenige
 derjenigen
 dermassen
-dermaßen
+dermassen
 derselbe
 derselben
 des
@@ -149,12 +144,10 @@ durfte
 durften
 dürfen
 dürft
-e
 eben
 ebenso
 ehrlich
 ei
-ei,
 eigen
 eigene
 eigenen
@@ -197,7 +190,6 @@ eurem
 euren
 eurer
 eures
-f
 folgende
 früher
 fünf
@@ -206,7 +198,6 @@ fünften
 fünfter
 fünftes
 für
-g
 gab
 ganz
 ganze
@@ -242,16 +233,15 @@ grosse
 grossen
 grosser
 grosses
-groß
-große
-großen
-großer
-großes
+gross
+grosse
+grossen
+grosser
+grosses
 gut
 gute
 guter
 gutes
-h
 hab
 habe
 haben
@@ -271,7 +261,6 @@ hinter
 hoch
 hätte
 hätten
-i
 ich
 ihm
 ihn
@@ -290,7 +279,6 @@ infolgedessen
 ins
 irgend
 ist
-j
 ja
 jahr
 jahre
@@ -313,7 +301,6 @@ jenen
 jener
 jenes
 jetzt
-k
 kam
 kann
 kannst
@@ -336,14 +323,12 @@ kurz
 können
 könnt
 könnte
-l
 lang
 lange
 leicht
 leide
 lieber
 los
-m
 machen
 macht
 machte
@@ -378,16 +363,15 @@ muss
 musst
 musste
 mussten
-muß
-mußt
+muss
+musst
 möchte
 mögen
 möglich
 mögt
 müssen
 müsst
-müßt
-n
+müsst
 na
 nach
 nachdem
@@ -411,7 +395,6 @@ niemanden
 noch
 nun
 nur
-o
 ob
 oben
 oder
@@ -419,9 +402,6 @@ offen
 oft
 ohne
 ordnung
-p
-q
-r
 recht
 rechte
 rechten
@@ -429,7 +409,6 @@ rechter
 rechtes
 richtig
 rund
-s
 sa
 sache
 sagt
@@ -487,7 +466,6 @@ startseite
 statt
 steht
 suche
-t
 tag
 tage
 tagen
@@ -497,7 +475,6 @@ tel
 tritt
 trotzdem
 tun
-u
 uhr
 um
 und
@@ -511,7 +488,6 @@ unsere
 unserer
 unses
 unter
-v
 vergangenen
 viel
 viele
@@ -526,7 +502,6 @@ viertes
 vom
 von
 vor
-w
 wahr?
 wann
 war
@@ -589,9 +564,6 @@ währenddessen
 wäre
 würde
 würden
-x
-y
-z
 z.b
 zehn
 zehnte
