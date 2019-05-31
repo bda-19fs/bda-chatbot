@@ -1,0 +1,5 @@
+SELECT ?food, ?id
+WHERE {
+  ?food rdf:type dbo:Food .
+  ?food dbo:wikiPageID ?id
+}
