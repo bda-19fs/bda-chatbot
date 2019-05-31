@@ -61,11 +61,11 @@ def process_pipeline(processors, wiki_extracts, questions, name):
     questions = list(questions)
     log_info(f'creating language model')
     model_100, vectorizer_100 = create_language_model(concepts, questions, 0)
-    model_95, vectorizer_95 = create_language_model(concepts, questions, 0.05)
-    model_90, vectorizer_90 = create_language_model(concepts, questions, 0.1)
+    model_95, vectorizer_95 = create_language_model(concepts, questions, 0.25)
+    model_90, vectorizer_90 = create_language_model(concepts, questions, 0.5)
     save(model_100, vectorizer_100, f'tfidf_{name}100_model', f'tfidf_{name}100_vectors')
-    save(model_95, vectorizer_95, f'tfidf_{name}95_model', f'tfidf_{name}95_vectors')
-    save(model_90, vectorizer_90, f'tfidf_{name}90_model', f'tfidf_{name}90_vectors')
+    save(model_95, vectorizer_95, f'tfidf_{name}75_model', f'tfidf_{name}75_vectors')
+    save(model_90, vectorizer_90, f'tfidf_{name}50_model', f'tfidf_{name}50_vectors')
     log_info(f'training completed in {watch.time() - start}s\n')
 
 
