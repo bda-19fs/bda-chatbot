@@ -2,6 +2,17 @@ import setuptools
 
 long_description = '''
 BDA Chatbot fs19
+
+BDA Chatbot implementation for NLP Pipeline. Currently supports following NLP strategies:
+- normalization
+- remove stopwords
+- stemming
+- lemmatization
+
+Example
+> echo "Hallo liebe Welt!" | python3 normalize.py | python3 stemm.py
+
+hallo lieb welt
 '''
 
 INSTALL_REQUIRES = [
@@ -14,7 +25,7 @@ INSTALL_REQUIRES = [
 
 setuptools.setup(
     name='bda-chatbot',
-    version='0.0.4',
+    version='1.0.0',
     author='Alan Meile, Cyrill Jauner',
     author_email='alan.meile@gmail.com',
     description='Source code for the bda chatbot bachelor thesis fs19',
