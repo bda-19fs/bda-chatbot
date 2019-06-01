@@ -12,8 +12,8 @@ def ui_config():
         'Stopwords & lemmatization'
     ]
     domain_limit = [
-        ' 0%  - 100%',
-        ' 5%  -  95%',
-        '10%  -  90%'
+        'max_df 100%',
+        'max_df  75%',
+        'max_df  50%'
     ]
     return dataset, algorithm, domain_limit
