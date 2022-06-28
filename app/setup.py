@@ -18,7 +18,7 @@ hallo lieb welt
 INSTALL_REQUIRES = [
     'Click==7.0',
     'nltk==3.4.5',
-    'numpy==1.16.2',
+    'numpy==1.22.0',
     'pandas==0.24.2',
     'untangle==1.1.1'
 ]
