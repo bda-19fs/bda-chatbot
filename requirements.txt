@@ -2,7 +2,7 @@ Click==7.0
 coverage==4.5.3
 coveralls==1.7.0
 nltk==3.4.5
-numpy==1.16.2
+numpy==1.22.0
 pandas==0.24.2
 pytest==4.4.0
 pytest-bdd==3.1.0
